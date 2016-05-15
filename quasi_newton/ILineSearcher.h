@@ -1,0 +1,35 @@
+#pragma once
+#include "utility/utility.h"
+#include <boost/numeric/ublas/vector.hpp>
+
+namespace algo {
+    namespace ublas = boost::numeric::ublas;
+
+    class ILineSearcher : public utility::Object<ILineSearcher> {
+    //private typedef
+    private:
+    //public typedef
+    public:
+    //public function
+    public:
+        virtual ~ILineSearcher() {}
+        /**
+         * @brief solve $\\mathrm{argimin}_{\\alpha}(x + \\alpha p)$
+         *
+         * @param p 
+         * @param x
+         *
+         * @return $\\mathrm{argmin}_{\\alpha}(x + \\alpha p)$
+         */
+        ublas::vector<double> operator()(
+            const ublas::vector<double>& p,
+            const ublas::vector<double>& x);
+    //private function
+    private:
+        virtual ublas::vector<double> doOperatorParenthesis(
+            const ublas::vector<double>& p,
+            const ublas::vector<double>& x) = 0;
+    //private members
+    private:
+    }; // class ILineSearcher {
+} // namespace algo { 
