@@ -1,8 +1,15 @@
+/**
+ * @file utility.h
+ * @brief 
+ * @author i05nagai
+ * @version 0.0.1
+ * @date 2016-07-20
+ */
+
 #pragma once
 
-namespace algo {
+namespace algo { namespace qn {
     namespace ublas = boost::numeric::ublas;
-
     /**
      * @brief 
      *
@@ -12,7 +19,6 @@ namespace algo {
      */
     ublas::matrix<double> 
     initilizeQuasiNewtonHessian(const std::size_t size);
-
     /**
      * @brief 
      *
@@ -22,7 +28,6 @@ namespace algo {
      */
     ublas::matrix<double> 
     initilizeQuasiNewtonInverseHessian(const std::size_t size);
-
     /**
      * @brief calculate square of euclidean norm.
      *
@@ -34,7 +39,6 @@ namespace algo {
     double calculateSumOfSquares(
         const ublas::vector<double>& x1,
         const ublas::vector<double>& x2);
-
     /**
      * @brief calculates euclidean norm.
      *
@@ -46,5 +50,5 @@ namespace algo {
     double calculateNormL2(
         const ublas::vector<double>& x1,
         const ublas::vector<double>& x2);
-} // namespace algo
+} } // namespace algo { namespace qn {
 

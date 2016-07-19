@@ -1,10 +1,21 @@
+/**
+ * @file IQuasiNewton.h
+ * @brief 
+ * @author i05nagai
+ * @version 0.0.1
+ * @date 2016-07-20
+ */
+
 #pragma once
 #include "utility/utility.h"
 #include <boost/numeric/ublas/vector.hpp>
 
-namespace algo {
+namespace algo { namespace qn {
     namespace ublas = boost::numeric::ublas;
 
+    /**
+     * @brief 
+     */
     class IQuasiNewton : public utility::Object<IQuasiNewton> {
     //private typedef
     private:
@@ -39,4 +50,5 @@ namespace algo {
     //private members
     private:
     }; // class IQuasiNewton {
-} // namespace algo { 
+} } // namespace algo { namespace qn {
+ 

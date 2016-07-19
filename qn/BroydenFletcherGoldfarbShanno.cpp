@@ -1,14 +1,13 @@
-#include "quasi_newton/pre_compiled_header.h"
-#include "quasi_newton/BroydenFletcherGoldfarbShanno.h"
-#include "quasi_newton/ILineSearcher.h"
-#include "quasi_newton/utility.h"
+#include "pre_compiled_header.h"
+#include "qn/BroydenFletcherGoldfarbShanno.h"
+#include "qn/ILineSearcher.h"
+#include "qn/utility.h"
 #include "utility/debug_macro.h"
 #include <boost/shared_ptr.hpp>
 #include <boost/numeric/ublas/vector.hpp>
 #include <boost/numeric/ublas/matrix.hpp>
 
-
-namespace algo {
+namespace algo { namespace qn {
     namespace ublas = boost::numeric::ublas;
 
     BroydenFletcherGoldfarbShanno::BroydenFletcherGoldfarbShanno(
@@ -27,7 +26,7 @@ namespace algo {
         //initialize
         ublas::vector<double> x1 = x0;
         ublas::matrix<double> H 
-            = algo::initilizeQuasiNewtonInverseHessian(x0.size());
+            = algo::qn::initilizeQuasiNewtonInverseHessian(x0.size());
 
         for (std::size_t i = 0; i < _maxIteration; ++i) {
             const auto& gradient = gradf(x1);
@@ -78,7 +77,7 @@ namespace algo {
         const ublas::vector<double>& x1, 
         const ublas::vector<double>& x2)
     {
-        const double error = algo::calculateNormL2(x1, x2);
+        const double error = algo::qn::calculateNormL2(x1, x2);
         if (error < _epsilon) {
             return true;
         } else {
@@ -86,5 +85,5 @@ namespace algo {
         }
     }
 
-} // namespace algo {
+} } // namespace algo { namespace qn {
 

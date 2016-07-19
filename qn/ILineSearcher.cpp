@@ -1,7 +1,7 @@
-#include "quasi_newton/pre_compiled_header.h"
-#include "quasi_newton/ILineSearcher.h"
+#include "pre_compiled_header.h"
+#include "qn/ILineSearcher.h"
 
-namespace algo {
+namespace algo { namespace qn {
     namespace ublas = boost::numeric::ublas;
 
     ublas::vector<double> ILineSearcher::operator()(
@@ -10,4 +10,4 @@ namespace algo {
     {
         return this->doOperatorParenthesis(p, x);
     }
-} // namespace algo {
+} } // namespace algo { namespace qn {
