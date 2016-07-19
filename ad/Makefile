@@ -1,6 +1,5 @@
 INC=-I..
-INC+=-I/opt/local/include
-#INC+=-I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1
+INC+=-I../include/boost
 LIBS=
 CFLAGS=-Wall -g -std=c++11 -stdlib=libc++
 CPP_FLAGS=-stdlib=libc++
