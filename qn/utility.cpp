@@ -15,22 +15,27 @@ namespace algo { namespace qn {
         return ublas::identity_matrix<double>(size);
     }
 
-    double calculateSumOfSquares(
-        const ublas::vector<double>& x1,
-        const ublas::vector<double>& x2)
+    template <typename E>
+    double calculateSumOfSquares(const ublas::vector_expression<E>& x)
     {
         double sum = 0.0;
-        for (std::size_t i = 0; i < x1.size(); ++i) {
-            sum += (x1(i) - x2(i)) * (x1(i) - x2(i));
+        for (std::size_t i = 0; i < x().size(); ++i) {
+            sum += (x()(i) * x()(i));
         }
         return sum;
     }
 
-    double calculateNormL2(
+    double calculateDistanceNormL2(
         const ublas::vector<double>& x1,
         const ublas::vector<double>& x2)
     {
-        const double sum = algo::qn::calculateSumOfSquares(x1, x2);
+        const double sum = algo::qn::calculateSumOfSquares(x2 - x1);
+        return std::sqrt(sum);
+    }
+
+    double calculateNormL2(const ublas::vector<double>& x)
+    {
+        const double sum = algo::qn::calculateSumOfSquares(x);
         return std::sqrt(sum);
     }
 } } // namespace algo { namespace qn {

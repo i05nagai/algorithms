@@ -7,6 +7,8 @@
  */
 
 #pragma once
+#include <boost/numeric/ublas/vector.hpp>
+#include <boost/numeric/ublas/vector_expression.hpp>
 
 namespace algo { namespace qn {
     namespace ublas = boost::numeric::ublas;
@@ -29,14 +31,24 @@ namespace algo { namespace qn {
     ublas::matrix<double> 
     initilizeQuasiNewtonInverseHessian(const std::size_t size);
     /**
-     * @brief calculate square of euclidean norm.
+     * @brief caculates sum of squares.
      *
-     * @param x1 point.
-     * @param x2 point.
+     * @tparam E expression.
+     * @param x vector.
      *
-     * @return square of euclidean norm.
+     * @return sum of squares.
      */
-    double calculateSumOfSquares(
+    template <typename E>
+    double calculateSumOfSquares(const ublas::vector_expression<E>& x);
+    /**
+     * @brief calculate distance between x1 and x2.
+     *
+     * @param x1
+     * @param x2
+     *
+     * @return 
+     */
+    double calculateDistanceNormL2(
         const ublas::vector<double>& x1,
         const ublas::vector<double>& x2);
     /**
@@ -47,8 +59,6 @@ namespace algo { namespace qn {
      *
      * @return euclidean norm.
      */
-    double calculateNormL2(
-        const ublas::vector<double>& x1,
-        const ublas::vector<double>& x2);
+    double calculateNormL2(const ublas::vector<double>& x);
 } } // namespace algo { namespace qn {
 
