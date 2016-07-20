@@ -25,17 +25,6 @@ namespace algo { namespace qn {
         return sum;
     }
 
-    double calculateSumOfSquares(
-        const ublas::vector<double>& x1,
-        const ublas::vector<double>& x2)
-    {
-        double sum = 0.0;
-        for (std::size_t i = 0; i < x1.size(); ++i) {
-            sum += (x1(i) - x2(i)) * (x1(i) - x2(i));
-        }
-        return sum;
-    }
-
     double calculateDistanceNormL2(
         const ublas::vector<double>& x1,
         const ublas::vector<double>& x2)
@@ -44,11 +33,9 @@ namespace algo { namespace qn {
         return std::sqrt(sum);
     }
 
-    double calculateNormL2(
-        const ublas::vector<double>& x1,
-        const ublas::vector<double>& x2)
+    double calculateNormL2(const ublas::vector<double>& x)
     {
-        const double sum = algo::qn::calculateSumOfSquares(x1, x2);
+        const double sum = algo::qn::calculateSumOfSquares(x);
         return std::sqrt(sum);
     }
 } } // namespace algo { namespace qn {

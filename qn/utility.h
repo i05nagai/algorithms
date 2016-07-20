@@ -41,17 +41,6 @@ namespace algo { namespace qn {
     template <typename E>
     double calculateSumOfSquares(const ublas::vector_expression<E>& x);
     /**
-     * @brief calculate square of euclidean norm.
-     *
-     * @param x1 point.
-     * @param x2 point.
-     *
-     * @return square of euclidean norm.
-     */
-    double calculateSumOfSquares(
-        const ublas::vector<double>& x1,
-        const ublas::vector<double>& x2);
-    /**
      * @brief calculate distance between x1 and x2.
      *
      * @param x1
@@ -70,8 +59,6 @@ namespace algo { namespace qn {
      *
      * @return euclidean norm.
      */
-    double calculateNormL2(
-        const ublas::vector<double>& x1,
-        const ublas::vector<double>& x2);
+    double calculateNormL2(const ublas::vector<double>& x);
 } } // namespace algo { namespace qn {
 
