@@ -1,20 +1,28 @@
 INC=-I..
 INC+=-I../include/boost
 LIBS=
-CFLAGS=-Wall -g -std=c++11 -stdlib=libc++
+CXX=g++
+
+#flags
+CFLAGS=-g 
+#CFLAGS+=-Wall 
+CFLAGS+=-std=c++11 -stdlib=libc++
 CPP_FLAGS=-stdlib=libc++
 CPP_FLAGS+=$(INC)
-CXX=g++
+
+#file 
 SRCDIR=.
 SOURCES=$(wildcard $(SRCDIR)/*.cpp)
 OBJSDIR=.
 OBJS=$(SOURCES:.cpp=.o)
+
+#pch file
 PCH_SOURCE=pre_compiled_header.hpp
 PCH=$(PCH_SOURCE).gch
 PCH_CFLAGS=-cc1 -emit-pch -fblocks -fexceptions -fcxx-exceptions -fmax-type-align=16 -std=c++11 -stdlib=libc++
 PCH_CFLAGS+=-relocatable-pch
+
 TARGET=main
-#CFLAGS+=-include-pch $(PCH)
 
 all: depend $(TARGET)
 
