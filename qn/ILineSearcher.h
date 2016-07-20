@@ -1,8 +1,16 @@
+/**
+ * @file ILineSearcher.h
+ * @brief 
+ * @author i05nagai
+ * @version 0.0.1
+ * @date 2016-07-20
+ */
+
 #pragma once
 #include "utility/utility.h"
 #include <boost/numeric/ublas/vector.hpp>
 
-namespace algo {
+namespace algo { namespace qn {
     namespace ublas = boost::numeric::ublas;
 
     class ILineSearcher : public utility::Object<ILineSearcher> {
@@ -32,4 +40,4 @@ namespace algo {
     //private members
     private:
     }; // class ILineSearcher {
-} // namespace algo { 
+} } // namespace algo { namespace qn {

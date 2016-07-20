@@ -1,7 +1,7 @@
-#include "quasi_newton/pre_compiled_header.h"
-#include "quasi_newton/ExplicitLineSearcher.h"
-#include "quasi_newton/DavidonFeltcherPowell.h"
-#include "quasi_newton/BroydenFletcherGoldfarbShanno.h"
+#include "qn/pre_compiled_header.h"
+#include "qn/ExplicitLineSearcher.h"
+#include "qn/DavidonFeltcherPowell.h"
+#include "qn/BroydenFletcherGoldfarbShanno.h"
 #include <boost/shared_ptr.hpp>
 
 namespace ublas = boost::numeric::ublas;
@@ -42,21 +42,21 @@ int main(int argc, char const* argv[])
 {
     const double epsilon = 1E-10;
     const std::size_t maxIteration = 50;
-    const LineSearcherFunction lineSearcherFunction;
-    boost::shared_ptr<algo::ExplicitLineSearcher> searcher(
-        new algo::ExplicitLineSearcher(lineSearcherFunction));
+    LineSearcherFunction lineSearcherFunction;
+    boost::shared_ptr<algo::qn::ExplicitLineSearcher> searcher(
+        new algo::qn::ExplicitLineSearcher(lineSearcherFunction));
 
-    //boost::shared_ptr<algo::DavidonFeltcherPowell> quasiNewton(
-    //    new algo::DavidonFeltcherPowell(epsilon, maxIteration, searcher));
-    boost::shared_ptr<algo::BroydenFletcherGoldfarbShanno> quasiNewton(
-        new algo::BroydenFletcherGoldfarbShanno(
+    //boost::shared_ptr<algo::qn::DavidonFeltcherPowell> quasiNewton(
+    //    new algo::qn::DavidonFeltcherPowell(epsilon, maxIteration, searcher));
+    boost::shared_ptr<algo::qn::BroydenFletcherGoldfarbShanno> quasiNewton(
+        new algo::qn::BroydenFletcherGoldfarbShanno(
             epsilon, maxIteration, searcher));
     
     ublas::vector<double> x0(2);
     x0(0) = -10.0;
     x0(1) = 10.342;
-    const typename algo::IQuasiNewton::function_type func = SampleFunction();
-    const typename algo::IQuasiNewton::gradient_type gradient 
+    const typename algo::qn::IQuasiNewton::function_type func = SampleFunction();
+    const typename algo::qn::IQuasiNewton::gradient_type gradient 
         = SampleGradientFunction();
     ublas::vector<double> x = (*quasiNewton)(x0, func, gradient);
     std::cout << x(0) << std::endl;

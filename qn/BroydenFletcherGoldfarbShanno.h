@@ -1,11 +1,19 @@
+/**
+ * @file BroydenFletcherGoldfarbShanno.h
+ * @brief 
+ * @author i05nagai
+ * @version 0.0.1
+ * @date 2016-07-20
+ */
+
 #pragma once
-#include "quasi_newton/pre_compiled_header.h"
-#include "quasi_newton/IQuasiNewton.h"
-#include "quasi_newton/ILineSearcher.h"
-#include "quasi_newton/utility.h"
+#include "qn/pre_compiled_header.h"
+#include "qn/IQuasiNewton.h"
+#include "qn/ILineSearcher.h"
+#include "qn/utility.h"
 #include "utility/utility.h"
 
-namespace algo {
+namespace algo { namespace qn {
     namespace ublas = boost::numeric::ublas;
 
     /**
@@ -91,5 +99,5 @@ namespace algo {
         const std::size_t _maxIteration;
         boost::shared_ptr<ILineSearcher> _searcher;
     }; // class BroydenFletcherGoldfarbShanno : public IQuasiNewton {
-} // namespace algo {
+} } // namespace algo { namespace qn {
 

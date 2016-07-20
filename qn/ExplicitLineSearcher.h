@@ -1,8 +1,16 @@
+/**
+ * @file ExplicitLineSearcher.h
+ * @brief 
+ * @author i05nagai
+ * @version 0.0.1
+ * @date 2016-07-20
+ */
+
 #pragma once
 #include "utility/utility.h"
-#include "quasi_newton/ILineSearcher.h"
+#include "qn/ILineSearcher.h"
 
-namespace algo {
+namespace algo { namespace qn {
     /**
      * @brief 
      */
@@ -35,5 +43,5 @@ namespace algo {
     private:
         functor_type _f;
     }; // class ExplicitLineSearcher : public ILineSearcher {
-} // namespace algo { 
+} } // namespace algo { namespace qn {
 

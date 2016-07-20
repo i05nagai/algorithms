@@ -1,7 +1,7 @@
-#include "quasi_newton/pre_compiled_header.h"
-#include "quasi_newton/IQuasiNewton.h"
+#include "pre_compiled_header.h"
+#include "qn/IQuasiNewton.h"
 
-namespace algo {
+namespace algo { namespace qn {
     ublas::vector<double> IQuasiNewton::operator()(
         const ublas::vector<double>& x0,
         const function_type& f,
@@ -9,4 +9,4 @@ namespace algo {
     {
         return this->doOperatorParenthesis(x0, f, gradf);
     }
-} // namespace algo
+} } // namespace algo { namespace qn {

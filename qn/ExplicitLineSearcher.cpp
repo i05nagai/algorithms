@@ -1,7 +1,7 @@
-#include "quasi_newton/pre_compiled_header.h"
-#include "quasi_newton/ExplicitLineSearcher.h"
+#include "pre_compiled_header.h"
+#include "qn/ExplicitLineSearcher.h"
 
-namespace algo {
+namespace algo { namespace qn {
     ExplicitLineSearcher::ExplicitLineSearcher(const functor_type& f)
     : _f(f)
     {
@@ -15,4 +15,4 @@ namespace algo {
         return _f(p, x);
     }
 
-} // namespace algo {
+} } // namespace algo { namespace qn {
