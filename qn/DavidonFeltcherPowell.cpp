@@ -70,7 +70,7 @@ namespace algo { namespace qn {
         const ublas::vector<double>& x1, 
         const ublas::vector<double>& x2)
     {
-        const double error = algo::qn::calculateNormL2(x1, x2);
+        const double error = algo::qn::calculateDistanceNormL2(x1, x2);
         if (error < _epsilon) {
             return true;
         } else {
