@@ -29,12 +29,12 @@ namespace algo { namespace ad {
         namespace ublas = boost::numeric::ublas;
         typedef std::function<V (const ublas::vector<V>&)> function_type;
 
-        ublas::vector<V> result(x.size());
+        ublas::vector<V> result(functions.size());
         auto transformer = [&x](const function_type& f) {
             return f(x);
         };
         std::transform(
-            functions.begin(), functions.eng(), result.begin(), transformer);
+            functions.begin(), functions.end(), result.begin(), transformer);
         return result;
     }
     /**
@@ -54,7 +54,7 @@ namespace algo { namespace ad {
      *
      * @param value
      * @param size
-     * @param index
+     * @param index Index starts from 0. Index should be less than size.
      *
      * @return 
      */
