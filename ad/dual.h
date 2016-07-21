@@ -43,7 +43,7 @@ namespace algo { namespace ad {
          */
         template <typename AE>
         dual(const dual_expression<AE>& ae) 
-        : _value(ae().getValue()), _derivative(ae.getDerivative())
+        : _value(ae().getValue()), _derivative(ae().getDerivative())
         {
         }
         /**

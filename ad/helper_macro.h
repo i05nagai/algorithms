@@ -9,3 +9,15 @@
     }                                                                                              \
     std::cout << std::endl;
 
+#define DISPLAY_VECTOR_DUAL(vector)                                    \
+    std::cout << #vector << std::endl;                                 \
+    for (std::size_t i = 0; i < vector.size(); ++i) {                  \
+        std::cout << "  "  << #vector << "(" << i << ")" << std::endl; \
+        std::cout << "    " << vector(i).getValue() << std::endl;      \
+        std::cout << "    ";                                           \
+        for (auto& derivative : vector(i).getDerivative()) {           \
+           std::cout << derivative << " ";                             \
+        }                                                              \
+        std::cout << std::endl;                                        \
+    }                                                                  \
+    std::cout << std::endl;
