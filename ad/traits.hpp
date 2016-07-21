@@ -1,5 +1,5 @@
 /**
- * @file type_traits.h
+ * @file traits.h
  * @brief 
  * @author i05nagai
  * @version 0.0.1

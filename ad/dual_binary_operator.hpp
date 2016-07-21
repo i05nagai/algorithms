@@ -10,7 +10,7 @@
 #include "fwd.h"
 #include "ad/dual.h"
 #include "ad/dual_expression.h"
-#include "ad/type_traits.h"
+#include "ad/traits.h"
 #include "ad/detail/dual_binary_operator_helper.h"
 #include "ad/detail/dual_helper_function.h"
 
