@@ -9,7 +9,7 @@
 #pragma once
 #include "fwd.h"
 #include "ad/dual_expression.h"
-#include "ad/type_traits.h"
+#include "ad/traits.h"
 #include "ad/detail/dual_unary_operator_helper.h"
 #include "ad/detail/dual_helper_function.h"
 
