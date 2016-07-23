@@ -1,5 +1,5 @@
 /**
- * @file dual_expression.h
+ * @file dual_expression.hpp
  * @brief dual_expression class.
  * @author i05nagai
  * @version 0.0.1

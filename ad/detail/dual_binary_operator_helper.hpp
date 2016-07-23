@@ -1,5 +1,5 @@
 /**
- * @file dual_binary_operator_helper.h
+ * @file dual_binary_operator_helper.hpp
  * @brief helper functions for binary operators.
  * @author i05nagai
  * @version 0.0.1

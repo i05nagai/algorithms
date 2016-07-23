@@ -1,5 +1,5 @@
 /**
- * @file dual.h
+ * @file dual.hpp
  * @brief dual class.
  * @author i05nagai
  * @version 0.0.1
@@ -7,7 +7,7 @@
  */
 
 #pragma once
-#include "dual_expression.h"
+#include "dual_expression.hpp"
 
 namespace algo { namespace ad {
     /**

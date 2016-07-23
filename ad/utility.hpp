@@ -1,12 +1,12 @@
 /**
- * @file utility.h
+ * @file utility.hpp
  * @brief 
  * @author i05nagai
  * @version 0.0.1
  * @date 2016-07-21
  */
 #pragma once
-#include "ad/dual.h"
+#include "ad/dual.hpp"
 #include <boost/numeric/ublas/vector.hpp>
 
 namespace algo { namespace ad {

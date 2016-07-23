@@ -1,8 +1,8 @@
-#include "ad/dual.h"
-#include "ad/dual_binary_operator.h"
-#include "ad/dual_unary_operator.h"
-#include "ad/helper_macro.h"
-#include "ad/utility.h"
+#include "ad/dual.hpp"
+#include "ad/dual_binary_operator.hpp"
+#include "ad/dual_unary_operator.hpp"
+#include "ad/helper_macro.hpp"
+#include "ad/utility.hpp"
 #include <boost/numeric/ublas/vector.hpp>
 
 template <typename V>

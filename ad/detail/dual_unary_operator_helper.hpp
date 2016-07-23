@@ -1,5 +1,5 @@
 /**
- * @file dual_unary_operator_helper.h
+ * @file dual_unary_operator_helper.hpp
  * @brief 
  * @author i05nagai
  * @version 0.0.1
@@ -7,7 +7,7 @@
  */
 
 #pragma once
-#include "ad/ublas_unary_operator.h"
+#include "ad/ublas_unary_operator.hpp"
 
 namespace algo { namespace ad { namespace detail {
     /*--------------------------------------------------------------------------

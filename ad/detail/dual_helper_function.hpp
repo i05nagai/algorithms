@@ -1,5 +1,5 @@
 /**
- * @file dual_helper_function.h
+ * @file dual_helper_function.hpp
  * @brief helper funtions.
  * @author i05nagai
  * @version 0.0.1
