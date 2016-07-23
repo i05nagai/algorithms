@@ -1,5 +1,5 @@
 /**
- * @file ublas_unary_operator.h
+ * @file ublas_unary_operator.hpp
  * @brief 
  * @author 
  * @version i05nagai

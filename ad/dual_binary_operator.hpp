@@ -1,5 +1,5 @@
 /**
- * @file dual_binary_operator.h
+ * @file dual_binary_operator.hpp
  * @brief dual binary operators.
  * @author i05nagai
  * @version 0.0.1
@@ -8,11 +8,11 @@
 
 #pragma once
 #include "fwd.h"
-#include "ad/dual.h"
-#include "ad/dual_expression.h"
-#include "ad/traits.h"
-#include "ad/detail/dual_binary_operator_helper.h"
-#include "ad/detail/dual_helper_function.h"
+#include "ad/dual.hpp"
+#include "ad/dual_expression.hpp"
+#include "ad/traits.hpp"
+#include "ad/detail/dual_binary_operator_helper.hpp"
+#include "ad/detail/dual_helper_function.hpp"
 
 namespace algo { namespace ad {
     /*--------------------------------------------------------------------------

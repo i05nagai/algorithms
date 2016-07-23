@@ -1,5 +1,5 @@
 /**
- * @file traits.h
+ * @file traits.hpp
  * @brief 
  * @author i05nagai
  * @version 0.0.1
@@ -12,7 +12,7 @@
 #include <boost/numeric/ublas/vector.hpp>
 #include <boost/numeric/ublas/vector_expression.hpp>
 #include "ad/fwd.h"
-#include "ad/dual.h"
+#include "ad/dual.hpp"
 
 namespace algo { namespace ad {
     /*--------------------------------------------------------------------------

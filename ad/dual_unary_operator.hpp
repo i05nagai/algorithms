@@ -1,5 +1,5 @@
 /**
- * @file dual_unary_operator.h
+ * @file dual_unary_operator.hpp
  * @brief dual unary operators.
  * @author i05nagai
  * @version 0.0.1
@@ -8,10 +8,10 @@
 
 #pragma once
 #include "fwd.h"
-#include "ad/dual_expression.h"
-#include "ad/traits.h"
-#include "ad/detail/dual_unary_operator_helper.h"
-#include "ad/detail/dual_helper_function.h"
+#include "ad/dual_expression.hpp"
+#include "ad/traits.hpp"
+#include "ad/detail/dual_unary_operator_helper.hpp"
+#include "ad/detail/dual_helper_function.hpp"
 
 namespace algo { namespace ad {
     /*--------------------------------------------------------------------------
