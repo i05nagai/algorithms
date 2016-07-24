@@ -1,6 +1,10 @@
 #pragma once
 #include "ad/traits.hpp"
+#include "ad/iterator/MatrixIterator.hpp"
+#include "ad/iterator/ConstMatrixIterator.hpp"
 #include "ad/detail/jacobian_matrix_adaptor_helper.hpp"
+#include <boost/numeric/ublas/fwd.hpp>
+#include <boost/numeric/ublas/matrix_expression.hpp>
 #include <boost/numeric/ublas/matrix_expression.hpp>
 
 namespace algo { namespace ad {
@@ -15,15 +19,19 @@ namespace algo { namespace ad {
     //private typedef
     private:
         typedef jacobian_matrix_adaptor<E> self_type;
+        typedef typename E::const_closure_type expression_const_closure_type;
     //public typedef
     public:
         typedef std::size_t size_type;
         typedef double value_type;
-        typedef typename E::const_closure_type const_closure_type;
+        typedef std::ptrdiff_t difference_type;
+        typedef const self_type const_closure_type;
+        typedef ConstMatrixIterator<self_type> const_iterator1;
+        typedef ConstMatrixIterator<self_type> const_iterator2;
+        typedef boost::numeric::ublas::unknown_orientation_tag orientation_category;
     //public function
     public:
-        explicit jacobian_matrix_adaptor(
-            const E& e)
+        explicit jacobian_matrix_adaptor(const E& e)
         : _e(e)
         {
         }
@@ -61,7 +69,7 @@ namespace algo { namespace ad {
     private:
     //private members
     private:
-        const_closure_type _e;
+        expression_const_closure_type _e;
     };
 } } // namespace algo { namespace ad {
 
