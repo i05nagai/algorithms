@@ -3,6 +3,7 @@
 #include "ad/dual_unary_operator.hpp"
 #include "ad/helper_macro.hpp"
 #include "ad/utility.hpp"
+#include "ad/jacobian_matrix_adapter.hpp"
 #include <boost/numeric/ublas/vector.hpp>
 
 template <typename V>
