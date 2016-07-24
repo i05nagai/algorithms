@@ -31,3 +31,15 @@
         std::cout << std::endl;                            \
     }                                                      \
     std::cout << std::endl; 
+
+#define DISPLAY_INTEGRAL(x)                         \
+    std::cout << #x << std::endl;                   \
+    std::cout << "  " << x << std::endl;
+
+#define DISPLAY_VECTOR(vector)                        \
+    std::cout << #vector << std::endl;                \
+    std::cout << "  ";                                \
+    for (std::size_t i = 0; i < vector.size(); ++i) { \
+        std::cout << vector(i) << " ";                \
+    }                                                 \
+    std::cout << std::endl;

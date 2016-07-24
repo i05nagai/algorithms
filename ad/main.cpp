@@ -4,7 +4,10 @@
 #include "ad/helper_macro.hpp"
 #include "ad/utility.hpp"
 #include "ad/jacobian_matrix_adaptor.hpp"
+#include "ad/concept/ublas_matrix_expression_concept.hpp"
 #include <boost/numeric/ublas/vector.hpp>
+#include <boost/numeric/ublas/matrix.hpp>
+#include <boost/concept_check.hpp>
 
 template <typename V>
 struct Functor0 {
@@ -29,6 +32,12 @@ struct Functor2 {
         return e(0) - e(1);
     }
 };
+
+template <typename M>
+void jacobian_matrix_adaptor_concept_check(const M& m)
+{
+    boost::function_requires<algo::ad::UblasMatrixExpressionConcept<M> >();
+}
 
 int main(int argc, char const* argv[])
 {
@@ -179,6 +188,70 @@ int main(int argc, char const* argv[])
         ublas::vector<dual_type> x = algo::ad::make_vector_dual(values);
         algo::ad::jacobian_matrix_adaptor<argument_type> jacobianMatrix(x);
         DISPLAY_JACOBIAN_DUAL(jacobianMatrix);
+    }
+    std::cout << "jacobian_matrix_adaptor concept_check" << std::endl;
+    {
+        typedef algo::ad::dual<ublas::vector<double> > dual_type;
+        typedef ublas::vector<dual_type> argument_type;
+
+        ublas::vector<double> values(3);
+        values(0) = 1.0;
+        values(1) = 2.0;
+        values(2) = 3.0;
+        ublas::vector<dual_type> x = algo::ad::make_vector_dual(values);
+        algo::ad::jacobian_matrix_adaptor<argument_type> jacobianMatrix(x);
+        jacobian_matrix_adaptor_concept_check(jacobianMatrix);
+    }
+    std::cout << "jacobian_matrix_adaptor operators" << std::endl;
+    {
+        typedef algo::ad::dual<ublas::vector<double> > dual_type;
+        typedef ublas::vector<dual_type> argument_type;
+
+        ublas::vector<double> values(3);
+        values(0) = 1.0;
+        values(1) = 2.0;
+        values(2) = 3.0;
+        ublas::vector<dual_type> x = algo::ad::make_vector_dual(values);
+        algo::ad::jacobian_matrix_adaptor<argument_type> jacobianMatrix(x);
+        ublas::matrix<double> A(3, 3, 1.1);
+
+        {
+            auto B1 = A + jacobianMatrix;
+            auto B2 = jacobianMatrix + A;
+            auto B3 = A - jacobianMatrix;
+            auto B4 = jacobianMatrix - A;
+            DISPLAY_JACOBIAN_DUAL(B1);
+            DISPLAY_JACOBIAN_DUAL(B2);
+            DISPLAY_JACOBIAN_DUAL(B3);
+            DISPLAY_JACOBIAN_DUAL(B4);
+        }
+        {
+            auto B1 = 2.0 * jacobianMatrix;
+            auto B2 = jacobianMatrix * 2.0;
+            auto B3 = jacobianMatrix / 2.0;
+            DISPLAY_JACOBIAN_DUAL(B1);
+            DISPLAY_JACOBIAN_DUAL(B2);
+            DISPLAY_JACOBIAN_DUAL(B3);
+        }
+        {
+            auto B = ublas::prod(A, jacobianMatrix);
+            DISPLAY_JACOBIAN_DUAL(B);
+        }
+        {
+            auto b1 = ublas::norm_1(jacobianMatrix);
+            auto b2 = ublas::norm_frobenius(jacobianMatrix);
+            auto b3 = ublas::norm_inf(jacobianMatrix);
+            DISPLAY_INTEGRAL(b1);
+            DISPLAY_INTEGRAL(b2);
+            DISPLAY_INTEGRAL(b3);
+        }
+        std::cout << "  prod" << std::endl;
+        {
+            auto vec1 = ublas::prod(jacobianMatrix, values);
+            auto vec2 = ublas::prod(values, jacobianMatrix);
+            DISPLAY_VECTOR(vec1);
+            DISPLAY_VECTOR(vec2);
+        }
     }
     return 0;
 }
