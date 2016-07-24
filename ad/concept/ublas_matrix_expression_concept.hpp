@@ -15,14 +15,5 @@ namespace algo { namespace ad {
         }
     private:
     };
-/*
-    template <typename M>
-    struct UblasMatrixExpressionConcepts {
-        void constraints() {
-            typename M::difference_type d;
-        }
-    private:
-    };
-    */
 } } // namespace algo { namespace ad {
 
