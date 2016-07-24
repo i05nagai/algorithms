@@ -21,3 +21,13 @@
         std::cout << std::endl;                                        \
     }                                                                  \
     std::cout << std::endl;
+
+#define DISPLAY_JACOBIAN_DUAL(jac)                         \
+    std::cout << #jac << std::endl;                        \
+    for (std::size_t ri = 0; ri < jac.size1(); ++ri) {     \
+        for (std::size_t ci = 0; ci < jac.size2(); ++ci) { \
+            std::cout << jac(ri, ci) <<  "  ";             \
+        }                                                  \
+        std::cout << std::endl;                            \
+    }                                                      \
+    std::cout << std::endl; 

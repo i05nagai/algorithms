@@ -3,6 +3,7 @@
 #include "ad/dual_unary_operator.hpp"
 #include "ad/helper_macro.hpp"
 #include "ad/utility.hpp"
+#include "ad/jacobian_matrix_adaptor.hpp"
 #include <boost/numeric/ublas/vector.hpp>
 
 template <typename V>
@@ -164,6 +165,20 @@ int main(int argc, char const* argv[])
         DISPLAY_VECTOR_DUAL(x);
         auto y = algo::ad::apply_element(functors, x);
         DISPLAY_VECTOR_DUAL(y);
+    }
+    
+    std::cout << "jacobian_matrix_adaptor" << std::endl;
+    {
+        typedef algo::ad::dual<ublas::vector<double> > dual_type;
+        typedef ublas::vector<dual_type> argument_type;
+
+        ublas::vector<double> values(3);
+        values(0) = 1.0;
+        values(1) = 2.0;
+        values(2) = 3.0;
+        ublas::vector<dual_type> x = algo::ad::make_vector_dual(values);
+        algo::ad::jacobian_matrix_adaptor<argument_type> jacobianMatrix(x);
+        DISPLAY_JACOBIAN_DUAL(jacobianMatrix);
     }
     return 0;
 }
