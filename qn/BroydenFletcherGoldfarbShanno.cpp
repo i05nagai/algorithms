@@ -10,24 +10,26 @@
 namespace algo { namespace qn {
     namespace ublas = boost::numeric::ublas;
 
-    BroydenFletcherGoldfarbShanno::BroydenFletcherGoldfarbShanno(
+    template <typename T>
+    BroydenFletcherGoldfarbShanno<T>::BroydenFletcherGoldfarbShanno(
         const double epsilon,
-        const std::size_t maxIteration,
-        const boost::shared_ptr<ILineSearcher> searcher)
-    : _epsilon(epsilon), _maxIteration(maxIteration), _searcher(searcher)
+        const std::size_t maxIteration)
+    : _epsilon(epsilon), _maxIteration(maxIteration)
     {
     }
 
-    ublas::vector<double> BroydenFletcherGoldfarbShanno::doOperatorParenthesis(
+    template <typename T>
+    ublas::vector<double> BroydenFletcherGoldfarbShanno<T>::doOperatorParenthesis(
         const ublas::vector<double>& x0,
         const function_type& f,
-        const gradient_type& gradf)
+        const boost::shared_ptr<ILineSearcher> searcher)
     {
         //initialize
         ublas::vector<double> x1 = x0;
         ublas::matrix<double> H 
             = algo::qn::initilizeQuasiNewtonInverseHessian(x0.size());
 
+        /*
         for (std::size_t i = 0; i < _maxIteration; ++i) {
             const auto& gradient = gradf(x1);
             const auto& p = -ublas::prod(H, gradient);
@@ -43,12 +45,14 @@ namespace algo { namespace qn {
             //preparation for next step
             x1 = x2;
         }
+        */
 
         return x1;
     }
 
+    template <typename T>
     ublas::matrix<double> 
-    BroydenFletcherGoldfarbShanno::calculateInverseHessian(
+    BroydenFletcherGoldfarbShanno<T>::calculateInverseHessian(
         const ublas::vector<double>& x1,
         const ublas::vector<double>& x2,
         const ublas::vector<double>& df1,
@@ -73,7 +77,8 @@ namespace algo { namespace qn {
         return H + term1 - term2;
     }
 
-    bool BroydenFletcherGoldfarbShanno::isConverge(
+    template <typename T>
+    bool BroydenFletcherGoldfarbShanno<T>::isConverge(
         const ublas::vector<double>& x1, 
         const ublas::vector<double>& x2)
     {
@@ -84,6 +89,34 @@ namespace algo { namespace qn {
             return false;
         }
     }
-
 } } // namespace algo { namespace qn {
 
+
+namespace algo { namespace qn {
+    namespace ublas = boost::numeric::ublas;
+    typedef std::function<double (
+        const ublas::vector<double>& x)> double_function_type;
+
+    template
+    BroydenFletcherGoldfarbShanno<double>::BroydenFletcherGoldfarbShanno(
+        const double epsilon,
+        const std::size_t maxIteration);
+    template
+    ublas::vector<double> 
+    BroydenFletcherGoldfarbShanno<double>::doOperatorParenthesis(
+        const ublas::vector<double>& x0,
+        const double_function_type& f,
+        const boost::shared_ptr<ILineSearcher> searcher);
+    template
+    ublas::matrix<double> 
+    BroydenFletcherGoldfarbShanno<double>::calculateInverseHessian(
+        const ublas::vector<double>& x1,
+        const ublas::vector<double>& x2,
+        const ublas::vector<double>& df1,
+        const ublas::vector<double>& df2,
+        const ublas::matrix<double>& H);
+    template
+    bool BroydenFletcherGoldfarbShanno<double>::isConverge(
+        const ublas::vector<double>& x1, 
+        const ublas::vector<double>& x2);
+} } // namespace algo { namespace qn {

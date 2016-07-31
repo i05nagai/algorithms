@@ -1,5 +1,6 @@
-INC=-I../include/boost
-INC+=-I..
+INC=-I..
+#INC+=-I../include/boost
+INC+=-I/opt/local/include
 LIBS=
 CXX=g++
 SRCDIR=.

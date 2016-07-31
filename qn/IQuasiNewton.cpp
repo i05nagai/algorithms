@@ -2,11 +2,23 @@
 #include "qn/IQuasiNewton.h"
 
 namespace algo { namespace qn {
-    ublas::vector<double> IQuasiNewton::operator()(
+    template <typename T>
+    ublas::vector<double> IQuasiNewton<T>::operator()(
         const ublas::vector<double>& x0,
         const function_type& f,
-        const gradient_type& gradf)
+        const boost::shared_ptr<ILineSearcher> searcher)
     {
-        return this->doOperatorParenthesis(x0, f, gradf);
+        return this->doOperatorParenthesis(x0, f, searcher);
     }
+} } // namespace algo { namespace qn {
+
+namespace algo { namespace qn {
+    typedef std::function<double (
+        const ublas::vector<double>& x)> double_function_type;
+
+    template
+    ublas::vector<double> IQuasiNewton<double>::operator()(
+        const ublas::vector<double>& x0,
+        const double_function_type& f,
+        const boost::shared_ptr<ILineSearcher> searcher);
 } } // namespace algo { namespace qn {

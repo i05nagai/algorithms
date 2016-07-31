@@ -46,19 +46,17 @@ int main(int argc, char const* argv[])
     boost::shared_ptr<algo::qn::ExplicitLineSearcher> searcher(
         new algo::qn::ExplicitLineSearcher(lineSearcherFunction));
 
-    //boost::shared_ptr<algo::qn::DavidonFeltcherPowell> quasiNewton(
-    //    new algo::qn::DavidonFeltcherPowell(epsilon, maxIteration, searcher));
-    boost::shared_ptr<algo::qn::BroydenFletcherGoldfarbShanno> quasiNewton(
-        new algo::qn::BroydenFletcherGoldfarbShanno(
-            epsilon, maxIteration, searcher));
+    //boost::shared_ptr<algo::qn::DavidonFeltcherPowell<double> > quasiNewton(
+    //    new algo::qn::DavidonFeltcherPowell<double>(epsilon, maxIteration));
+    boost::shared_ptr<algo::qn::BroydenFletcherGoldfarbShanno<double> > quasiNewton(
+        new algo::qn::BroydenFletcherGoldfarbShanno<double>(
+            epsilon, maxIteration));
     
     ublas::vector<double> x0(2);
     x0(0) = -10.0;
     x0(1) = 10.342;
-    const typename algo::qn::IQuasiNewton::function_type func = SampleFunction();
-    const typename algo::qn::IQuasiNewton::gradient_type gradient 
-        = SampleGradientFunction();
-    ublas::vector<double> x = (*quasiNewton)(x0, func, gradient);
+    const typename algo::qn::IQuasiNewton<double>::function_type func = SampleFunction();
+    ublas::vector<double> x = (*quasiNewton)(x0, func, searcher);
     std::cout << x(0) << std::endl;
     std::cout << x(1) << std::endl;
     return 0;
