@@ -1,6 +1,8 @@
-INC=-I../include/boost
-INC+=-I..
-LIBS=
+INC=-I..
+#INC+=-I../include/boost
+INC+=-I/opt/local/include
+LIBS=-L../ad
+LIBS+=-lad
 CXX=g++
 SRCDIR=.
 SOURCES=$(wildcard $(SRCDIR)/*.cpp)

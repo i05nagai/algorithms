@@ -7,6 +7,7 @@
  */
 
 #pragma once
+#include "qn/ILineSearcher.h"
 #include "utility/utility.h"
 #include <boost/numeric/ublas/vector.hpp>
 
@@ -16,15 +17,14 @@ namespace algo { namespace qn {
     /**
      * @brief 
      */
-    class IQuasiNewton : public utility::Object<IQuasiNewton> {
+    template <typename Value>
+    class IQuasiNewton : public utility::Object<IQuasiNewton<Value> > {
     //private typedef
     private:
     //public typedef
     public:
-        typedef std::function<double (
-            const ublas::vector<double>& x)> function_type;
-        typedef std::function<ublas::vector<double> (
-            const ublas::vector<double>& x)> gradient_type;
+        typedef std::function<Value (
+            const ublas::vector<Value>& x)> function_type;
     //public function
     public:
         virtual ~IQuasiNewton() {}
@@ -33,20 +33,19 @@ namespace algo { namespace qn {
          *
          * @param x0 initial value.
          * @param f objective funciton.
-         * @param gradf gradient of objective funciton.
          *
          * @return objective value if it exists.
          */
         ublas::vector<double> operator()(
             const ublas::vector<double>& x0,
             const function_type& f,
-            const gradient_type& gradf);
+            const boost::shared_ptr<ILineSearcher> searcher);
     //private function
     private:
         virtual ublas::vector<double> doOperatorParenthesis(
             const ublas::vector<double>& x0,
             const function_type& f,
-            const gradient_type& gradf) = 0;
+            const boost::shared_ptr<ILineSearcher> searcher) = 0;
     //private members
     private:
     }; // class IQuasiNewton {

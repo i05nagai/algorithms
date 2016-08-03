@@ -14,11 +14,9 @@
 namespace algo { namespace qn {
     namespace ublas = boost::numeric::ublas;
 
-    /**
-     * @brief 
-     */
+    template <typename T>
     class DavidonFeltcherPowell 
-    : public utility::MixIn<IQuasiNewton, DavidonFeltcherPowell> {
+    : public utility::MixIn<IQuasiNewton<T>, DavidonFeltcherPowell<T> > {
     //private typedef
     private:
     //public typedef
@@ -26,13 +24,8 @@ namespace algo { namespace qn {
         /**
          * @brief 
          */
-        typedef std::function<double (
-            const ublas::vector<double>& x)> function_type;
-        /**
-         * @brief 
-         */
-        typedef std::function<ublas::vector<double> (
-            const ublas::vector<double>& x)> gradient_type;
+        typedef std::function<T (
+            const ublas::vector<T>& x)> function_type;
     //public function
     public:
         /**
@@ -42,12 +35,10 @@ namespace algo { namespace qn {
          *  than epsilon.
          * @param maxIteration algorithm is iterated until 
          *  converged or number of maxInteration.
-         * @param searcher Line searcher.
          */
         DavidonFeltcherPowell(
             const double epsilon, 
-            const std::size_t maxIteration,
-            const boost::shared_ptr<ILineSearcher> searcher);
+            const std::size_t maxIteration);
     //private function
     private:
         /**
@@ -62,7 +53,7 @@ namespace algo { namespace qn {
         ublas::vector<double> doOperatorParenthesis(
             const ublas::vector<double>& x0,
             const function_type& f,
-            const gradient_type& gradf);
+            const boost::shared_ptr<ILineSearcher> searcher);
         /**
          * @brief 
          *
@@ -95,6 +86,5 @@ namespace algo { namespace qn {
     private:
         const double _epsilon;
         const std::size_t _maxIteration;
-        boost::shared_ptr<ILineSearcher> _searcher;
     }; // class DavidonFeltcherPowell : public IQuasiNewton {
 } } // namespace algo { namespace qn {

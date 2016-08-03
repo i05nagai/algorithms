@@ -23,7 +23,7 @@ PCH=$(PCH_SOURCE).gch
 PCH_CFLAGS=-cc1 -emit-pch -fblocks -fexceptions -fcxx-exceptions -fmax-type-align=16 -std=c++11 -stdlib=libc++
 PCH_CFLAGS+=-relocatable-pch
 
-TARGET=main
+TARGET=libad.a
 
 all: depend $(TARGET)
 
@@ -32,6 +32,7 @@ pch: $(PCH_SOURCE)
 
 $(TARGET): $(OBJS)
 	$(CXX) $(CFLAGS) $(LIBS) $(INC) $(OBJS)
+	ar rv $@ *.o 
 
 SUFFIXES: .o .cpp
 

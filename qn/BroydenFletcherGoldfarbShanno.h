@@ -16,11 +16,9 @@
 namespace algo { namespace qn {
     namespace ublas = boost::numeric::ublas;
 
-    /**
-     * @class BroydenFletcherGoldfarbShanno
-     */
+    template <typename T>
     class BroydenFletcherGoldfarbShanno 
-    : public utility::MixIn<IQuasiNewton, BroydenFletcherGoldfarbShanno> {
+    : public utility::MixIn<IQuasiNewton<T>, BroydenFletcherGoldfarbShanno<T> > {
     //private typedef
     private:
     //public typedef
@@ -28,13 +26,8 @@ namespace algo { namespace qn {
         /**
          * @typedef 
          */
-        typedef std::function<double (
-            const ublas::vector<double>& x)> function_type;
-        /**
-         * @typedef 
-         */
-        typedef std::function<ublas::vector<double> (
-            const ublas::vector<double>& x)> gradient_type;
+        typedef std::function<T (
+            const ublas::vector<T>& x)> function_type;
     //public function
     public:
         /**
@@ -44,18 +37,16 @@ namespace algo { namespace qn {
          *  than epsilon.
          * @param maxIteration algorithm is iterated until 
          *  converged or number of maxInteration.
-         * @param searcher Line searcher.
          */
         BroydenFletcherGoldfarbShanno(
             const double epsilon,
-            const std::size_t maxIteration,
-            const boost::shared_ptr<ILineSearcher> searcher);
+            const std::size_t maxIteration);
     //private function
     private:
         ublas::vector<double> doOperatorParenthesis(
             const ublas::vector<double>& x0,
             const function_type& f,
-            const gradient_type& gradf);
+            const boost::shared_ptr<ILineSearcher> searcher);
         /**
          * @brief calculates inverse hessian by follwoing formula:
          * $$
@@ -97,7 +88,6 @@ namespace algo { namespace qn {
     private:
         const double _epsilon;
         const std::size_t _maxIteration;
-        boost::shared_ptr<ILineSearcher> _searcher;
     }; // class BroydenFletcherGoldfarbShanno : public IQuasiNewton {
 } } // namespace algo { namespace qn {
 
