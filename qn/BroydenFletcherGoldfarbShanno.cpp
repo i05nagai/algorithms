@@ -2,6 +2,7 @@
 #include "qn/BroydenFletcherGoldfarbShanno.h"
 #include "qn/ILineSearcher.h"
 #include "qn/utility.h"
+#include "qn/detail/helper_function.hpp"
 #include "utility/debug_macro.h"
 #include <boost/shared_ptr.hpp>
 #include <boost/numeric/ublas/vector.hpp>
@@ -29,13 +30,12 @@ namespace algo { namespace qn {
         ublas::matrix<double> H 
             = algo::qn::initilizeQuasiNewtonInverseHessian(x0.size());
 
-        /*
         for (std::size_t i = 0; i < _maxIteration; ++i) {
-            const auto& gradient = gradf(x1);
+            const auto& gradient = detail::calculateDerivative(f, x1);
             const auto& p = -ublas::prod(H, gradient);
-            const auto& x2 = (*_searcher)(p, x1);
-            const auto& df1 = gradf(x1);
-            const auto& df2 = gradf(x2);
+            const auto& x2 = (*searcher)(p, x1);
+            const auto& df1 = detail::calculateDerivative(f, x1);
+            const auto& df2 = detail::calculateDerivative(f, x2);
             H = this->calculateInverseHessian(x1, x2, df1, df2, H);
 
             if (this->isConverge(x1, x2)) {
@@ -45,7 +45,6 @@ namespace algo { namespace qn {
             //preparation for next step
             x1 = x2;
         }
-        */
 
         return x1;
     }
