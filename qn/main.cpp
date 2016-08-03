@@ -31,6 +31,9 @@ struct LineSearcherFunction {
         const ublas::vector<double>& p,
         const ublas::vector<double>& x)
     {
+        if (algo::qn::calculateNormL2(p) < 1E-10) {
+            return x;
+        }
         const double alpha = 
             - ((2.0 * p(1) + p(0)) * x(1) + (p(1) + 2.0 * p(0)) * x(0)) 
             / (2.0 * p(1) * p(1) + 2.0 * p(0) * p(1) + 2.0 * p(0) * p(0));
