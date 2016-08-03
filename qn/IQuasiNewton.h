@@ -17,14 +17,14 @@ namespace algo { namespace qn {
     /**
      * @brief 
      */
-    template <typename T>
-    class IQuasiNewton : public utility::Object<IQuasiNewton<T> > {
+    template <typename Value>
+    class IQuasiNewton : public utility::Object<IQuasiNewton<Value> > {
     //private typedef
     private:
     //public typedef
     public:
-        typedef std::function<T (
-            const ublas::vector<T>& x)> function_type;
+        typedef std::function<Value (
+            const ublas::vector<Value>& x)> function_type;
     //public function
     public:
         virtual ~IQuasiNewton() {}

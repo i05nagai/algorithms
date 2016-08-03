@@ -95,7 +95,11 @@ namespace algo { namespace qn {
     namespace ublas = boost::numeric::ublas;
     typedef std::function<double (
         const ublas::vector<double>& x)> double_function_type;
-
+    typedef ublas::vector<double> infinitesimal_type;
+    typedef ad::dual<infinitesimal_type> dual_type;
+    typedef std::function<dual_type (
+        const ublas::vector<dual_type>& x)> dual_function_type;
+    //double
     template
     BroydenFletcherGoldfarbShanno<double>::BroydenFletcherGoldfarbShanno(
         const double epsilon,
@@ -116,6 +120,29 @@ namespace algo { namespace qn {
         const ublas::matrix<double>& H);
     template
     bool BroydenFletcherGoldfarbShanno<double>::isConverge(
+        const ublas::vector<double>& x1, 
+        const ublas::vector<double>& x2);
+    //dual
+    template
+    BroydenFletcherGoldfarbShanno<dual_type>::BroydenFletcherGoldfarbShanno(
+        const double epsilon,
+        const std::size_t maxIteration);
+    template
+    ublas::vector<double> 
+    BroydenFletcherGoldfarbShanno<dual_type>::doOperatorParenthesis(
+        const ublas::vector<double>& x0,
+        const dual_function_type& f,
+        const boost::shared_ptr<ILineSearcher> searcher);
+    template
+    ublas::matrix<double> 
+    BroydenFletcherGoldfarbShanno<dual_type>::calculateInverseHessian(
+        const ublas::vector<double>& x1,
+        const ublas::vector<double>& x2,
+        const ublas::vector<double>& df1,
+        const ublas::vector<double>& df2,
+        const ublas::matrix<double>& H);
+    template
+    bool BroydenFletcherGoldfarbShanno<dual_type>::isConverge(
         const ublas::vector<double>& x1, 
         const ublas::vector<double>& x2);
 } } // namespace algo { namespace qn {
