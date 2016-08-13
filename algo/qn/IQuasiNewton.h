@@ -39,13 +39,13 @@ namespace algo { namespace qn {
         ublas::vector<double> operator()(
             const ublas::vector<double>& x0,
             const function_type& f,
-            const boost::shared_ptr<ILineSearcher> searcher);
+            const std::shared_ptr<ILineSearcher> searcher);
     //private function
     private:
         virtual ublas::vector<double> doOperatorParenthesis(
             const ublas::vector<double>& x0,
             const function_type& f,
-            const boost::shared_ptr<ILineSearcher> searcher) = 0;
+            const std::shared_ptr<ILineSearcher> searcher) = 0;
     //private members
     private:
     }; // class IQuasiNewton {

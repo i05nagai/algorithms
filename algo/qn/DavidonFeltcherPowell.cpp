@@ -3,9 +3,9 @@
 #include "qn/ILineSearcher.h"
 #include "qn/utility.h"
 #include "qn/detail/helper_function.hpp"
-#include <boost/shared_ptr.hpp>
 #include <boost/numeric/ublas/vector.hpp>
 #include <boost/numeric/ublas/matrix.hpp>
+#include <memory>
 
 namespace algo { namespace qn {
     namespace ublas = boost::numeric::ublas;
@@ -22,7 +22,7 @@ namespace algo { namespace qn {
     ublas::vector<double> DavidonFeltcherPowell<T>::doOperatorParenthesis(
         const ublas::vector<double>& x0,
         const function_type& f,
-        const boost::shared_ptr<ILineSearcher> searcher)
+        const std::shared_ptr<ILineSearcher> searcher)
     {
         //initialize
         ublas::vector<double> x1 = x0;
@@ -98,7 +98,7 @@ namespace algo { namespace qn {
     DavidonFeltcherPowell<double>::doOperatorParenthesis(
         const ublas::vector<double>& x0,
         const double_function_type& f,
-        const boost::shared_ptr<ILineSearcher> searcher);
+        const std::shared_ptr<ILineSearcher> searcher);
     template
     ublas::matrix<double> 
     DavidonFeltcherPowell<double>::calculateInverseHessian(

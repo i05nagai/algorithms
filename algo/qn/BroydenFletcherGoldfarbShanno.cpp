@@ -4,9 +4,9 @@
 #include "qn/utility.h"
 #include "qn/detail/helper_function.hpp"
 #include "utility/debug_macro.h"
-#include <boost/shared_ptr.hpp>
 #include <boost/numeric/ublas/vector.hpp>
 #include <boost/numeric/ublas/matrix.hpp>
+#include <memory>
 
 namespace algo { namespace qn {
     namespace ublas = boost::numeric::ublas;
@@ -23,7 +23,7 @@ namespace algo { namespace qn {
     ublas::vector<double> BroydenFletcherGoldfarbShanno<T>::doOperatorParenthesis(
         const ublas::vector<double>& x0,
         const function_type& f,
-        const boost::shared_ptr<ILineSearcher> searcher)
+        const std::shared_ptr<ILineSearcher> searcher)
     {
         //initialize
         ublas::vector<double> x1 = x0;
@@ -109,7 +109,7 @@ namespace algo { namespace qn {
     BroydenFletcherGoldfarbShanno<double>::doOperatorParenthesis(
         const ublas::vector<double>& x0,
         const double_function_type& f,
-        const boost::shared_ptr<ILineSearcher> searcher);
+        const std::shared_ptr<ILineSearcher> searcher);
     template
     ublas::matrix<double> 
     BroydenFletcherGoldfarbShanno<double>::calculateInverseHessian(
@@ -132,7 +132,7 @@ namespace algo { namespace qn {
     BroydenFletcherGoldfarbShanno<dual_type>::doOperatorParenthesis(
         const ublas::vector<double>& x0,
         const dual_function_type& f,
-        const boost::shared_ptr<ILineSearcher> searcher);
+        const std::shared_ptr<ILineSearcher> searcher);
     template
     ublas::matrix<double> 
     BroydenFletcherGoldfarbShanno<dual_type>::calculateInverseHessian(

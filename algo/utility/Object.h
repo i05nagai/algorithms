@@ -1,6 +1,6 @@
 #pragma once
 #include "pre_compiled_header.h"
-#include <boost/shared_ptr.hpp>
+#include <memory>
 
 namespace utility {
     /**
@@ -34,8 +34,8 @@ namespace utility {
          *
          * @return 
          */
-        boost::shared_ptr<T> clone() const {
-            return boost::shared_ptr<T>(this->doClone());
+        std::shared_ptr<T> clone() const {
+            return std::shared_ptr<T>(this->doClone());
         }
     private:
         virtual bool doEqual(const T& o) const = 0;

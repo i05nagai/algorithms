@@ -46,7 +46,7 @@ namespace algo { namespace qn {
         ublas::vector<double> doOperatorParenthesis(
             const ublas::vector<double>& x0,
             const function_type& f,
-            const boost::shared_ptr<ILineSearcher> searcher);
+            const std::shared_ptr<ILineSearcher> searcher);
         /**
          * @brief calculates inverse hessian by follwoing formula:
          * $$
