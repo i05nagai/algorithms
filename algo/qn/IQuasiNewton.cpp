@@ -7,7 +7,7 @@ namespace algo { namespace qn {
     ublas::vector<double> IQuasiNewton<T>::operator()(
         const ublas::vector<double>& x0,
         const function_type& f,
-        const boost::shared_ptr<ILineSearcher> searcher)
+        const std::shared_ptr<ILineSearcher> searcher)
     {
         return this->doOperatorParenthesis(x0, f, searcher);
     }
@@ -26,10 +26,10 @@ namespace algo { namespace qn {
     ublas::vector<double> IQuasiNewton<double>::operator()(
         const ublas::vector<double>& x0,
         const double_function_type& f,
-        const boost::shared_ptr<ILineSearcher> searcher);
+        const std::shared_ptr<ILineSearcher> searcher);
     template
     ublas::vector<double> IQuasiNewton<dual_type>::operator()(
         const ublas::vector<double>& x0,
         const dual_function_type& f,
-        const boost::shared_ptr<ILineSearcher> searcher);
+        const std::shared_ptr<ILineSearcher> searcher);
 } } // namespace algo { namespace qn {

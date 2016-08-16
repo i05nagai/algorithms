@@ -1,6 +1,6 @@
 #pragma once
 #include "pre_compiled_header.h"
-#include <boost/shared_ptr.hpp>
+#include <memory>
 
 namespace utility {
     /**

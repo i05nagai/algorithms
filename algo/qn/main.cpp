@@ -5,7 +5,7 @@
 #include "ad/dual.hpp"
 #include "ad/dual_binary_operator.hpp"
 #include "ad/dual_unary_operator.hpp"
-#include <boost/shared_ptr.hpp>
+#include <memory>
 
 namespace ublas = boost::numeric::ublas;
 struct SampleFunction {
@@ -63,12 +63,12 @@ int main(int argc, char const* argv[])
         const double epsilon = 1E-10;
         const std::size_t maxIteration = 50;
         LineSearcherFunction lineSearcherFunction;
-        boost::shared_ptr<algo::qn::ExplicitLineSearcher> searcher(
+        std::shared_ptr<algo::qn::ExplicitLineSearcher> searcher(
             new algo::qn::ExplicitLineSearcher(lineSearcherFunction));
 
-        //boost::shared_ptr<algo::qn::DavidonFeltcherPowell<double> > quasiNewton(
+        //std::shared_ptr<algo::qn::DavidonFeltcherPowell<double> > quasiNewton(
         //    new algo::qn::DavidonFeltcherPowell<double>(epsilon, maxIteration));
-        boost::shared_ptr<algo::qn::BroydenFletcherGoldfarbShanno<double> > quasiNewton(
+        std::shared_ptr<algo::qn::BroydenFletcherGoldfarbShanno<double> > quasiNewton(
             new algo::qn::BroydenFletcherGoldfarbShanno<double>(
                 epsilon, maxIteration));
         
@@ -88,12 +88,12 @@ int main(int argc, char const* argv[])
         const double epsilon = 1E-10;
         const std::size_t maxIteration = 50;
         LineSearcherFunction lineSearcherFunction;
-        boost::shared_ptr<algo::qn::ExplicitLineSearcher> searcher(
+        std::shared_ptr<algo::qn::ExplicitLineSearcher> searcher(
             new algo::qn::ExplicitLineSearcher(lineSearcherFunction));
 
-        //boost::shared_ptr<algo::qn::DavidonFeltcherPowell<dual_type> > quasiNewton(
+        //std::shared_ptr<algo::qn::DavidonFeltcherPowell<dual_type> > quasiNewton(
         //    new algo::qn::DavidonFeltcherPowell<dual_type>(epsilon, maxIteration));
-        boost::shared_ptr<algo::qn::BroydenFletcherGoldfarbShanno<dual_type> > quasiNewton(
+        std::shared_ptr<algo::qn::BroydenFletcherGoldfarbShanno<dual_type> > quasiNewton(
             new algo::qn::BroydenFletcherGoldfarbShanno<dual_type>(
                 epsilon, maxIteration));
         

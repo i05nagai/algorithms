@@ -1,0 +1,45 @@
+[submodule "submodule/boost/numeric/ublas"]
+	path = submodule/boost/numeric/ublas
+	url = https://github.com/boostorg/ublas.git
+[submodule "submodule/googletest"]
+	path = submodule/googletest
+	url = https://github.com/google/googletest.git
+[submodule "submodule/boost/config"]
+	path = submodule/boost/config
+	url = https://github.com/boostorg/config
+[submodule "submodule/boost/serialization"]
+	path = submodule/boost/serialization
+	url = https://github.com/boostorg/serialization.git
+[submodule "submodule/boost/type_traits"]
+	path = submodule/boost/type_traits
+	url = https://github.com/boostorg/type_traits.git
+[submodule "submodule/boost/mpl"]
+	path = submodule/boost/mpl
+	url = https://github.com/boostorg/mpl.git
+[submodule "submodule/boost/preprocessor"]
+	path = submodule/boost/preprocessor
+	url = https://github.com/boostorg/preprocessor.git
+[submodule "submodule/boost/static_assert"]
+	path = submodule/boost/static_assert
+	url = https://github.com/boostorg/static_assert.git
+[submodule "submodule/boost/utility"]
+	path = submodule/boost/utility
+	url = https://github.com/boostorg/utility.git
+[submodule "submodule/boost/array"]
+	path = submodule/boost/array
+	url = https://github.com/boostorg/array.git
+[submodule "submodule/boost/assert"]
+	path = submodule/boost/assert
+	url = https://github.com/boostorg/assert.git
+[submodule "submodule/boost/core"]
+	path = submodule/boost/core
+	url = https://github.com/boostorg/core.git
+[submodule "submodule/boost/throw_exception"]
+	path = submodule/boost/throw_exception
+	url = https://github.com/boostorg/throw_exception.git
+[submodule "submodule/boost/typeof"]
+	path = submodule/boost/typeof
+	url = https://github.com/boostorg/typeof.git
+[submodule "submodule/boost/concept_check"]
+	path = submodule/boost/concept_check
+	url = https://github.com/boostorg/concept_check.git
