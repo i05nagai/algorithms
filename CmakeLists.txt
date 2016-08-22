@@ -69,3 +69,9 @@ enable_testing()
 #target_link_libraries(qn_test gtest)
 #add_test(qn_test qn_test)
 
+add_executable(utility_test ${utility_test_SOURCES})
+target_link_libraries(utility_test utility)
+target_link_libraries(utility_test gmock)
+target_link_libraries(utility_test gtest)
+add_test(utility_test utility_test)
+
