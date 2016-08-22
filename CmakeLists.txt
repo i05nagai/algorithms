@@ -45,6 +45,7 @@ include(nm.cmake)
 include(utility.cmake)
 include(ad_test.cmake)
 include(qn_test.cmake)
+include(nm_test.cmake)
 include(utility_test.cmake)
 
 #add library
@@ -68,6 +69,12 @@ enable_testing()
 #target_link_libraries(qn_test gmock)
 #target_link_libraries(qn_test gtest)
 #add_test(qn_test qn_test)
+
+add_executable(nm_test ${nm_test_SOURCES})
+target_link_libraries(nm_test qn)
+target_link_libraries(nm_test gmock)
+target_link_libraries(nm_test gtest)
+add_test(nm_test nm_test)
 
 add_executable(utility_test ${utility_test_SOURCES})
 target_link_libraries(utility_test utility)
