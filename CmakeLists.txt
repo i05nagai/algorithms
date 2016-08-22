@@ -41,12 +41,15 @@ include_directories(
 #inclue sources
 include(ad.cmake)
 include(qn.cmake)
+include(utility.cmake)
 include(ad_test.cmake)
 include(qn_test.cmake)
+include(utility_test.cmake)
 
 #add library
 add_library(ad ${ad_SOURCES})
 add_library(qn ${qn_SOURCES})
+add_library(utility ${utility_SOURCES})
 
 # test
 enable_testing()
