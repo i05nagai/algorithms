@@ -43,3 +43,21 @@
 [submodule "submodule/boost/concept_check"]
 	path = submodule/boost/concept_check
 	url = https://github.com/boostorg/concept_check.git
+[submodule "submodule/boost/random"]
+	path = submodule/boost/random
+	url = https://github.com/boostorg/random.git
+[submodule "submodule/boost/integer"]
+	path = submodule/boost/integer
+	url = https://github.com/boostorg/integer.git
+[submodule "submodule/boost/range"]
+	path = submodule/boost/range
+	url = https://github.com/boostorg/range.git
+[submodule "submodule/boost/iterator"]
+	path = submodule/boost/iterator
+	url = https://github.com/boostorg/iterator.git
+[submodule "submodule/boost/math"]
+	path = submodule/boost/math
+	url = https://github.com/boostorg/math.git
+[submodule "submodule/boost/predef"]
+	path = submodule/boost/predef
+	url = https://github.com/boostorg/predef.git
