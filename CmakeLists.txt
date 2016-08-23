@@ -34,6 +34,12 @@ include_directories(
 	${CMAKE_SOURCE_DIR}/submodule/boost/throw_exception/include
 	${CMAKE_SOURCE_DIR}/submodule/boost/typeof/include
 	${CMAKE_SOURCE_DIR}/submodule/boost/concept_check/include
+	${CMAKE_SOURCE_DIR}/submodule/boost/random/include
+	${CMAKE_SOURCE_DIR}/submodule/boost/integer/include
+	${CMAKE_SOURCE_DIR}/submodule/boost/range/include
+	${CMAKE_SOURCE_DIR}/submodule/boost/iterator/include
+	${CMAKE_SOURCE_DIR}/submodule/boost/math/include
+	${CMAKE_SOURCE_DIR}/submodule/boost/predef/include
 	${CMAKE_SOURCE_DIR}/submodule/googletest/googlemock/include
 	${CMAKE_SOURCE_DIR}/submodule/googletest/googletest/include
 )
