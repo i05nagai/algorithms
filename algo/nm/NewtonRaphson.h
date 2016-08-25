@@ -15,7 +15,8 @@ namespace algo { namespace nm {
         NewtonRaphson(
             const typename INewtonMethod::function_type& f,
             const typename INewtonMethod::derivative_type& derivative,
-            const std::size_t maxIteration);
+            const std::size_t maxIteration,
+            const double tolerance);
     //private function
     private:
         virtual boost::numeric::ublas::vector<double> doSolve(
@@ -25,5 +26,6 @@ namespace algo { namespace nm {
         typename INewtonMethod::function_type _f; 
         typename INewtonMethod::derivative_type _derivative; 
         const std::size_t _maxIteration;
+        const double _tolerance;
     }; // class NewtonRaphson : public utilty::MixIn<INewtonMethod, NewtonRaphson>  {
 } } // namespace algo { namespace nm {
