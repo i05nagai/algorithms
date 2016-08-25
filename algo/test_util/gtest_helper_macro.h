@@ -10,12 +10,12 @@
         }                                                                          \
     }
 
-#define EXPECT_VECTOR_NEAR_EQ(expect, actual, tolerance)                        \
+#define EXPECT_VECTOR_NEAR(expect, actual, tolerance)                           \
     {                                                                           \
         auto expectIter = expect.begin();                                       \
         auto actualIter = actual.begin();                                       \
         for(; expectIter != expect.end(); ++expectIter, ++actualIter) {         \
-            EXPECT_NEAR_EQ(*expectIter, *actualIter, tolerance);                \
+            EXPECT_NEAR(*expectIter, *actualIter, tolerance);                   \
         }                                                                       \
     }
 
@@ -30,13 +30,13 @@
         }                                                                          \
     }
 
-#define EXPECT_MATRIX_NEAR_EQ(expect, actual, tolerance)                        \
+#define EXPECT_MATRIX_NEAR(expect, actual, tolerance)                           \
     {                                                                           \
         EXPECT_EQ(expect.size1(), actual.size1());                              \
         EXPECT_EQ(expect.size2(), actual.size2());                              \
         for (std::size_t ri = 0; ri < expect.size1(); ++ri) {                   \
             for (std::size_t ci = 0; ci < expect.size2(); ++ci) {               \
-                EXPECT_NEAR_EQ(expect(ri, ci), actual(ri, ci), tolerance);      \
+                EXPECT_NEAR(expect(ri, ci), actual(ri, ci), tolerance);         \
             }                                                                   \
         }                                                                       \
     }
