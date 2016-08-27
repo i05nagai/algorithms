@@ -37,14 +37,21 @@ namespace algo { namespace nm {
             x = x - ublas::prod(inverseJacobianMatrix, y);
             //error
             const ublas::vector<double>& nextY = _f(x);
-            const double error = math::calculateDistanceNormL2(y, nextY);
-            if (error < _tolerance) {
+            if (isConvergence(y, nextY)) {
                 return x;
             }
             //for next step
             y = nextY;
         }
         return x;
+    }
+
+    bool NewtonRaphson::isConvergence(
+        const ublas::vector<double>& value,
+        const ublas::vector<double>& nextValue) const
+    {
+        const double error = math::calculateDistanceNormL2(value, nextValue);
+        return error < _tolerance;
     }
 } } // namespace algo { namespace nm {
 
