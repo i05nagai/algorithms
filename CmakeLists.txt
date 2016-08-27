@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 2.8.6)
 project(algo CXX)
 
 #compiler option with accordance to compiler
+SET (CMAKE_CXX_FLAGS "-g ${CMAKE_CXX_FLAGS}")
 IF ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
 	SET (CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
 ELSEIF ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
@@ -34,6 +35,12 @@ include_directories(
 	${CMAKE_SOURCE_DIR}/submodule/boost/throw_exception/include
 	${CMAKE_SOURCE_DIR}/submodule/boost/typeof/include
 	${CMAKE_SOURCE_DIR}/submodule/boost/concept_check/include
+	${CMAKE_SOURCE_DIR}/submodule/boost/random/include
+	${CMAKE_SOURCE_DIR}/submodule/boost/integer/include
+	${CMAKE_SOURCE_DIR}/submodule/boost/range/include
+	${CMAKE_SOURCE_DIR}/submodule/boost/iterator/include
+	${CMAKE_SOURCE_DIR}/submodule/boost/math/include
+	${CMAKE_SOURCE_DIR}/submodule/boost/predef/include
 	${CMAKE_SOURCE_DIR}/submodule/googletest/googlemock/include
 	${CMAKE_SOURCE_DIR}/submodule/googletest/googletest/include
 )
@@ -41,12 +48,22 @@ include_directories(
 #inclue sources
 include(ad.cmake)
 include(qn.cmake)
+include(nm.cmake)
+include(utility.cmake)
+include(math.cmake)
 include(ad_test.cmake)
 include(qn_test.cmake)
+include(nm_test.cmake)
+include(utility_test.cmake)
 
 #add library
 add_library(ad ${ad_SOURCES})
 add_library(qn ${qn_SOURCES})
+add_library(nm ${nm_SOURCES})
+target_link_libraries(nm utility)
+target_link_libraries(nm math)
+add_library(utility ${utility_SOURCES})
+add_library(math ${math_SOURCES})
 
 # test
 enable_testing()
@@ -62,4 +79,16 @@ enable_testing()
 #target_link_libraries(qn_test gmock)
 #target_link_libraries(qn_test gtest)
 #add_test(qn_test qn_test)
+
+add_executable(nm_test ${nm_test_SOURCES})
+target_link_libraries(nm_test nm)
+target_link_libraries(nm_test gmock)
+target_link_libraries(nm_test gtest)
+add_test(nm_test nm_test)
+
+add_executable(utility_test ${utility_test_SOURCES})
+target_link_libraries(utility_test utility)
+target_link_libraries(utility_test gmock)
+target_link_libraries(utility_test gtest)
+add_test(utility_test utility_test)
 
