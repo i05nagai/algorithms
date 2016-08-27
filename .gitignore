@@ -22,6 +22,9 @@ sandbox
 #html
 #latex
 
+# executor
+/utility_test
+/nm_test
 
 #include dependencies
 *.inc
