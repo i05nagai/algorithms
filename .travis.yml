@@ -10,6 +10,8 @@ env:
 before_install:
   - echo $LANG
   - echo $LC_ALL
+  - cmake --version
+  - ls -la
 script:
   - ci/build_cmake.sh
 notifications:
