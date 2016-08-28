@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 #make dir
 mkdir build
