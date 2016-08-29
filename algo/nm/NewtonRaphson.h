@@ -25,7 +25,7 @@ namespace algo { namespace nm {
     //private function
     private:
         virtual boost::numeric::ublas::vector<double> doSolve(
-            const boost::numeric::ublas::vector<double>& x0) const override;
+            const boost::numeric::ublas::vector<double>& x0) const;
         bool isConvergence(
             const boost::numeric::ublas::vector<double>& x1,
             const boost::numeric::ublas::vector<double>& x2) const;
