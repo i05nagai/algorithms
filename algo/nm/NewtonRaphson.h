@@ -10,7 +10,7 @@ namespace algo { namespace nm_test {
 
 namespace algo { namespace nm {
     class NewtonRaphson : public utility::MixIn<INewtonMethod, NewtonRaphson>  {
-        friend nm_test::NewtonRaphsonTest;
+        friend class nm_test::NewtonRaphsonTest;
     //private typedef
     private:
     //public typedef
