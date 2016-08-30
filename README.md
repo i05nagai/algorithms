@@ -1,5 +1,6 @@
-Algorithm sandbox
+Algorithm sandbox 
 ====
+[![Build Status](https://travis-ci.org/i05nagai/algorithms.svg?branch=master)](https://travis-ci.org/i05nagai/algorithms)
 
 C++ implementation of miscellaneous algorithms.
 
