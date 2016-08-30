@@ -10,7 +10,7 @@ namespace algo { namespace nm_test {
 
 namespace algo { namespace nm {
     class NewtonRaphson : public utility::MixIn<INewtonMethod, NewtonRaphson>  {
-        friend nm_test::NewtonRaphsonTest;
+        friend class nm_test::NewtonRaphsonTest;
     //private typedef
     private:
     //public typedef
@@ -25,7 +25,7 @@ namespace algo { namespace nm {
     //private function
     private:
         virtual boost::numeric::ublas::vector<double> doSolve(
-            const boost::numeric::ublas::vector<double>& x0) const override;
+            const boost::numeric::ublas::vector<double>& x0) const;
         bool isConvergence(
             const boost::numeric::ublas::vector<double>& x1,
             const boost::numeric::ublas::vector<double>& x2) const;

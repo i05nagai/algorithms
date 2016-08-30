@@ -1,0 +1,42 @@
+addons:
+  apt:
+    # List of whitelisted in travis packages for ubuntu-precise can be found here:
+    #   https://github.com/travis-ci/apt-package-whitelist/blob/master/ubuntu-precise
+    # List of whitelisted in travis apt-sources:
+    #   https://github.com/travis-ci/apt-source-whitelist/blob/master/ubuntu.json
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - gcc-4.8
+      - g++-4.8
+      - valgrind
+language: cpp
+compiler:
+  - clang++
+  - gcc
+os:
+  - linux
+  - osx
+env:
+  - 
+before_install:
+  - echo $LANG
+  - echo $LC_ALL
+  - cmake --version
+  - ls -la
+install:
+  # /usr/bin/gcc is 4.6 always, but gcc-X.Y is available.
+  - if [ "$CXX" = "g++" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi
+  # /usr/bin/clang is 3.4, lets override with modern one.
+  #- if [ "$CXX" = "clang++" ] && [ "$TRAVIS_OS_NAME" = "linux" ]; then export CXX="clang++-3.7" CC="clang-3.7"; fi
+  - echo ${PATH}
+  - echo ${CXX}
+  - ${CXX} --version
+  - ${CXX} -v
+script:
+  - ci/build_cmake.sh
+notifications:
+  slack:
+    rooms:
+      - secure: "eU6n0+Mx8zXV7ZOHWkIwjLNvjID3E6axxm03FbqcWQuC/HTSTjc8HjG9KExafhKh/cPZlpXO3PmIJH4r2n+fVTR4jxVW4PblocPmvcaWa4p+K4s17ZV9Wvy+RIl5YaWff9tc2j4vToZJkUyIDeuxLytlwV8n4AWaNqv986TlTfKaS6j/vA8zxwb3XvA2vt+6QF2yWAH5BMgCSfupZ/wkrPN4XfMVthbB82D8K8a8EvRCpe/HtyUwi936gvGVnYaZ3KoOzzJX/oIM/7JPc1tum1eteoFErYxrfP8FcgFJSu1UDG9nmi/d/Ou8Bv3VyfNU7Kd99J++EQDdd4bZ9Ze/R9Mo4CPAhz0tK1nEJbJM3tdY1WD9SI2Avs6bJlM8qHnHGHBJekr9SW6XQmBo4wGDfGtdKWWVoyL9y15G/p9hh2xF+AvRAAZ1N+j7WS6YOabuxnR9I/P14rhnZh1S4abiKtgWSeGfb4a2V60+abjlnKFPD6s24eEElo7zN6eoAgEei46AnnhIpixDtP2c6fZlTa346hbYsxoPfLy60IUJtD8yGNQI4qeTNdS2RHsQa3RCy+PFKuUsGvRUDoCDCXKw3lf4gExuO20OskDetbt2ngqFqq1FElxoyzy7ReEAyoWFLtJnYfdfJid87ffDLo9PvpxCcY2hKBoDHhHYzfyOt4w="
+
