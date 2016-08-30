@@ -46,15 +46,15 @@ include_directories(
 )
 
 #inclue sources
-include(ad.cmake)
-include(qn.cmake)
-include(nm.cmake)
-include(utility.cmake)
-include(math.cmake)
-include(ad_test.cmake)
-include(qn_test.cmake)
-include(nm_test.cmake)
-include(utility_test.cmake)
+include(cmake/ad.cmake)
+include(cmake/qn.cmake)
+include(cmake/nm.cmake)
+include(cmake/utility.cmake)
+include(cmake/math.cmake)
+include(cmake/ad_test.cmake)
+include(cmake/qn_test.cmake)
+include(cmake/nm_test.cmake)
+include(cmake/utility_test.cmake)
 
 #add library
 add_library(ad ${ad_SOURCES})
