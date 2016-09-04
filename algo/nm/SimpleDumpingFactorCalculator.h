@@ -1,6 +1,6 @@
 #pragma once
-#include "nm/IDumpingFactorCalculator.h"
-#include "utility/MixIn.h"
+#include "algo/nm/IDumpingFactorCalculator.h"
+#include "algo/utility/MixIn.h"
 
 namespace algo { namespace nm {
     class SimpleDumpingFactorCalculator 

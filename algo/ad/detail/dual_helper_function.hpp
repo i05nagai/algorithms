@@ -7,7 +7,7 @@
  */
 
 #pragma once
-#include "ad/fwd.h"
+#include "algo/ad/fwd.h"
 
 namespace algo { namespace ad { namespace detail {
     /**

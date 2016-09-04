@@ -1,7 +1,7 @@
-#include "nm/LevenbergMarquardt.h"
-#include "nm/ConvergenceUtil.h"
-#include "math/euclid.h"
-#include "utility/matrix_operator.h"
+#include "algo/nm/LevenbergMarquardt.h"
+#include "algo/nm/ConvergenceUtil.h"
+#include "algo/math/euclid.h"
+#include "algo/utility/matrix_operator.h"
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/banded.hpp>
 #include <memory>

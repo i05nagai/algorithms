@@ -1,5 +1,5 @@
 #pragma once
-#include "nm/NewtonRaphson.h"
+#include "algo/nm/NewtonRaphson.h"
 #include <gtest/gtest.h>	
 
 namespace algo { namespace nm_test {

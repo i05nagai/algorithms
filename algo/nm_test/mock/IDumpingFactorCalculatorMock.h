@@ -1,6 +1,6 @@
 #pragma once
 
-#include "nm/IDumpingFactorCalculator.h"
+#include "algo/nm/IDumpingFactorCalculator.h"
 #include <gmock/gmock.h>
 
 namespace algo { namespace nm_test { 

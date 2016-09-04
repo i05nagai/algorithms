@@ -1,5 +1,6 @@
 #pragma once
 #include <gtest/gtest.h>	
+
 namespace algo { namespace nm_test {
     class SimpleDumpingFactorCalculatorTest : public ::testing::Test {
     protected:

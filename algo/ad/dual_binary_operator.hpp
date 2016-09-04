@@ -7,12 +7,12 @@
  */
 
 #pragma once
-#include "fwd.h"
-#include "ad/dual.hpp"
-#include "ad/dual_expression.hpp"
-#include "ad/traits.hpp"
-#include "ad/detail/dual_binary_operator_helper.hpp"
-#include "ad/detail/dual_helper_function.hpp"
+#include "algo/ad/detail/dual_binary_operator_helper.hpp"
+#include "algo/ad/detail/dual_helper_function.hpp"
+#include "algo/ad/dual.hpp"
+#include "algo/ad/dual_expression.hpp"
+#include "algo/ad/fwd.h"
+#include "algo/ad/traits.hpp"
 
 namespace algo { namespace ad {
     /*--------------------------------------------------------------------------

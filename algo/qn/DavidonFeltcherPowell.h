@@ -7,9 +7,9 @@
  */
 
 #pragma once
-#include "utility/utility.h"
-#include "qn/ILineSearcher.h"
-#include "qn/IQuasiNewton.h"
+#include "algo/utility/utility.h"
+#include "algo/qn/ILineSearcher.h"
+#include "algo/qn/IQuasiNewton.h"
 
 namespace algo { namespace qn {
     namespace ublas = boost::numeric::ublas;

@@ -1,10 +1,10 @@
-#include "qn/pre_compiled_header.h"
-#include "qn/ExplicitLineSearcher.h"
-#include "qn/DavidonFeltcherPowell.h"
-#include "qn/BroydenFletcherGoldfarbShanno.h"
-#include "ad/dual.hpp"
-#include "ad/dual_binary_operator.hpp"
-#include "ad/dual_unary_operator.hpp"
+#include "algo/qn/pre_compiled_header.h"
+#include "algo/qn/ExplicitLineSearcher.h"
+#include "algo/qn/DavidonFeltcherPowell.h"
+#include "algo/qn/BroydenFletcherGoldfarbShanno.h"
+#include "algo/ad/dual.hpp"
+#include "algo/ad/dual_binary_operator.hpp"
+#include "algo/ad/dual_unary_operator.hpp"
 #include <memory>
 
 namespace ublas = boost::numeric::ublas;

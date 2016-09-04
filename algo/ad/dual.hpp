@@ -7,7 +7,7 @@
  */
 
 #pragma once
-#include "dual_expression.hpp"
+#include "algo/ad/dual_expression.hpp"
 
 namespace algo { namespace ad {
     /**

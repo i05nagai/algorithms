@@ -7,12 +7,12 @@
  */
 #pragma once
 
-#include <boost/type_traits/is_base_of.hpp>
+#include "algo/ad/dual.hpp"
+#include "algo/ad/fwd.h"
 #include <boost/numeric/ublas/traits.hpp>
 #include <boost/numeric/ublas/vector.hpp>
 #include <boost/numeric/ublas/vector_expression.hpp>
-#include "ad/fwd.h"
-#include "ad/dual.hpp"
+#include <boost/type_traits/is_base_of.hpp>
 
 namespace algo { namespace ad {
     /*--------------------------------------------------------------------------

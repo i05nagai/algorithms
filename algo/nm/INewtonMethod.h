@@ -1,5 +1,5 @@
 #pragma once
-#include "utility/Object.h"
+#include "algo/utility/Object.h"
 #include <functional>
 #include <boost/numeric/ublas/vector.hpp>
 

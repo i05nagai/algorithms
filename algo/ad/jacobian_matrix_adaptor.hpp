@@ -1,8 +1,8 @@
 #pragma once
-#include "ad/traits.hpp"
-#include "ad/iterator/MatrixIterator.hpp"
-#include "ad/iterator/ConstMatrixIterator.hpp"
-#include "ad/detail/jacobian_matrix_adaptor_helper.hpp"
+#include "algo/ad/detail/jacobian_matrix_adaptor_helper.hpp"
+#include "algo/ad/iterator/ConstMatrixIterator.hpp"
+#include "algo/ad/iterator/MatrixIterator.hpp"
+#include "algo/ad/traits.hpp"
 #include <boost/numeric/ublas/fwd.hpp>
 #include <boost/numeric/ublas/matrix_expression.hpp>
 #include <boost/numeric/ublas/matrix_expression.hpp>

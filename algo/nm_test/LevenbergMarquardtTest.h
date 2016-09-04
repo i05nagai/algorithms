@@ -1,6 +1,6 @@
 #pragma once
-#include "nm_test/mock/IDumpingFactorCalculatorMock.h"
-#include "nm/LevenbergMarquardt.h"
+#include "algo/nm_test/mock/IDumpingFactorCalculatorMock.h"
+#include "algo/nm/LevenbergMarquardt.h"
 #include <gtest/gtest.h>	
 #include <memory>
 

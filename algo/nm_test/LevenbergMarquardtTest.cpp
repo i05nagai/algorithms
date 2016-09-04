@@ -1,11 +1,11 @@
-#include "nm_test/LevenbergMarquardtTest.h"
-#include "nm_test/TestData.h"
-#include "nm_test/mock/IDumpingFactorCalculatorMock.h"
-#include "test_util/TestData.h"
-#include "test_util/gtest_helper_macro.h"
-#include "nm/LevenbergMarquardt.h"
-#include "nm/SimpleDumpingFactorCalculator.h"
-#include "math/euclid.h"
+#include "algo/nm_test/LevenbergMarquardtTest.h"
+#include "algo/nm_test/TestData.h"
+#include "algo/nm_test/mock/IDumpingFactorCalculatorMock.h"
+#include "algo/test_util/TestData.h"
+#include "algo/test_util/gtest_helper_macro.h"
+#include "algo/nm/LevenbergMarquardt.h"
+#include "algo/nm/SimpleDumpingFactorCalculator.h"
+#include "algo/math/euclid.h"
 #include <memory>
 
 namespace algo { namespace nm_test {

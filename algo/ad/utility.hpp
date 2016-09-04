@@ -6,7 +6,7 @@
  * @date 2016-07-21
  */
 #pragma once
-#include "ad/dual.hpp"
+#include "algo/ad/dual.hpp"
 #include <boost/numeric/ublas/vector.hpp>
 
 namespace algo { namespace ad {

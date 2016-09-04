@@ -1,4 +1,4 @@
-#include "nm_test/TestData.h"
+#include "algo/nm_test/TestData.h"
 
 namespace algo { namespace nm_test {
     namespace ublas = boost::numeric::ublas;

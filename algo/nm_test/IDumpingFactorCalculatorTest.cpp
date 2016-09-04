@@ -1,7 +1,7 @@
-#include "nm_test/IDumpingFactorCalculatorTest.h"
-#include "nm_test/mock/IDumpingFactorCalculatorMock.h"
-#include "test_util/TestData.h"
-#include "nm/IDumpingFactorCalculator.h"
+#include "algo/nm_test/IDumpingFactorCalculatorTest.h"
+#include "algo/nm_test/mock/IDumpingFactorCalculatorMock.h"
+#include "algo/test_util/TestData.h"
+#include "algo/nm/IDumpingFactorCalculator.h"
 #include <memory>
 
 namespace algo { namespace nm_test {
