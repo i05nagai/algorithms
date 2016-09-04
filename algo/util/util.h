@@ -1,5 +1,5 @@
 #pragma once
-#include "algo/utility/pre_compiled_header.h"
-#include "algo/utility/Object.h"
-#include "algo/utility/MixIn.h"
+#include "algo/util/pre_compiled_header.h"
+#include "algo/util/Object.h"
+#include "algo/util/MixIn.h"
 

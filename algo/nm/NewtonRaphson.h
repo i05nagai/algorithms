@@ -1,6 +1,6 @@
 #pragma once
 #include "algo/nm/INewtonMethod.h"
-#include "algo/utility/MixIn.h"
+#include "algo/util/MixIn.h"
 #include <boost/numeric/ublas/vector.hpp>
 #include <boost/numeric/ublas/matrix.hpp>
 
@@ -9,7 +9,7 @@ namespace algo { namespace nm_test {
 } } // namespace algo { namespace nm_test {
 
 namespace algo { namespace nm {
-    class NewtonRaphson : public utility::MixIn<INewtonMethod, NewtonRaphson>  {
+    class NewtonRaphson : public util::MixIn<INewtonMethod, NewtonRaphson>  {
         friend class nm_test::NewtonRaphsonTest;
     //private typedef
     private:

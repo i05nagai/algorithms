@@ -1,6 +1,6 @@
 #include "algo/nm/NewtonRaphson.h"
-#include "algo/utility/matrix_operator.h"
-#include "algo/utility/debug_macro.h"
+#include "algo/util/matrix_operator.h"
+#include "algo/util/debug_macro.h"
 #include "algo/math/euclid.h"
 #include <boost/numeric/ublas/vector.hpp>
 #include <boost/numeric/ublas/matrix.hpp>
@@ -29,7 +29,7 @@ namespace algo { namespace nm {
         for (std::size_t i = 0; i < _maxIteration; ++i) {
             const ublas::matrix<double>& jacobianMatrix = _derivative(x);
             const bool isSuccess 
-                = utility::invert(jacobianMatrix, inverseJacobianMatrix);
+                = util::invert(jacobianMatrix, inverseJacobianMatrix);
             if (!isSuccess) {
                 //TODO:error.
             }

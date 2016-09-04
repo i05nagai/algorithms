@@ -1,6 +1,6 @@
 LIST (APPEND ad_SOURCES
     algo/ad/main.cpp
-    algo/ad/utility.cpp
+    algo/ad/util.cpp
 )
 LIST (APPEND ad_HEADERS
     algo/ad/fwd.h
@@ -20,5 +20,5 @@ LIST (APPEND ad_HEADERS
     algo/ad/pre_compiled_header.hpp
     algo/ad/traits.hpp
     algo/ad/ublas_unary_operator.hpp
-    algo/ad/utility.hpp
+    algo/ad/util.hpp
 )

@@ -7,7 +7,7 @@
  */
 
 #pragma once
-#include "algo/utility/utility.h"
+#include "algo/util/util.h"
 #include "algo/qn/ILineSearcher.h"
 #include "algo/qn/IQuasiNewton.h"
 
@@ -16,7 +16,7 @@ namespace algo { namespace qn {
 
     template <typename T>
     class DavidonFeltcherPowell 
-    : public utility::MixIn<IQuasiNewton<T>, DavidonFeltcherPowell<T> > {
+    : public util::MixIn<IQuasiNewton<T>, DavidonFeltcherPowell<T> > {
     //private typedef
     private:
     //public typedef

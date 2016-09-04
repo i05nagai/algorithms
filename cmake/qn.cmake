@@ -5,7 +5,7 @@ LIST (APPEND qn_SOURCES
     algo/qn/ILineSearcher.cpp
     algo/qn/IQuasiNewton.cpp
     algo/qn/main.cpp
-    algo/qn/utility.cpp
+    algo/qn/util.cpp
 )
 LIST (APPEND qn_HEADERS
     algo/qn/BroydenFletcherGoldfarbShanno.h
@@ -14,6 +14,6 @@ LIST (APPEND qn_HEADERS
     algo/qn/ILineSearcher.h
     algo/qn/IQuasiNewton.h
     algo/qn/pre_compiled_header.h
-    algo/qn/utility.h
+    algo/qn/util.h
     algo/qn/detail/helper_function.hpp
 )

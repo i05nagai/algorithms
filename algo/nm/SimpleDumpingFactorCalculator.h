@@ -1,10 +1,10 @@
 #pragma once
 #include "algo/nm/IDumpingFactorCalculator.h"
-#include "algo/utility/MixIn.h"
+#include "algo/util/MixIn.h"
 
 namespace algo { namespace nm {
     class SimpleDumpingFactorCalculator 
-    : public utility::MixIn<
+    : public util::MixIn<
         IDumpingFactorCalculator, SimpleDumpingFactorCalculator> {
     //private typedef
     private:
@@ -24,5 +24,5 @@ namespace algo { namespace nm {
     private:
         double _alpha;
         double _beta;
-    }; // class SimpleDumpingFactorCalculator : public utility::MixIn<IDumpingFactorCalculator, SimpleDumpingFactorCalculator> {
+    }; // class SimpleDumpingFactorCalculator : public util::MixIn<IDumpingFactorCalculator, SimpleDumpingFactorCalculator> {
 } } // namespace algo { namespace nm {

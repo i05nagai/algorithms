@@ -1,11 +1,11 @@
 #pragma once
-#include "algo/utility/Object.h"
+#include "algo/util/Object.h"
 #include <boost/numeric/ublas/vector.hpp>
 #include <boost/numeric/ublas/matrix.hpp>
 
 namespace algo { namespace nm {
     class IDumpingFactorCalculator 
-    : public utility::Object<IDumpingFactorCalculator> {
+    : public util::Object<IDumpingFactorCalculator> {
     //private typedef
     private:
     //public typedef
@@ -22,5 +22,5 @@ namespace algo { namespace nm {
             const boost::numeric::ublas::matrix<double>& jacobianMatrix) const = 0;
     //private members
     private:
-    }; // class IDumpingFactorCalculator : public utility::Object<IDumpingFactorCalculator {
+    }; // class IDumpingFactorCalculator : public util::Object<IDumpingFactorCalculator {
 } } // namespace algo { namespace nm {

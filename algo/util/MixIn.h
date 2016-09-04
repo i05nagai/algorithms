@@ -1,8 +1,8 @@
 #pragma once
-#include "algo/utility/pre_compiled_header.h"
+#include "algo/util/pre_compiled_header.h"
 #include <memory>
 
-namespace utility {
+namespace util {
     /**
      * @brief 
      *

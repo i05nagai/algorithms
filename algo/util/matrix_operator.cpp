@@ -1,8 +1,8 @@
-#include "algo/utility/matrix_operator.h"
+#include "algo/util/matrix_operator.h"
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/lu.hpp>
 
-namespace algo { namespace utility {
+namespace algo { namespace util {
     template <typename Value>
     bool invert(
         const boost::numeric::ublas::matrix<Value>& matrix, 
@@ -25,12 +25,12 @@ namespace algo { namespace utility {
 
         return true;
     } 
-} } // namespace algo { namespace utility {
+} } // namespace algo { namespace util {
 
-namespace algo { namespace utility {
+namespace algo { namespace util {
     template 
     bool invert(
         const boost::numeric::ublas::matrix<double>& matrix, 
         boost::numeric::ublas::matrix<double>& inverseMatrix);
-} } // namespace algo { namespace utility {
+} } // namespace algo { namespace util {
 

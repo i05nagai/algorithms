@@ -1,7 +1,7 @@
 #pragma once
 #include "algo/nm/INewtonMethod.h"
 #include "algo/nm/IDumpingFactorCalculator.h"
-#include "algo/utility/MixIn.h"
+#include "algo/util/MixIn.h"
 #include <memory>
 
 namespace algo { namespace nm_test {
@@ -21,7 +21,7 @@ namespace algo { namespace nm {
      * $$
      */
     class LevenbergMarquardt 
-    : public utility::MixIn<INewtonMethod, LevenbergMarquardt> {
+    : public util::MixIn<INewtonMethod, LevenbergMarquardt> {
         friend class nm_test::LevenbergMarquardtTest;
     //private typedef
     private:
@@ -86,5 +86,5 @@ namespace algo { namespace nm {
         const std::size_t _maxIteration;
         const double _tolerance;
         std::shared_ptr<IDumpingFactorCalculator> _dumpingFactorCalculator;
-    }; // class LevenbergMarquardt : public utility::MixIn<INewtonMethod, LevenbergMarquardt> {
+    }; // class LevenbergMarquardt : public util::MixIn<INewtonMethod, LevenbergMarquardt> {
 } } // namespace algo { namespace nm {

@@ -1,12 +1,11 @@
-LIST (APPEND utility_SOURCES
-    algo/utility/matrix_operator.cpp
+LIST (APPEND util_SOURCES
+    algo/util/matrix_operator.cpp
 )
-LIST (APPEND utility_HEADERS
-    algo/utility/MixIn.h
-    algo/utility/Object.h
-    algo/utility/debug_macro.h
-    algo/utility/helper_macro.h
-    algo/utility/matrix_operator.h
-    algo/utility/pre_compiled_header.h
-    algo/utility/utility.h
+LIST (APPEND util_HEADERS
+    algo/util/MixIn.h
+    algo/util/Object.h
+    algo/util/debug_macro.h
+    algo/util/matrix_operator.h
+    algo/util/pre_compiled_header.h
+    algo/util/util.h
 )

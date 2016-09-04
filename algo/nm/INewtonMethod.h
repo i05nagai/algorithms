@@ -1,10 +1,10 @@
 #pragma once
-#include "algo/utility/Object.h"
+#include "algo/util/Object.h"
 #include <functional>
 #include <boost/numeric/ublas/vector.hpp>
 
 namespace algo { namespace nm {
-    class INewtonMethod : public utility::Object<INewtonMethod> {
+    class INewtonMethod : public util::Object<INewtonMethod> {
     //private typedef
     private:
     //public typedef
@@ -34,5 +34,5 @@ namespace algo { namespace nm {
             const boost::numeric::ublas::vector<double>& x0) const = 0;
     //private members
     private:
-    }; // class INewtonMethod : public utility::Object<INewtonMethod> {
+    }; // class INewtonMethod : public util::Object<INewtonMethod> {
 } } // namespace algo { namespace nm {

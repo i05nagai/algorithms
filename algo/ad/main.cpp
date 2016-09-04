@@ -4,7 +4,7 @@
 #include "algo/ad/dual_unary_operator.hpp"
 #include "algo/ad/helper_macro.hpp"
 #include "algo/ad/jacobian_matrix_adaptor.hpp"
-#include "algo/ad/utility.hpp"
+#include "algo/ad/util.hpp"
 #include <boost/numeric/ublas/vector.hpp>
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/concept_check.hpp>

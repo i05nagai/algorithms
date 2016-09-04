@@ -10,15 +10,15 @@
 #include "algo/qn/pre_compiled_header.h"
 #include "algo/qn/IQuasiNewton.h"
 #include "algo/qn/ILineSearcher.h"
-#include "algo/qn/utility.h"
-#include "algo/utility/utility.h"
+#include "algo/qn/util.h"
+#include "algo/util/util.h"
 
 namespace algo { namespace qn {
     namespace ublas = boost::numeric::ublas;
 
     template <typename T>
     class BroydenFletcherGoldfarbShanno 
-    : public utility::MixIn<IQuasiNewton<T>, BroydenFletcherGoldfarbShanno<T> > {
+    : public util::MixIn<IQuasiNewton<T>, BroydenFletcherGoldfarbShanno<T> > {
     //private typedef
     private:
     //public typedef
