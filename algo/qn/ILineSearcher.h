@@ -7,7 +7,7 @@
  */
 
 #pragma once
-#include "utility/utility.h"
+#include "algo/utility/utility.h"
 #include <boost/numeric/ublas/vector.hpp>
 
 namespace algo { namespace qn {

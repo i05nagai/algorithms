@@ -1,6 +1,6 @@
 #pragma once
-#include "ad/dual.hpp"
-#include "ad/utility.hpp"
+#include "algo/ad/dual.hpp"
+#include "algo/ad/utility.hpp"
 
 namespace algo { namespace qn { namespace detail {
     template <typename T>

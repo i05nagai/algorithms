@@ -1,6 +1,6 @@
-#include "pre_compiled_header.h"
-#include "qn/IQuasiNewton.h"
-#include "ad/dual.hpp"
+#include "algo/qn/pre_compiled_header.h"
+#include "algo/qn/IQuasiNewton.h"
+#include "algo/ad/dual.hpp"
 
 namespace algo { namespace qn {
     template <typename T>

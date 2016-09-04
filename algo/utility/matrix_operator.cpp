@@ -1,4 +1,4 @@
-#include "utility/matrix_operator.h"
+#include "algo/utility/matrix_operator.h"
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/lu.hpp>
 

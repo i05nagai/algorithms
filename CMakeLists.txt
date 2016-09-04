@@ -20,7 +20,7 @@ add_subdirectory(${CMAKE_SOURCE_DIR}/submodule/googletest)
 
 # include directory
 include_directories(
-	${CMAKE_SOURCE_DIR}/algo
+	${CMAKE_SOURCE_DIR}/
 	${CMAKE_SOURCE_DIR}/submodule/boost/numeric/ublas/include
 	${CMAKE_SOURCE_DIR}/submodule/boost/config/include
 	${CMAKE_SOURCE_DIR}/submodule/boost/serialization/include

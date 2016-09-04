@@ -1,6 +1,6 @@
-#include "nm/GaussNewton.h"
-#include "math/euclid.h"
-#include "utility/matrix_operator.h"
+#include "algo/nm/GaussNewton.h"
+#include "algo/math/euclid.h"
+#include "algo/utility/matrix_operator.h"
 #include <boost/numeric/ublas/matrix.hpp>
 
 namespace algo { namespace nm {

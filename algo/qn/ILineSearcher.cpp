@@ -1,5 +1,5 @@
-#include "pre_compiled_header.h"
-#include "qn/ILineSearcher.h"
+#include "algo/qn/pre_compiled_header.h"
+#include "algo/qn/ILineSearcher.h"
 
 namespace algo { namespace qn {
     namespace ublas = boost::numeric::ublas;

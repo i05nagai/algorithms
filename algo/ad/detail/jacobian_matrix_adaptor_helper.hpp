@@ -1,6 +1,6 @@
 #pragma once
-#include "ad/dual_expression.hpp"
-#include "ad/detail/dual_helper_function.hpp"
+#include "algo/ad/detail/dual_helper_function.hpp"
+#include "algo/ad/dual_expression.hpp"
 #include <boost/numeric/ublas/vector_expression.hpp>
 
 namespace algo { namespace ad { namespace detail {

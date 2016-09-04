@@ -1,9 +1,9 @@
-#include "nm_test/NewtonRaphsonTest.h"
-#include "nm_test/TestData.h"
-#include "test_util/TestData.h"
-#include "test_util/gtest_helper_macro.h"
-#include "nm/NewtonRaphson.h"
-#include "utility/debug_macro.h"
+#include "algo/nm_test/NewtonRaphsonTest.h"
+#include "algo/nm_test/TestData.h"
+#include "algo/test_util/TestData.h"
+#include "algo/test_util/gtest_helper_macro.h"
+#include "algo/nm/NewtonRaphson.h"
+#include "algo/utility/debug_macro.h"
 #include <boost/numeric/ublas/detail/vector_assign.hpp>
 
 namespace algo { namespace nm_test {

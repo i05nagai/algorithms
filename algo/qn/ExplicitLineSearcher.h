@@ -7,8 +7,8 @@
  */
 
 #pragma once
-#include "utility/utility.h"
-#include "qn/ILineSearcher.h"
+#include "algo/utility/utility.h"
+#include "algo/qn/ILineSearcher.h"
 
 namespace algo { namespace qn {
     /**

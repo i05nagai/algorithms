@@ -7,8 +7,8 @@
  */
 
 #pragma once
-#include "qn/ILineSearcher.h"
-#include "utility/utility.h"
+#include "algo/qn/ILineSearcher.h"
+#include "algo/utility/utility.h"
 #include <boost/numeric/ublas/vector.hpp>
 
 namespace algo { namespace qn {

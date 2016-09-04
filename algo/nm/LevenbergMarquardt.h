@@ -1,7 +1,7 @@
 #pragma once
-#include "nm/INewtonMethod.h"
-#include "nm/IDumpingFactorCalculator.h"
-#include "utility/MixIn.h"
+#include "algo/nm/INewtonMethod.h"
+#include "algo/nm/IDumpingFactorCalculator.h"
+#include "algo/utility/MixIn.h"
 #include <memory>
 
 namespace algo { namespace nm_test {

@@ -1,8 +1,8 @@
-#include "utility_test/matrix_operator_test.h"
-#include "utility/matrix_operator.h"
-#include "utility/debug_macro.h"
-#include "test_util/TestData.h"
-#include "test_util/gtest_helper_macro.h"
+#include "algo/utility_test/matrix_operator_test.h"
+#include "algo/utility/matrix_operator.h"
+#include "algo/utility/debug_macro.h"
+#include "algo/test_util/TestData.h"
+#include "algo/test_util/gtest_helper_macro.h"
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/detail/matrix_assign.hpp>
 

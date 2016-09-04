@@ -1,4 +1,4 @@
-#include "nm/IDumpingFactorCalculator.h"
+#include "algo/nm/IDumpingFactorCalculator.h"
 
 namespace algo { namespace nm {
    double IDumpingFactorCalculator::operator()( 

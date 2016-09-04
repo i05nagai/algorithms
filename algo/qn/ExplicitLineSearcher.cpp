@@ -1,5 +1,5 @@
-#include "pre_compiled_header.h"
-#include "qn/ExplicitLineSearcher.h"
+#include "algo/qn/pre_compiled_header.h"
+#include "algo/qn/ExplicitLineSearcher.h"
 
 namespace algo { namespace qn {
     ExplicitLineSearcher::ExplicitLineSearcher(const functor_type& f)

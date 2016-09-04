@@ -1,4 +1,4 @@
-#include "nm/INewtonMethod.h"
+#include "algo/nm/INewtonMethod.h"
 #include <boost/numeric/ublas/vector.hpp>
 #include <functional>
 

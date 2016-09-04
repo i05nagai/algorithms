@@ -7,11 +7,11 @@
  */
 
 #pragma once
-#include "qn/pre_compiled_header.h"
-#include "qn/IQuasiNewton.h"
-#include "qn/ILineSearcher.h"
-#include "qn/utility.h"
-#include "utility/utility.h"
+#include "algo/qn/pre_compiled_header.h"
+#include "algo/qn/IQuasiNewton.h"
+#include "algo/qn/ILineSearcher.h"
+#include "algo/qn/utility.h"
+#include "algo/utility/utility.h"
 
 namespace algo { namespace qn {
     namespace ublas = boost::numeric::ublas;

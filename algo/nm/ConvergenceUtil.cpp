@@ -1,5 +1,5 @@
-#include "nm/ConvergenceUtil.h"
-#include "math/euclid.h"
+#include "algo/nm/ConvergenceUtil.h"
+#include "algo/math/euclid.h"
 
 namespace algo { namespace nm {
     namespace ublas = boost::numeric::ublas;

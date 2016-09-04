@@ -1,7 +1,7 @@
-#include "nm/NewtonRaphson.h"
-#include "utility/matrix_operator.h"
-#include "utility/debug_macro.h"
-#include "math/euclid.h"
+#include "algo/nm/NewtonRaphson.h"
+#include "algo/utility/matrix_operator.h"
+#include "algo/utility/debug_macro.h"
+#include "algo/math/euclid.h"
 #include <boost/numeric/ublas/vector.hpp>
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/matrix_expression.hpp>

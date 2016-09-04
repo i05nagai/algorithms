@@ -1,5 +1,5 @@
 #pragma once
-#include "test_util/RandomNumber.h"
+#include "algo/test_util/RandomNumber.h"
 #include <boost/numeric/ublas/vector.hpp>
 #include <boost/numeric/ublas/matrix.hpp>
 #include <cassert>

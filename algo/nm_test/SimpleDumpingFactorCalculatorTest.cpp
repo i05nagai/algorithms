@@ -1,7 +1,7 @@
-#include "nm_test/SimpleDumpingFactorCalculatorTest.h"
-#include "test_util/TestData.h"
-#include "nm/SimpleDumpingFactorCalculator.h"
-#include "math/euclid.h"
+#include "algo/nm_test/SimpleDumpingFactorCalculatorTest.h"
+#include "algo/test_util/TestData.h"
+#include "algo/nm/SimpleDumpingFactorCalculator.h"
+#include "algo/math/euclid.h"
 
 namespace algo { namespace nm_test {
     namespace ublas = boost::numeric::ublas;

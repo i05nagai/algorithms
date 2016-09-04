@@ -1,6 +1,6 @@
 #pragma once
-#include "nm/INewtonMethod.h"
-#include "utility/MixIn.h"
+#include "algo/nm/INewtonMethod.h"
+#include "algo/utility/MixIn.h"
 #include <boost/numeric/ublas/vector.hpp>
 #include <boost/numeric/ublas/matrix.hpp>
 

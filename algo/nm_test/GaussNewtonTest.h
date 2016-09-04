@@ -1,5 +1,5 @@
 #pragma once
-#include "nm/GaussNewton.h"
+#include "algo/nm/GaussNewton.h"
 #include <gtest/gtest.h>	
 
 namespace algo { namespace nm_test {

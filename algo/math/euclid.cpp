@@ -1,4 +1,4 @@
-#include "math/euclid.h"
+#include "algo/math/euclid.h"
 
 namespace algo { namespace math {
     namespace ublas = boost::numeric::ublas;

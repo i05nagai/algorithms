@@ -1,9 +1,8 @@
-#include "pre_compiled_header.h"
-#include "qn/BroydenFletcherGoldfarbShanno.h"
-#include "qn/ILineSearcher.h"
-#include "qn/utility.h"
-#include "qn/detail/helper_function.hpp"
-#include "utility/debug_macro.h"
+#include "algo/qn/pre_compiled_header.h"
+#include "algo/qn/BroydenFletcherGoldfarbShanno.h"
+#include "algo/qn/ILineSearcher.h"
+#include "algo/qn/utility.h"
+#include "algo/qn/detail/helper_function.hpp"
 #include <boost/numeric/ublas/vector.hpp>
 #include <boost/numeric/ublas/matrix.hpp>
 #include <memory>

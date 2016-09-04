@@ -7,7 +7,7 @@
  */
 
 #pragma once
-#include "ad/ublas_unary_operator.hpp"
+#include "algo/ad/ublas_unary_operator.hpp"
 
 namespace algo { namespace ad { namespace detail {
     /*--------------------------------------------------------------------------

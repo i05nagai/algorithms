@@ -1,8 +1,8 @@
-#include "nm_test/GaussNewtonTest.h"
-#include "nm_test/TestData.h"
-#include "test_util/TestData.h"
-#include "test_util/gtest_helper_macro.h"
-#include "nm/GaussNewton.h"
+#include "algo/nm_test/GaussNewtonTest.h"
+#include "algo/nm_test/TestData.h"
+#include "algo/test_util/TestData.h"
+#include "algo/test_util/gtest_helper_macro.h"
+#include "algo/nm/GaussNewton.h"
 #include <memory>
 
 namespace algo { namespace nm_test {

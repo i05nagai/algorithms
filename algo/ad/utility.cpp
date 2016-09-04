@@ -1,5 +1,5 @@
-#include "ad/utility.hpp"
-#include "ad/dual.hpp"
+#include "algo/ad/dual.hpp"
+#include "algo/ad/utility.hpp"
 
 namespace algo { namespace ad {
     dual<boost::numeric::ublas::vector<double> >
