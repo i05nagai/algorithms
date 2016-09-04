@@ -1,5 +1,5 @@
 #include "algo/qn/pre_compiled_header.h"
-#include "algo/qn/utility.h"
+#include "algo/qn/util.h"
 
 namespace algo { namespace qn {
     namespace ublas = boost::numeric::ublas;

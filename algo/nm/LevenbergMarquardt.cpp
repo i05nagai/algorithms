@@ -1,7 +1,7 @@
 #include "algo/nm/LevenbergMarquardt.h"
 #include "algo/nm/ConvergenceUtil.h"
 #include "algo/math/euclid.h"
-#include "algo/utility/matrix_operator.h"
+#include "algo/util/matrix_operator.h"
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/banded.hpp>
 #include <memory>
@@ -74,7 +74,7 @@ namespace algo { namespace nm {
             = (*_dumpingFactorCalculator)(residual, jacobianMatrix);
         const ublas::matrix<double> tempMatrix2
             = tempMatrix1 + dumpingFactor * diagonalMatrix;
-        const bool isSuccess = utility::invert(tempMatrix2, inverseMatrix);
+        const bool isSuccess = util::invert(tempMatrix2, inverseMatrix);
             
         if (!isSuccess) {
             //TODO:error

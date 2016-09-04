@@ -3,7 +3,7 @@
 #include "algo/test_util/TestData.h"
 #include "algo/test_util/gtest_helper_macro.h"
 #include "algo/nm/NewtonRaphson.h"
-#include "algo/utility/debug_macro.h"
+#include "algo/util/debug_macro.h"
 #include <boost/numeric/ublas/detail/vector_assign.hpp>
 
 namespace algo { namespace nm_test {

@@ -7,13 +7,13 @@
  */
 
 #pragma once
-#include "algo/utility/utility.h"
+#include "algo/util/util.h"
 #include <boost/numeric/ublas/vector.hpp>
 
 namespace algo { namespace qn {
     namespace ublas = boost::numeric::ublas;
 
-    class ILineSearcher : public utility::Object<ILineSearcher> {
+    class ILineSearcher : public util::Object<ILineSearcher> {
     //private typedef
     private:
     //public typedef

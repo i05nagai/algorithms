@@ -7,7 +7,7 @@
  */
 
 #pragma once
-#include "algo/utility/utility.h"
+#include "algo/util/util.h"
 #include "algo/qn/ILineSearcher.h"
 
 namespace algo { namespace qn {
@@ -15,7 +15,7 @@ namespace algo { namespace qn {
      * @brief 
      */
     class ExplicitLineSearcher 
-    : public utility::MixIn<ILineSearcher, ExplicitLineSearcher> {
+    : public util::MixIn<ILineSearcher, ExplicitLineSearcher> {
     //private typedef
     private:
         /**

@@ -1,6 +1,6 @@
 #include "algo/nm/GaussNewton.h"
 #include "algo/math/euclid.h"
-#include "algo/utility/matrix_operator.h"
+#include "algo/util/matrix_operator.h"
 #include <boost/numeric/ublas/matrix.hpp>
 
 namespace algo { namespace nm {
@@ -36,7 +36,7 @@ namespace algo { namespace nm {
             const ublas::matrix<double> tempMatrix 
                 = ublas::prod(ublas::trans(jacobianMatrix), jacobianMatrix);
             const bool isSuccess 
-                = utility::invert(tempMatrix, inverseMatrix);
+                = util::invert(tempMatrix, inverseMatrix);
             const ublas::vector<double> tempVector1 
                 = ublas::prod(ublas::trans(jacobianMatrix), residual);
             const ublas::vector<double> tempVector2

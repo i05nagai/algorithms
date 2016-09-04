@@ -8,7 +8,7 @@
 
 #pragma once
 #include "algo/qn/ILineSearcher.h"
-#include "algo/utility/utility.h"
+#include "algo/util/util.h"
 #include <boost/numeric/ublas/vector.hpp>
 
 namespace algo { namespace qn {
@@ -18,7 +18,7 @@ namespace algo { namespace qn {
      * @brief 
      */
     template <typename Value>
-    class IQuasiNewton : public utility::Object<IQuasiNewton<Value> > {
+    class IQuasiNewton : public util::Object<IQuasiNewton<Value> > {
     //private typedef
     private:
     //public typedef

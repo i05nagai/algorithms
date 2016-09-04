@@ -1,10 +1,10 @@
 #pragma once
 #include "algo/nm/INewtonMethod.h"
-#include "algo/utility/MixIn.h"
+#include "algo/util/MixIn.h"
 #include <boost/numeric/ublas/vector.hpp>
 
 namespace algo { namespace nm {
-    class GaussNewton : public utility::MixIn<INewtonMethod, GaussNewton> {
+    class GaussNewton : public util::MixIn<INewtonMethod, GaussNewton> {
     //private typedef
     private:
     //public typedef
@@ -29,5 +29,5 @@ namespace algo { namespace nm {
         typename INewtonMethod::derivative_type _derivative;
         const std::size_t _maxIteration;
         const double _tolerance;
-    }; // class GaussNewton : public utility::MixIn<INewtonMethod, GaussNewton> {
+    }; // class GaussNewton : public util::MixIn<INewtonMethod, GaussNewton> {
 } } // namespace algo { namespace nm {
