@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['davidonfeltcherpowell',['DavidonFeltcherPowell',['../classalgo_1_1qn_1_1_davidon_feltcher_powell.html',1,'algo::qn']]],
+  ['dual',['dual',['../classalgo_1_1ad_1_1dual.html',1,'algo::ad']]],
+  ['dual_5fadd',['dual_add',['../classalgo_1_1ad_1_1dual__add.html',1,'algo::ad']]],
+  ['dual_5fcos',['dual_cos',['../classalgo_1_1ad_1_1dual__cos.html',1,'algo::ad']]],
+  ['dual_5fdivide',['dual_divide',['../classalgo_1_1ad_1_1dual__divide.html',1,'algo::ad']]],
+  ['dual_5fexp',['dual_exp',['../classalgo_1_1ad_1_1dual__exp.html',1,'algo::ad']]],
+  ['dual_5fexpression',['dual_expression',['../classalgo_1_1ad_1_1dual__expression.html',1,'algo::ad']]],
+  ['dual_5fexpression_3c_20dual_3c_20i_20_3e_20_3e',['dual_expression&lt; dual&lt; I &gt; &gt;',['../classalgo_1_1ad_1_1dual__expression.html',1,'algo::ad']]],
+  ['dual_5fexpression_3c_20dual_5fadd_3c_20e1_2c_20e2_20_3e_20_3e',['dual_expression&lt; dual_add&lt; E1, E2 &gt; &gt;',['../classalgo_1_1ad_1_1dual__expression.html',1,'algo::ad']]],
+  ['dual_5fexpression_3c_20dual_5fcos_3c_20e_20_3e_20_3e',['dual_expression&lt; dual_cos&lt; E &gt; &gt;',['../classalgo_1_1ad_1_1dual__expression.html',1,'algo::ad']]],
+  ['dual_5fexpression_3c_20dual_5fdivide_3c_20e1_2c_20e2_20_3e_20_3e',['dual_expression&lt; dual_divide&lt; E1, E2 &gt; &gt;',['../classalgo_1_1ad_1_1dual__expression.html',1,'algo::ad']]],
+  ['dual_5fexpression_3c_20dual_5fexp_3c_20e_20_3e_20_3e',['dual_expression&lt; dual_exp&lt; E &gt; &gt;',['../classalgo_1_1ad_1_1dual__expression.html',1,'algo::ad']]],
+  ['dual_5fexpression_3c_20dual_5flog_3c_20e_20_3e_20_3e',['dual_expression&lt; dual_log&lt; E &gt; &gt;',['../classalgo_1_1ad_1_1dual__expression.html',1,'algo::ad']]],
+  ['dual_5fexpression_3c_20dual_5fminus_3c_20e1_2c_20e2_20_3e_20_3e',['dual_expression&lt; dual_minus&lt; E1, E2 &gt; &gt;',['../classalgo_1_1ad_1_1dual__expression.html',1,'algo::ad']]],
+  ['dual_5fexpression_3c_20dual_5fmultiplies_3c_20e1_2c_20e2_20_3e_20_3e',['dual_expression&lt; dual_multiplies&lt; E1, E2 &gt; &gt;',['../classalgo_1_1ad_1_1dual__expression.html',1,'algo::ad']]],
+  ['dual_5fexpression_3c_20dual_5fnegate_3c_20e_20_3e_20_3e',['dual_expression&lt; dual_negate&lt; E &gt; &gt;',['../classalgo_1_1ad_1_1dual__expression.html',1,'algo::ad']]],
+  ['dual_5fexpression_3c_20dual_5fsin_3c_20e_20_3e_20_3e',['dual_expression&lt; dual_sin&lt; E &gt; &gt;',['../classalgo_1_1ad_1_1dual__expression.html',1,'algo::ad']]],
+  ['dual_5flog',['dual_log',['../classalgo_1_1ad_1_1dual__log.html',1,'algo::ad']]],
+  ['dual_5fminus',['dual_minus',['../classalgo_1_1ad_1_1dual__minus.html',1,'algo::ad']]],
+  ['dual_5fmultiplies',['dual_multiplies',['../classalgo_1_1ad_1_1dual__multiplies.html',1,'algo::ad']]],
+  ['dual_5fnegate',['dual_negate',['../classalgo_1_1ad_1_1dual__negate.html',1,'algo::ad']]],
+  ['dual_5fsin',['dual_sin',['../classalgo_1_1ad_1_1dual__sin.html',1,'algo::ad']]],
+  ['dualsamplefunction',['DualSampleFunction',['../struct_dual_sample_function.html',1,'']]]
+];
