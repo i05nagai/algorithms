@@ -61,3 +61,6 @@
 [submodule "submodule/boost/predef"]
 	path = submodule/boost/predef
 	url = https://github.com/boostorg/predef.git
+[submodule "docs"]
+	path = docs
+	url = https://github.com/i05nagai/algorithms_docs.git
