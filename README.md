@@ -4,7 +4,7 @@ Algorithm sandbox
 
 C++ implementation of miscellaneous algorithms.
 
-[API document](https://i05nagai.github.io/algorithms/html/)
+[API document](https://i05nagai.github.io/algorithms_docs/html/)
 
 ## Description
 
