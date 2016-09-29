@@ -1,3 +1,4 @@
+/*
 #include "algo/ad/concept/ublas_matrix_expression_concept.hpp"
 #include "algo/ad/dual.hpp"
 #include "algo/ad/dual_binary_operator.hpp"
@@ -41,21 +42,12 @@ void jacobian_matrix_adaptor_concept_check(const M& m)
 
 int main(int argc, char const* argv[])
 {
-    namespace ublas = boost::numeric::ublas;
-    ublas::vector<double> i1(2);
-    i1(0) = 1.0;
-    i1(1) = 2.0;
-    ublas::vector<double> i2(2);
-    i2(0) = 3.0;
-    i2(1) = 5.0;
     algo::ad::dual<ublas::vector<double> > d1(7.0, i1);
     algo::ad::dual<ublas::vector<double> > d2(11.0, i2);
     DISPLAY_DUAL(d1);
     DISPLAY_DUAL(d2);
     std::cout << "add" << std::endl;
     {
-        auto z = d1 + d2;
-        DISPLAY_DUAL(z);
     }
     {
         auto z = d1 + 1.0;
@@ -255,3 +247,4 @@ int main(int argc, char const* argv[])
     }
     return 0;
 }
+*/

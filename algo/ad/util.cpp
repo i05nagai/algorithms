@@ -1,13 +1,16 @@
 #include "algo/ad/dual.hpp"
 #include "algo/ad/util.hpp"
+#include <boost/numeric/ublas/matrix_proxy.hpp>
 
 namespace algo { namespace ad {
-    dual<boost::numeric::ublas::vector<double> >
-    make_dual(
+    namespace ublas = boost::numeric::ublas;
+
+    dual<ublas::vector<double> >
+    makeDual(
         const double value,
-        const boost::numeric::ublas::vector<double>& infinitesimal)
+        const ublas::vector<double>& infinitesimal)
     {
-        dual<boost::numeric::ublas::vector<double> > x(value, infinitesimal);
+        dual<ublas::vector<double>> x(value, infinitesimal);
         return x;
     }
 
@@ -25,15 +28,59 @@ namespace algo { namespace ad {
         return x;
     }
 
-    boost::numeric::ublas::vector<dual<boost::numeric::ublas::vector<double> > >
-    make_vector_dual(
-        const boost::numeric::ublas::vector<double>& value)
+    ublas::vector<ad::dual<double>>
+    makeVectorDual(
+        const ublas::vector<double>& value,
+        const double derivative)
     {
         namespace ublas = boost::numeric::ublas;
         
-        ublas::vector<dual<ublas::vector<double> > > x(value.size());
+        ublas::vector<dual<double>> x(value.size());
+        for (std::size_t i = 0; i < x.size(); ++i) {
+            x(i) = ad::dual<double>(value(i), derivative);
+        }
+        return x;
+    }
+
+    ublas::vector<dual<ublas::vector<double>>>
+    makeVectorDual(
+        const ublas::vector<double>& value)
+    {
+        namespace ublas = boost::numeric::ublas;
+        
+        ublas::vector<dual<ublas::vector<double>>> x(value.size());
         for (std::size_t i = 0; i < x.size(); ++i) {
             x(i) = make_unit_dual(value(i), x.size(), i);
+        }
+        return x;
+    }
+
+    ublas::vector<dual<double>>
+    makeVectorDual(
+        const ublas::vector<double>& value,
+        const ublas::vector<double>& scalarDerivative)
+    {
+        namespace ublas = boost::numeric::ublas;
+        
+        ublas::vector<dual<double>> x(value.size());
+        for (std::size_t i = 0; i < x.size(); ++i) {
+            x(i) = dual<double>(value(i), scalarDerivative(i));
+        }
+        return x;
+    }
+
+    ublas::vector<dual<ublas::vector<double>>>
+    makeVectorDual(
+        const ublas::vector<double>& value,
+        const ublas::matrix<double>& vectorDerivative)
+    {
+        namespace ublas = boost::numeric::ublas;
+        
+        assert(value.size() == vectorDerivative.size1());
+        ublas::vector<dual<ublas::vector<double>>> x(value.size());
+        for (std::size_t i = 0; i < x.size(); ++i) {
+            x(i) = ad::dual<ublas::vector<double>>(
+                value(i), ublas::row(vectorDerivative, i));
         }
         return x;
     }
