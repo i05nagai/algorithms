@@ -1,5 +1,5 @@
 /**
- * @file dual_helper_function.hpp
+ * @file dual_get_value_function.hpp
  * @brief helper funtions.
  * @author i05nagai
  * @version 0.0.1
@@ -18,9 +18,9 @@ namespace algo { namespace ad { namespace detail {
      *
      * @return 
      */
-    double getValue(const double v)
+    double getValue(const double value)
     {
-        return v;
+        return value;
     }
     /**
      * @brief an overloaded function. 
