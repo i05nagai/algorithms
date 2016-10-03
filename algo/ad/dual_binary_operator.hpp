@@ -2,354 +2,75 @@
  * @file dual_binary_operator.hpp
  * @brief dual binary operators.
  * @author i05nagai
- * @version 0.0.1
- * @date 2016-07-20
+ * @version 0.0.2
+ * @date 2016-10-03
  */
 
 #pragma once
-#include "algo/ad/detail/dual_binary_operator_helper.hpp"
-#include "algo/ad/detail/dual_helper_function.hpp"
+#include "algo/ad/detail/dual_binary_operator_function.hpp"
+#include "algo/ad/detail/dual_get_value_function.hpp"
 #include "algo/ad/dual.hpp"
 #include "algo/ad/dual_expression.hpp"
-#include "algo/ad/fwd.h"
+#include "algo/ad/dual_binary_operator_functor.hpp"
+#include "algo/ad/fwd.hpp"
 #include "algo/ad/traits.hpp"
 
 namespace algo { namespace ad {
     /*--------------------------------------------------------------------------
-     * dual_add
+     * dual_binary
      *------------------------------------------------------------------------*/
-    /**
-     * @brief 
-     *
-     * @tparam E1
-     * @tparam E2
-     */
-    template<typename E1, typename E2>
-    class dual_add : public dual_expression<dual_add<E1, E2> > {
+    template <
+        typename DE1, 
+        typename DE2, 
+        typename ValueFunctor,
+        typename DerivativeFunctor
+    >
+    class dual_binary
+    : public dual_expression<
+        dual_binary<
+            DE1, DE2, ValueFunctor, DerivativeFunctor
+        >
+    > {
     //private typedef
     private:
+        typedef typename const_closure_type_traits<DE1>::type const_closure1_type;
+        typedef typename const_closure_type_traits<DE2>::type const_closure2_type;
+        typedef dual_binary<DE1, DE2, ValueFunctor, DerivativeFunctor> self_type;
     //public typedef
     public:
-        typedef typename const_closure_type_traits<E1>::type const_closure1_type;
-        typedef typename const_closure_type_traits<E2>::type const_closure2_type;
     //public function
     public:
-        /**
-         * @brief the constructor is required by getDerivative.
-         */
-        dual_add()
-        : _e1(0), _e2(0)
+        //required
+        dual_binary()
+        : _e1(), _e2()
         {
-        }
-        /**
-         * @brief 
-         *
-         * @param e1
-         * @param e2
-         */
-        dual_add(const E1& e1, const E2& e2)
-        : _e1(e1), _e2(e2)
-        {
-        }
-        /**
-         * @brief 
-         *
-         * @return 
-         */
-        double getValue()
-        {
-            return detail::getValue(_e1) + detail::getValue(_e2);
-        }
-        /**
-         * @brief 
-         *
-         * @return 
-         */
-        double getValue() const
-        {
-            return detail::getValue(_e1) + detail::getValue(_e2);
-        }
-        /**
-         * @brief 
-         *
-         * @return
-         */
-        decltype(detail::dual_add_function(E1(), E2()))
-        getDerivative()
-        {
-            return detail::dual_add_function(_e1, _e2);
         }
 
-        /**
-         * @brief 
-         *
-         * @return
-         */
-        decltype(detail::dual_add_function(E1(), E2()))
-        getDerivative() const
+        dual_binary(const DE1& e1, const DE2& e2)
+        : _e1(e1), _e2(e2)
         {
-            return detail::dual_add_function(_e1, _e2);
         }
-    //private function
-    private:
-    //private members
-    private:
-        const_closure1_type _e1;
-        const_closure2_type _e2;
-    };
 
-    /**
-     * @brief 
-     *
-     * @tparam E1
-     * @tparam E2
-     * @param e1
-     * @param e2
-     *
-     * @return 
-     */
-    template<typename E1, typename E2>
-    dual_add<E1, E2>
-    operator +(
-        const dual_expression<E1>& e1,
-        const dual_expression<E2>& e2)
-    {
-        return dual_add<E1, E2>(e1(), e2());
-    }
-    /**
-     * @brief 
-     *
-     * @tparam E2
-     * @param e1
-     * @param e2
-     *
-     * @return 
-     */
-    template<typename E2>
-    dual_add<double, E2>
-    operator +(
-        const double e1,
-        const dual_expression<E2>& e2)
-    {
-        return dual_add<double, E2>(e1, e2());
-    }
-    /**
-     * @brief 
-     *
-     * @tparam E1
-     * @param e1
-     * @param e2
-     *
-     * @return 
-     */
-    template<typename E1>
-    dual_add<E1, double>
-    operator +(
-        const dual_expression<E1>& e1,
-        const double e2)
-    {
-        return dual_add<E1, double>(e1(), e2);
-    }
-    /*--------------------------------------------------------------------------
-     * dual_minus
-     *------------------------------------------------------------------------*/
-    template<typename E1, typename E2>
-    class dual_minus : public dual_expression<dual_minus<E1, E2> > {
-    //private typedef
-    private:
-    //public typedef
-    public:
-        typedef typename const_closure_type_traits<E1>::type const_closure1_type;
-        typedef typename const_closure_type_traits<E2>::type const_closure2_type;
-    //public function
-    public:
-        /**
-         * @brief the constructor is required by getDerivative.
-         */
-        dual_minus()
-        : _e1(0), _e2(0)
-        {
-        }
-        /**
-         * @brief 
-         *
-         * @param e1
-         * @param e2
-         */
-        dual_minus(const E1& e1, const E2& e2)
-        : _e1(e1), _e2(e2)
-        {
-        }
-        /**
-         * @brief 
-         *
-         * @return 
-         */
         double getValue()
         {
-            return detail::getValue(_e1) - detail::getValue(_e2);
+            return ValueFunctor::apply(_e1, _e2);
         }
-        /**
-         * @brief 
-         *
-         * @return 
-         */
+
         double getValue() const
         {
-            return detail::getValue(_e1) - detail::getValue(_e2);
+            return ValueFunctor::apply(_e1, _e2);
         }
-        /**
-         * @brief 
-         *
-         * @return
-         */
-        decltype(detail::dual_minus_function(E1(), E2()))
-        getDerivative() 
-        {
-            return detail::dual_minus_function(_e1, _e2);
-        }
-        /**
-         * @brief 
-         *
-         * @return
-         */
-        decltype(detail::dual_minus_function(E1(), E2()))
-        getDerivative() const
-        {
-            return detail::dual_minus_function(_e1, _e2);
-        }
-    //private function
-    private:
-    //private members
-    private:
-        const_closure1_type _e1;
-        const_closure2_type _e2;
-    };
-    /**
-     * @brief 
-     *
-     * @tparam E1
-     * @tparam E2
-     * @param e1
-     * @param e2
-     *
-     * @return 
-     */
-    template<typename E1, typename E2>
-    dual_minus<E1, E2>
-    operator -(
-        const dual_expression<E1>& e1,
-        const dual_expression<E2>& e2)
-    {
-        return dual_minus<E1, E2>(e1(), e2());
-    }
-    /**
-     * @brief 
-     *
-     * @tparam E2
-     * @param e1
-     * @param e2
-     *
-     * @return 
-     */
-    template<typename E2>
-    dual_minus<double, E2>
-    operator -(
-        const double e1,
-        const dual_expression<E2>& e2)
-    {
-        return dual_minus<double, E2>(e1, e2());
-    }
-    /**
-     * @brief 
-     *
-     * @tparam E1
-     * @param e1
-     * @param e2
-     *
-     * @return 
-     */
-    template<typename E1>
-    dual_minus<E1, double>
-    operator -(
-        const dual_expression<E1>& e1,
-        const double e2)
-    {
-        return dual_minus<E1, double>(e1(), e2);
-    }
-    /*--------------------------------------------------------------------------
-     * dual_multiplies
-     *------------------------------------------------------------------------*/
-    /**
-     * @brief 
-     *
-     * @tparam E1
-     * @tparam E2
-     */
-    template<typename E1, typename E2>
-    class dual_multiplies : public dual_expression<dual_multiplies<E1, E2> > {
-    //private typedef
-    private:
-    //public typedef
-    public:
-        typedef typename const_closure_type_traits<E1>::type const_closure1_type;
-        typedef typename const_closure_type_traits<E2>::type const_closure2_type;
-    //public function
-    public:
-        /**
-         * @brief the constructor is required by dual_expression.
-         */
-        dual_multiplies()
-        : _e1(0), _e2(0)
-        {
-        }
-        /**
-         * @brief 
-         *
-         * @param e1
-         * @param e2
-         */
-        dual_multiplies(const E1& e1, const E2& e2)
-        : _e1(e1), _e2(e2)
-        {
-        }
-        /**
-         * @brief 
-         *
-         * @return 
-         */
-        double getValue()
-        {
-            return detail::getValue(_e1) * detail::getValue(_e2);
-        }
-        /**
-         * @brief 
-         *
-         * @return 
-         */
-        double getValue() const
-        {
-            return detail::getValue(_e1) * detail::getValue(_e2);
-        }
-        /**
-         * @brief 
-         *
-         * @return
-         */
-        decltype(detail::dual_multiplies_function(E1(), E2()))
+
+        decltype(DerivativeFunctor::apply(DE1(), DE2()))
         getDerivative()
         {
-            return detail::dual_multiplies_function(_e1, _e2);
+            return DerivativeFunctor::apply(_e1, _e2);
         }
-        /**
-         * @brief 
-         *
-         * @return
-         */
-        decltype(detail::dual_multiplies_function(E1(), E2()))
+
+        decltype(DerivativeFunctor::apply(DE1(), DE2()))
         getDerivative() const
         {
-            return detail::dual_multiplies_function(_e1, _e2);
+            return DerivativeFunctor::apply(_e1, _e2);
         }
     //private function
     private:
@@ -358,189 +79,344 @@ namespace algo { namespace ad {
         const_closure1_type _e1;
         const_closure2_type _e2;
     };
-    /**
-     * @brief 
-     *
-     * @tparam E1
-     * @tparam E2
-     * @param e1
-     * @param e2
-     *
-     * @return 
-     */
-    template<typename E1, typename E2>
-    dual_multiplies<E1, E2>
-    operator *(
-        const dual_expression<E1>& e1,
-        const dual_expression<E2>& e2)
-    {
-        return dual_multiplies<E1, E2>(e1(), e2());
-    }
-    /**
-     * @brief 
-     *
-     * @tparam E2
-     * @param e1
-     * @param e2
-     *
-     * @return 
-     */
-    template<typename E2>
-    dual_multiplies<double, E2>
-    operator *(
-        const double e1,
-        const dual_expression<E2>& e2)
-    {
-        return dual_multiplies<double, E2>(e1, e2());
-    }
-    /**
-     * @brief 
-     *
-     * @tparam E1
-     * @param e1
-     * @param e2
-     *
-     * @return 
-     */
-    template<typename E1>
-    dual_multiplies<E1, double>
-    operator *(
-        const dual_expression<E1>& e1,
-        const double e2)
-    {
-        return dual_multiplies<E1, double>(e1(), e2);
-    }
     /*--------------------------------------------------------------------------
-     * dual_divide
+     * operator +
      *------------------------------------------------------------------------*/
     /**
      * @brief 
      *
-     * @tparam E1
-     * @tparam E2
-     */
-    template<typename E1, typename E2>
-    class dual_divide : public dual_expression<dual_divide<E1, E2> > {
-    //private typedef
-    private:
-    //public typedef
-    public:
-        typedef typename const_closure_type_traits<E1>::type const_closure1_type;
-        typedef typename const_closure_type_traits<E2>::type const_closure2_type;
-    //public function
-    public:
-        /**
-         * @brief the constructor is required.
-         */
-        dual_divide()
-        : _e1(0), _e2(0)
-        {
-        }
-        /**
-         * @brief 
-         *
-         * @param e1
-         * @param e2
-         */
-        dual_divide(const E1& e1, const E2& e2)
-        : _e1(e1), _e2(e2)
-        {
-        }
-        /**
-         * @brief 
-         *
-         * @return 
-         */
-        double getValue()
-        {
-            return detail::getValue(_e1) / detail::getValue(_e2);
-        }
-        /**
-         * @brief 
-         *
-         * @return 
-         */
-        double getValue() const
-        {
-            return detail::getValue(_e1) / detail::getValue(_e2);
-        }
-        /**
-         * @brief 
-         *
-         * @return
-         */
-        decltype(detail::dual_divide_function(E1(), E2()))
-        getDerivative()
-        {
-            return detail::dual_divide_function(_e1, _e2);
-        }
-        /**
-         * @brief 
-         *
-         * @return
-         */
-        decltype(detail::dual_divide_function(E1(), E2()))
-        getDerivative() const
-        {
-            return detail::dual_divide_function(_e1, _e2);
-        }
-    //private function
-    private:
-    //private members
-    private:
-        const_closure1_type _e1;
-        const_closure2_type _e2;
-    };
-    /**
-     * @brief 
-     *
-     * @tparam E1
-     * @tparam E2
+     * @tparam DE1
+     * @tparam DE2
      * @param e1
      * @param e2
      *
      * @return 
      */
-    template<typename E1, typename E2>
-    dual_divide<E1, E2>
-    operator /(
-        const dual_expression<E1>& e1,
-        const dual_expression<E2>& e2)
+    template<typename DE1, typename DE2>
+    dual_binary<
+        DE1, 
+        DE2,
+        dual_plus_value<DE1, DE2>,
+        dual_plus_derivative<DE1, DE2>
+    >
+    operator +(
+        const dual_expression<DE1>& e1,
+        const dual_expression<DE2>& e2)
     {
-        return dual_divide<E1, E2>(e1(), e2());
+        return dual_binary<
+            DE1,
+            DE2,
+            dual_plus_value<DE1, DE2>,
+            dual_plus_derivative<DE1, DE2>
+        >(e1(), e2());
     }
     /**
      * @brief 
      *
-     * @tparam E2
+     * @tparam DE2
      * @param e1
      * @param e2
      *
      * @return 
      */
-    template<typename E2>
-    dual_divide<double, E2>
-    operator /(
+    template<typename DE2>
+    dual_binary<
+        double, 
+        DE2,
+        dual_plus_value<double, DE2>,
+        dual_plus_derivative<double, DE2>
+    >
+    operator +(
         const double e1,
-        const dual_expression<E2>& e2)
+        const dual_expression<DE2>& e2)
     {
-        return dual_divide<double, E2>(e1, e2());
+        return dual_binary<
+            double,
+            DE2,
+            dual_plus_value<double, DE2>,
+            dual_plus_derivative<double, DE2>
+        >(e1, e2());
     }
     /**
      * @brief 
      *
-     * @tparam E1
+     * @tparam DE1
      * @param e1
      * @param e2
      *
      * @return 
      */
-    template<typename E1>
-    dual_divide<E1, double>
-    operator /(
-        const dual_expression<E1>& e1,
+    template<typename DE1>
+    dual_binary<
+        DE1, 
+        double,
+        dual_plus_value<DE1, double>,
+        dual_plus_derivative<DE1, double>
+    >
+    operator +(
+        const dual_expression<DE1>& e1,
         const double e2)
     {
-        return dual_divide<E1, double>(e1(), e2);
+        return dual_binary<
+            DE1,
+            double,
+            dual_plus_value<DE1, double>,
+            dual_plus_derivative<DE1, double>
+        >(e1(), e2);
+    }
+    /*--------------------------------------------------------------------------
+     * operator -
+     *------------------------------------------------------------------------*/
+    /**
+     * @brief 
+     *
+     * @tparam DE1
+     * @tparam DE2
+     * @param e1
+     * @param e2
+     *
+     * @return 
+     */
+    template<typename DE1, typename DE2>
+    dual_binary<
+        DE1, 
+        DE2,
+        dual_minus_value<DE1, DE2>,
+        dual_minus_derivative<DE1, DE2>
+    >
+    operator -(
+        const dual_expression<DE1>& e1,
+        const dual_expression<DE2>& e2)
+    {
+        return dual_binary<
+            DE1,
+            DE2,
+            dual_minus_value<DE1, DE2>,
+            dual_minus_derivative<DE1, DE2>
+        >(e1(), e2());
+    }
+    /**
+     * @brief 
+     *
+     * @tparam E2
+     * @param e1
+     * @param e2
+     *
+     * @return 
+     */
+    template<typename DE2>
+    dual_binary<
+        double, 
+        DE2,
+        dual_minus_value<double, DE2>,
+        dual_minus_derivative<double, DE2>
+    >
+    operator -(
+        const double e1,
+        const dual_expression<DE2>& e2)
+    {
+        return dual_binary<
+            double,
+            DE2,
+            dual_minus_value<double, DE2>,
+            dual_minus_derivative<double, DE2>
+        >(e1, e2());
+    }
+    /**
+     * @brief 
+     *
+     * @tparam DE1
+     * @param e1
+     * @param e2
+     *
+     * @return 
+     */
+    template<typename DE1>
+    dual_binary<
+        DE1, 
+        double,
+        dual_minus_value<DE1, double>,
+        dual_minus_derivative<DE1, double>
+    >
+    operator -(
+        const dual_expression<DE1>& e1,
+        const double e2)
+    {
+        return dual_binary<
+            DE1,
+            double,
+            dual_minus_value<DE1, double>,
+            dual_minus_derivative<DE1, double>
+        >(e1(), e2);
+    }
+    /*--------------------------------------------------------------------------
+     * operator *
+     *------------------------------------------------------------------------*/
+    /**
+     * @brief 
+     *
+     * @tparam DE1
+     * @tparam DE2
+     * @param e1
+     * @param e2
+     *
+     * @return 
+     */
+    template<typename DE1, typename DE2>
+    dual_binary<
+        DE1, 
+        DE2,
+        dual_multiply_value<DE1, DE2>,
+        dual_multiply_derivative<DE1, DE2>
+    >
+    operator *(
+        const dual_expression<DE1>& e1,
+        const dual_expression<DE2>& e2)
+    {
+        return dual_binary<
+            DE1,
+            DE2,
+            dual_multiply_value<DE1, DE2>,
+            dual_multiply_derivative<DE1, DE2>
+        >(e1(), e2());
+    }
+    /**
+     * @brief 
+     *
+     * @tparam E2
+     * @param e1
+     * @param e2
+     *
+     * @return 
+     */
+    template<typename DE2>
+    dual_binary<
+        double, 
+        DE2,
+        dual_multiply_value<double, DE2>,
+        dual_multiply_derivative<double, DE2>
+    >
+    operator *(
+        const double e1,
+        const dual_expression<DE2>& e2)
+    {
+        return dual_binary<
+            double,
+            DE2,
+            dual_multiply_value<double, DE2>,
+            dual_multiply_derivative<double, DE2>
+        >(e1, e2());
+    }
+    /**
+     * @brief 
+     *
+     * @tparam DE1
+     * @param e1
+     * @param e2
+     *
+     * @return 
+     */
+    template<typename DE1>
+    dual_binary<
+        DE1, 
+        double,
+        dual_multiply_value<DE1, double>,
+        dual_multiply_derivative<DE1, double>
+    >
+    operator *(
+        const dual_expression<DE1>& e1,
+        const double e2)
+    {
+        return dual_binary<
+            DE1,
+            double,
+            dual_multiply_value<DE1, double>,
+            dual_multiply_derivative<DE1, double>
+        >(e1(), e2);
+    }
+    /*--------------------------------------------------------------------------
+     * operator /
+     *------------------------------------------------------------------------*/
+    /**
+     * @brief 
+     *
+     * @tparam DE1
+     * @tparam DE2
+     * @param e1
+     * @param e2
+     *
+     * @return 
+     */
+    template<typename DE1, typename DE2>
+    dual_binary<
+        DE1, 
+        DE2,
+        dual_divide_value<DE1, DE2>,
+        dual_divide_derivative<DE1, DE2>
+    >
+    operator /(
+        const dual_expression<DE1>& e1,
+        const dual_expression<DE2>& e2)
+    {
+        return dual_binary<
+            DE1,
+            DE2,
+            dual_divide_value<DE1, DE2>,
+            dual_divide_derivative<DE1, DE2>
+        >(e1(), e2());
+    }
+    /**
+     * @brief 
+     *
+     * @tparam E2
+     * @param e1
+     * @param e2
+     *
+     * @return 
+     */
+    template<typename DE2>
+    dual_binary<
+        double, 
+        DE2,
+        dual_divide_value<double, DE2>,
+        dual_divide_derivative<double, DE2>
+    >
+    operator /(
+        const double e1,
+        const dual_expression<DE2>& e2)
+    {
+        return dual_binary<
+            double,
+            DE2,
+            dual_divide_value<double, DE2>,
+            dual_divide_derivative<double, DE2>
+        >(e1, e2());
+    }
+    /**
+     * @brief 
+     *
+     * @tparam DE1
+     * @param e1
+     * @param e2
+     *
+     * @return 
+     */
+    template<typename DE1>
+    dual_binary<
+        DE1, 
+        double,
+        dual_divide_value<DE1, double>,
+        dual_divide_derivative<DE1, double>
+    >
+    operator /(
+        const dual_expression<DE1>& e1,
+        const double e2)
+    {
+        return dual_binary<
+            DE1,
+            double,
+            dual_divide_value<DE1, double>,
+            dual_divide_derivative<DE1, double>
+        >(e1(), e2);
     }
 } } // namespace algo { namespace ad {

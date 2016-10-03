@@ -1,3 +1,11 @@
+/**
+ * @file helper_macro.hpp
+ * @brief helper macros mainly in order to debug.
+ * @author i05nagai
+ * @version 0.0.2
+ * @date 2016-10-04
+ */
+
 #pragma once
 
 #define DISPLAY_DUAL(x)                                                                            \

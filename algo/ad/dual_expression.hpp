@@ -7,8 +7,6 @@
  */
 #pragma once
 
-#include <boost/numeric/ublas/vector_expression.hpp>
-
 namespace algo { namespace ad {
     /**
      * @brief 

@@ -1,11 +1,10 @@
 /**
  * @file ublas_unary_operator.hpp
  * @brief 
- * @author 
- * @version i05nagai
- * @date 2016-07-20
+ * @author i05nagai
+ * @version 0.0.2
+ * @date 2016-10-04
  */
-
 #pragma once
 #include <boost/numeric/ublas/functional.hpp>
 #include <boost/numeric/ublas/vector_expression.hpp>

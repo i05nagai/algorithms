@@ -2,13 +2,13 @@
  * @file traits.hpp
  * @brief 
  * @author i05nagai
- * @version 0.0.1
- * @date 2016-03-28
+ * @version 0.0.2
+ * @date 2016-10-04
  */
 #pragma once
 
 #include "algo/ad/dual.hpp"
-#include "algo/ad/fwd.h"
+#include "algo/ad/fwd.hpp"
 #include <boost/numeric/ublas/traits.hpp>
 #include <boost/numeric/ublas/vector.hpp>
 #include <boost/numeric/ublas/vector_expression.hpp>

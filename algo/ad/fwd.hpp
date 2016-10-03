@@ -1,9 +1,9 @@
 /**
- * @file fwd.h
+ * @file fwd.hpp
  * @brief forward declarations.
  * @author i05nagai
- * @version 
- * @date 2016-07-20
+ * @version 0.0.2
+ * @date 2016-10-04
  */
 
 #pragma once

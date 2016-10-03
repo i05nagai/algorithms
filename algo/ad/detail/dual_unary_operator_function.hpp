@@ -1,5 +1,5 @@
 /**
- * @file dual_unary_operator_helper.hpp
+ * @file dual_unary_operator_function.hpp
  * @brief 
  * @author i05nagai
  * @version 0.0.1
@@ -11,18 +11,18 @@
 
 namespace algo { namespace ad { namespace detail {
     /*--------------------------------------------------------------------------
-     * dual_negate_helper
+     * negateDualDerivative
      *------------------------------------------------------------------------*/
     /**
      * @brief 
      *
-     * @tparam E
+     * @tparam DE
      * @param e
      *
      * @return 
      */
-    template<typename E>
-    auto dual_negate_helper(const dual_expression<E>& e)
+    template<typename DE>
+    auto negateDualDerivative(const dual_expression<DE>& e)
     -> decltype(-e().getDerivative())
     {
         return -e().getDerivative();
@@ -34,23 +34,23 @@ namespace algo { namespace ad { namespace detail {
      *
      * @return 
      */
-    double dual_negate_helper(const double e)
+    double negateDualDerivative(const double e)
     {
         return -e;
     }
     /*--------------------------------------------------------------------------
-     * dual_exp_helper
+     * expDualDerivative
      *------------------------------------------------------------------------*/
     /**
      * @brief 
      *
-     * @tparam E
+     * @tparam DE
      * @param e
      *
      * @return 
      */
-    template<typename E>
-    auto dual_exp_helper(const dual_expression<E>& e)
+    template<typename DE>
+    auto expDualDerivative(const dual_expression<DE>& e)
     -> decltype(boost::numeric::ublas::exp(e().getDerivative()))
     {
         return boost::numeric::ublas::exp(e().getDerivative());
@@ -62,23 +62,23 @@ namespace algo { namespace ad { namespace detail {
      *
      * @return 
      */
-    double dual_exp_helper(const double e)
+    double expDualDerivative(const double e)
     {
         return std::exp(e);
     }
     /*--------------------------------------------------------------------------
-     * dual_log_helper
+     * logDualDerivative 
      *------------------------------------------------------------------------*/
     /**
      * @brief 
      *
-     * @tparam E
+     * @tparam DE
      * @param e
      *
      * @return 
      */
-    template<typename E>
-    auto dual_log_helper(const dual_expression<E>& e)
+    template<typename DE>
+    auto logDualDerivative(const dual_expression<DE>& e)
     -> decltype(boost::numeric::ublas::element_inverse(e().getDerivative()))
     {
         return boost::numeric::ublas::element_inverse(e().getDerivative());
@@ -90,23 +90,23 @@ namespace algo { namespace ad { namespace detail {
      *
      * @return 
      */
-    double dual_log_helper(const double e)
+    double logDualDerivative(const double e)
     {
         return 1.0 / e;
     }
     /*--------------------------------------------------------------------------
-     * dual_sin_helper
+     * sinDualDerivative 
      *------------------------------------------------------------------------*/
     /**
      * @brief 
      *
-     * @tparam E
+     * @tparam DE
      * @param e
      *
      * @return 
      */
-    template<typename E>
-    auto dual_sin_helper(const dual_expression<E>& e)
+    template<typename DE>
+    auto sinDualDerivative(const dual_expression<DE>& e)
     -> decltype(boost::numeric::ublas::cos(e().getDerivative()))
     {
         return boost::numeric::ublas::cos(e().getDerivative());
@@ -118,23 +118,23 @@ namespace algo { namespace ad { namespace detail {
      *
      * @return 
      */
-    double dual_sin_helper(const double e)
+    double sinDualDerivative(const double e)
     {
         return std::cos(e);
     }
     /*--------------------------------------------------------------------------
-     * dual_cos_helper
+     * cosDualDerivative 
      *------------------------------------------------------------------------*/
     /**
      * @brief 
      *
-     * @tparam E
+     * @tparam DE
      * @param e
      *
      * @return 
      */
-    template<typename E>
-    auto dual_cos_helper(const dual_expression<E>& e)
+    template<typename DE>
+    auto cosDualDerivative(const dual_expression<DE>& e)
     -> decltype(-boost::numeric::ublas::sin(e().getDerivative()))
     {
         return -boost::numeric::ublas::sin(e().getDerivative());
@@ -146,7 +146,7 @@ namespace algo { namespace ad { namespace detail {
      *
      * @return 
      */
-    double dual_cos_helper(const double e)
+    double cosDualDerivative(const double e)
     {
         return -std::sin(e);
     }

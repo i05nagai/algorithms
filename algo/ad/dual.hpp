@@ -1,31 +1,27 @@
 /**
  * @file dual.hpp
- * @brief dual class.
+ * @brief 
  * @author i05nagai
- * @version 0.0.1
- * @date 2016-07-20
+ * @version 0.0.2
+ * @date 2016-10-04
  */
-
 #pragma once
 #include "algo/ad/dual_expression.hpp"
+#include <boost/numeric/ublas/vector.hpp>
 
 namespace algo { namespace ad {
     /**
      * @brief 
      *
-     * @tparam I
+     * @tparam Derivative
      */
-    template <typename I = boost::numeric::ublas::vector<double> >
-    class dual : public dual_expression<dual<I> > {
+    template <typename Derivative = boost::numeric::ublas::vector<double> >
+    class dual : public dual_expression<dual<Derivative>> {
     private:
-        typedef dual<I> self_type;
+        typedef dual<Derivative> self_type;
     public:
         //closure
         typedef const self_type& const_closure_type;
-        //inf
-        typedef I infinitesimal_type;
-        typedef I& infinitesimal_reference;
-        typedef const I& const_infinitesimal_reference;
 
     public:
         /**
@@ -43,7 +39,8 @@ namespace algo { namespace ad {
          */
         template <typename AE>
         dual(const dual_expression<AE>& ae) 
-        : _value(ae().getValue()), _derivative(ae().getDerivative())
+        : _value(ae().getValue()), 
+            _derivative(ae().getDerivative())
         {
         }
         /**
@@ -51,8 +48,8 @@ namespace algo { namespace ad {
          *
          * @param v
          */
-        dual(const double v) 
-        : _value(v), _derivative(0)
+        dual(const double value) 
+        : _value(value), _derivative(0)
         {
         }
         /**
@@ -62,8 +59,8 @@ namespace algo { namespace ad {
          * @param d
          */
         dual(
-            const double& v, 
-            const infinitesimal_type& d) 
+            const double v, 
+            const Derivative& d) 
         : _value(v), _derivative(d)
         {
         }
@@ -90,7 +87,7 @@ namespace algo { namespace ad {
          *
          * @return 
          */
-        infinitesimal_reference getDerivative()
+        Derivative& getDerivative()
         {
             return _derivative;
         }
@@ -99,12 +96,12 @@ namespace algo { namespace ad {
          *
          * @return 
          */
-        const_infinitesimal_reference getDerivative() const
+        const Derivative& getDerivative() const
         {
             return _derivative;
         }
     private:
         double _value;
-        infinitesimal_type _derivative;
+        Derivative _derivative;
     };
 } } // namespace algo { namespace ad {
