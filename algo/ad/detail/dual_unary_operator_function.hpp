@@ -51,9 +51,11 @@ namespace algo { namespace ad { namespace detail {
      */
     template<typename DE>
     auto expDualDerivative(const dual_expression<DE>& e)
-    -> decltype(boost::numeric::ublas::exp(e().getDerivative()))
+    -> decltype(
+        boost::numeric::ublas::exp(detail::getValue(e())) * e().getDerivative())
     {
-        return boost::numeric::ublas::exp(e().getDerivative());
+        namespace ublas = boost::numeric::ublas;
+        return ublas::exp(detail::getValue(e())) * e().getDerivative();
     }
     /**
      * @brief 
@@ -64,7 +66,7 @@ namespace algo { namespace ad { namespace detail {
      */
     double expDualDerivative(const double e)
     {
-        return std::exp(e);
+        return 0.0;
     }
     /*--------------------------------------------------------------------------
      * logDualDerivative 
@@ -79,9 +81,9 @@ namespace algo { namespace ad { namespace detail {
      */
     template<typename DE>
     auto logDualDerivative(const dual_expression<DE>& e)
-    -> decltype(boost::numeric::ublas::element_inverse(e().getDerivative()))
+    -> decltype(e().getDerivative() / detail::getValue(e()))
     {
-        return boost::numeric::ublas::element_inverse(e().getDerivative());
+        return e().getDerivative() / detail::getValue(e());
     }
     /**
      * @brief 
@@ -92,7 +94,7 @@ namespace algo { namespace ad { namespace detail {
      */
     double logDualDerivative(const double e)
     {
-        return 1.0 / e;
+        return 0.0;
     }
     /*--------------------------------------------------------------------------
      * sinDualDerivative 
@@ -107,9 +109,11 @@ namespace algo { namespace ad { namespace detail {
      */
     template<typename DE>
     auto sinDualDerivative(const dual_expression<DE>& e)
-    -> decltype(boost::numeric::ublas::cos(e().getDerivative()))
+    -> decltype(e().getDerivative() 
+        * boost::numeric::ublas::cos(detail::getValue(e())))
     {
-        return boost::numeric::ublas::cos(e().getDerivative());
+        namespace ublas = boost::numeric::ublas;
+        return e().getDerivative() * ublas::cos(detail::getValue(e()));
     }
     /**
      * @brief 
@@ -120,7 +124,7 @@ namespace algo { namespace ad { namespace detail {
      */
     double sinDualDerivative(const double e)
     {
-        return std::cos(e);
+        return 0.0;
     }
     /*--------------------------------------------------------------------------
      * cosDualDerivative 
@@ -151,3 +155,4 @@ namespace algo { namespace ad { namespace detail {
         return -std::sin(e);
     }
 } } } // namespace algo { namespace ad { namespace detail {
+

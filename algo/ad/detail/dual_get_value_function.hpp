@@ -18,6 +18,7 @@ namespace algo { namespace ad { namespace detail {
      *
      * @return 
      */
+    inline
     double getValue(const double value)
     {
         return value;
@@ -31,7 +32,7 @@ namespace algo { namespace ad { namespace detail {
      *
      * @return double.
      */
-    template <typename E> 
+    template <typename E> inline
     double getValue(const dual_expression<E>& e)
     {
         return e().getValue();

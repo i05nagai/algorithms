@@ -224,7 +224,7 @@ namespace algo { namespace ad_test {
             const ublas::vector<double> actualDerivative = result.getDerivative();
 
             const double expectValue 
-                = _value1 - _value2;
+                = _value1 * _value2;
             const ublas::vector<double> expectDerivative
                 = _value1 * _vectorDerivative2 
                     +  _vectorDerivative1 * _value2;
