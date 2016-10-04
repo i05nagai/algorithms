@@ -9,7 +9,7 @@
 #include "algo/ad/detail/dual_get_value_function.hpp"
 #include "algo/ad/dual_unary_operator_functor.hpp"
 #include "algo/ad/dual_expression.hpp"
-#include "algo/ad/fwd.h"
+#include "algo/ad/fwd.hpp"
 #include "algo/ad/traits.hpp"
 
 namespace algo { namespace ad {

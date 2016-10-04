@@ -89,7 +89,7 @@ namespace algo { namespace ad {
         static
         double apply(const Dual1& e1, const Dual2& e2)
         {
-            assert(e2 != 0.0);
+            assert(detail::getValue(e2) != 0);
             return detail::getValue(e1) / detail::getValue(e2);
         }
     };
