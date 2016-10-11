@@ -33,11 +33,13 @@ namespace algo { namespace ad {
     > {
     //private typedef
     private:
-        typedef typename const_closure_type_traits<DE1>::type const_closure1_type;
-        typedef typename const_closure_type_traits<DE2>::type const_closure2_type;
+        typedef typename const_closure_type_traits<DE1>::type expression1_closure_type;
+        typedef typename const_closure_type_traits<DE2>::type expression2_closure_type;
         typedef dual_binary<DE1, DE2, ValueFunctor, DerivativeFunctor> self_type;
     //public typedef
     public:
+        typedef self_type const_closure_type;
+        typedef typename DE1::derivative_type derivative_type;
     //public function
     public:
         //required
@@ -76,8 +78,8 @@ namespace algo { namespace ad {
     private:
     //private members
     private:
-        const_closure1_type _e1;
-        const_closure2_type _e2;
+        expression1_closure_type _e1;
+        expression2_closure_type _e2;
     };
     /*--------------------------------------------------------------------------
      * operator +

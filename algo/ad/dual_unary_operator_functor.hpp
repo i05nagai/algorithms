@@ -7,6 +7,7 @@
  */
 #pragma once
 #include "algo/ad/detail/dual_unary_operator_function.hpp"
+#include <utility>
 
 namespace algo { namespace ad {
     /*--------------------------------------------------------------------------
@@ -26,7 +27,8 @@ namespace algo { namespace ad {
     template <typename Dual>
     struct dual_negate_derivative {
     public:
-        typedef decltype(detail::negateDualDerivative(Dual())) result_type;
+        typedef decltype(detail::negateDualDerivative(std::declval<Dual>())) 
+            result_type;
     public:
         static result_type apply(const Dual& e)
         {
@@ -41,6 +43,7 @@ namespace algo { namespace ad {
     public:
     public:
         static
+        inline
         double apply(const Dual& e)
         {
             return std::exp(detail::getValue(e));
@@ -50,9 +53,12 @@ namespace algo { namespace ad {
     template <typename Dual>
     struct dual_exp_derivative {
     public:
-        typedef decltype(detail::expDualDerivative(Dual())) result_type;
+        typedef decltype(detail::expDualDerivative(std::declval<Dual>())) 
+            result_type;
     public:
-        static result_type apply(const Dual& e)
+        static 
+        inline
+        result_type apply(const Dual& e)
         {
             return detail::expDualDerivative(e);
         }
@@ -74,7 +80,8 @@ namespace algo { namespace ad {
     template <typename Dual>
     struct dual_log_derivative {
     public:
-        typedef decltype(detail::logDualDerivative(Dual())) result_type;
+        typedef decltype(detail::logDualDerivative(std::declval<Dual>())) 
+            result_type;
     public:
         static result_type apply(const Dual& e)
         {
@@ -98,7 +105,8 @@ namespace algo { namespace ad {
     template <typename Dual>
     struct dual_sin_derivative {
     public:
-        typedef decltype(detail::sinDualDerivative(Dual())) result_type;
+        typedef decltype(detail::sinDualDerivative(std::declval<Dual>())) 
+            result_type;
     public:
         static result_type apply(const Dual& e)
         {
@@ -122,7 +130,8 @@ namespace algo { namespace ad {
     template <typename Dual>
     struct dual_cos_derivative {
     public:
-        typedef decltype(detail::cosDualDerivative(Dual())) result_type;
+        typedef decltype(detail::cosDualDerivative(std::declval<Dual>())) 
+            result_type;
     public:
         static result_type apply(const Dual& e)
         {

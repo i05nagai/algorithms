@@ -9,6 +9,7 @@
 
 #include "algo/ad/dual.hpp"
 #include "algo/ad/fwd.hpp"
+#include <type_traits>
 #include <boost/numeric/ublas/traits.hpp>
 #include <boost/numeric/ublas/vector.hpp>
 #include <boost/numeric/ublas/vector_expression.hpp>
@@ -82,10 +83,28 @@ namespace algo { namespace ad {
              is_scalar_dual<T> >::value> {
     };
     /*--------------------------------------------------------------------------
+     * has_const_closure_type
+     *------------------------------------------------------------------------*/
+    struct has_const_closure_type_impl {
+    public:
+        template <typename T>
+        static
+        std::true_type check(typename T::const_closure_type*);
+
+        template <typename T>
+        static
+        std::false_type check(...);
+    };
+
+    template <typename T>
+    struct has_const_closure_type 
+    : public decltype(has_const_closure_type_impl::check<T>(nullptr)) {
+    };
+    /*--------------------------------------------------------------------------
      * const_closure_type_traits
      *------------------------------------------------------------------------*/
     /**
-     * @brief 
+     * @brief template specification in case of has_const_closure_type<T>::value is false.
      *
      * @tparam T
      */
@@ -94,13 +113,13 @@ namespace algo { namespace ad {
         typedef T type;
     };
     /**
-     * @brief 
+     * @brief template specification in case of has_const_closure_type<T>::value is true.
      *
      * @tparam T
      */
     template <typename T>
     struct const_closure_type_traits_impl<T, true> {
-        typedef const T& type;
+        typedef typename T::const_closure_type type;
     };
     /**
      * @brief 

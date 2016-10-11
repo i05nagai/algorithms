@@ -22,6 +22,7 @@ namespace algo { namespace ad {
     public:
         //closure
         typedef const self_type& const_closure_type;
+        typedef Derivative derivative_type;
 
     public:
         /**

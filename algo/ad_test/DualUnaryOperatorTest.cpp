@@ -198,4 +198,37 @@ namespace algo { namespace ad_test {
             EXPECT_VECTOR_DOUBLE_EQ(expectDerivative, actualDerivative);
         }
     }
+
+    TEST_F(DualUnaryOperatorTest, operatorCosTest)
+    {
+        //scalar dual scalar derivative
+        {
+            const auto result 
+                = ad::cos(_scalarDualScalarDerivative);
+            const double actualValue = result.getValue();
+            const double actualDerivative = result.getDerivative();
+
+            const double expectValue = std::cos(_value);
+            const double expectDerivative 
+                =  - _scalarDerivative * std::sin(_value);
+
+            EXPECT_DOUBLE_EQ(expectValue, actualValue);
+            EXPECT_DOUBLE_EQ(expectDerivative, actualDerivative);
+        }
+        //scalar dual vector derivative
+        {
+            const auto result 
+                = ad::cos(_scalarDualVectorDerivative);
+            const double actualValue = result.getValue();
+            const ublas::vector<double> actualDerivative 
+                = result.getDerivative();
+
+            const double expectValue = std::cos(_value);
+            const ublas::vector<double> expectDerivative 
+                =  - _vectorDerivative * std::sin(_value);
+
+            EXPECT_DOUBLE_EQ(expectValue, actualValue);
+            EXPECT_VECTOR_DOUBLE_EQ(expectDerivative, actualDerivative);
+        }
+    }
 } } // namespace algo { namespace ad_test {

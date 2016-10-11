@@ -25,18 +25,15 @@ namespace algo { namespace ad {
     : public dual_expression<dual_unary<DE, ValueFunctor, DerivativeFunctor>> {
     //private typedef
     private:
-        typedef typename const_closure_type_traits<DE>::type const_closure_type;
+        typedef typename const_closure_type_traits<DE>::type 
+            expression_closure_type;
         typedef dual_unary<DE, ValueFunctor, DerivativeFunctor> self_type;
     //public typedef
     public:
+        typedef typename DE::derivative_type derivative_type;
+        typedef self_type const_closure_type;
     //public function
     public:
-        //required
-        dual_unary()
-        : _e()
-        {
-        }
-
         dual_unary(const DE& e)
         : _e(e)
         {
@@ -52,13 +49,13 @@ namespace algo { namespace ad {
             return ValueFunctor::apply(_e);
         }
 
-        decltype(DerivativeFunctor::apply(DE()))
+        derivative_type
         getDerivative()
         {
             return DerivativeFunctor::apply(_e);
         }
 
-        decltype(DerivativeFunctor::apply(DE()))
+        derivative_type
         getDerivative() const
         {
             return DerivativeFunctor::apply(_e);
@@ -67,7 +64,7 @@ namespace algo { namespace ad {
     private:
     //private members
     private:
-        const_closure_type _e;
+        expression_closure_type _e;
     };
     /*--------------------------------------------------------------------------
      * negate

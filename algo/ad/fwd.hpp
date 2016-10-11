@@ -27,8 +27,11 @@ namespace algo { namespace ad {
     //is_dual
     template <typename T>
     struct is_dual;
+    //has_const_closure_type
+    template <typename T>
+    struct has_const_closure_type;
     //const_closure_type
-    template <typename T, bool Condition = is_dual<T>::value >
+    template <typename T, bool Condition = has_const_closure_type<T>::value>
     struct const_closure_type_traits_impl;
     template <typename T>
     struct const_closure_type_traits;
