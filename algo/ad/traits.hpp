@@ -13,7 +13,6 @@
 #include <boost/numeric/ublas/traits.hpp>
 #include <boost/numeric/ublas/vector.hpp>
 #include <boost/numeric/ublas/vector_expression.hpp>
-#include <boost/type_traits/is_base_of.hpp>
 
 namespace algo { namespace ad {
     /*--------------------------------------------------------------------------
@@ -26,20 +25,83 @@ namespace algo { namespace ad {
      */
     template <typename T> 
     struct is_scalar 
-    : boost::mpl::bool_<boost::is_scalar<T>::value> {
+    : std::integral_constant<bool, std::is_scalar<T>::value> {
     };
     /*--------------------------------------------------------------------------
      * is_vector
+     *------------------------------------------------------------------------*/
+    template <typename T> 
+    struct is_vector_impl
+    : std::integral_constant<
+        bool, 
+        std::is_base_of<boost::numeric::ublas::vector_expression<T>, T>::value
+    > {
+    };
+    /**
+     * @brief Currently, pointer is not allowed.
+     *
+     * @tparam T
+     */
+    template <typename T> 
+    struct is_vector 
+    : is_vector_impl<
+        typename std::decay<T>::type
+    > {
+    };
+    /*--------------------------------------------------------------------------
+     * is_scalar_dual
+     *------------------------------------------------------------------------*/
+    template <typename T>
+    struct is_scalar_dual_impl
+    : std::integral_constant<
+        bool,
+        std::is_base_of<dual_expression<T>, T>::value
+    > {
+    };
+    /**
+     * @brief Currently, pointer is not allowed.
+     *
+     * @tparam T
+     */
+    template <typename T>
+    struct is_scalar_dual 
+    : is_scalar_dual_impl<
+        typename std::decay<T>::type
+    > {
+    };
+    /*--------------------------------------------------------------------------
+     * is_vector_dual
      *------------------------------------------------------------------------*/
     /**
      * @brief 
      *
      * @tparam T
      */
-    template <typename T> 
-    struct is_vector 
-    : boost::mpl::bool_<
-        boost::is_base_of<boost::numeric::ublas::vector_expression<T>, T>::value> {
+    template <typename T>
+    struct is_vector_dual_impl 
+    : std::integral_constant<
+        bool,
+        is_scalar_dual<typename T::value_type>::value
+    > {
+    };
+    /**
+     * @brief 
+     *
+     * @tparam T
+     */
+    template <typename T>
+    struct is_vector_dual<T, true> 
+    : is_vector_dual_impl<
+        typename std::decay<T>::type
+    > {
+    };
+    /**
+     * @brief 
+     *
+     * @tparam T
+     */
+    template <typename T>
+    struct is_vector_dual<T, false> : std::false_type {
     };
     /*--------------------------------------------------------------------------
      * is_dual
@@ -50,37 +112,14 @@ namespace algo { namespace ad {
      * @tparam T
      */
     template <typename T>
-    struct is_scalar_dual 
-    : boost::mpl::bool_<boost::is_base_of<dual_expression<T>, T>::value> 
-    {
-    };
-    /**
-     * @brief 
-     *
-     * @tparam T
-     */
-    template <typename T>
-    struct is_vector_dual<T, true> 
-    : boost::mpl::bool_<is_scalar_dual<typename T::value_type>::value> {
-    };
-    /**
-     * @brief 
-     *
-     * @tparam T
-     */
-    template <typename T>
-    struct is_vector_dual<T, false> : boost::mpl::bool_<false> {
-    };
-    /**
-     * @brief 
-     *
-     * @tparam T
-     */
-    template <typename T>
-    struct is_dual : boost::mpl::bool_<
-         boost::mpl::or_<
-             is_vector_dual<T>, 
-             is_scalar_dual<T> >::value> {
+    struct is_dual 
+    : std::integral_constant<
+        bool,
+        boost::mpl::or_<
+            is_vector_dual<T>, 
+            is_scalar_dual<T>
+        >::value
+    > {
     };
     /*--------------------------------------------------------------------------
      * has_const_closure_type
@@ -95,10 +134,16 @@ namespace algo { namespace ad {
         static
         std::false_type check(...);
     };
-
+    /**
+     * @brief return true_type if T has const_closure_type
+     *
+     * @tparam T
+     */
     template <typename T>
     struct has_const_closure_type 
-    : public decltype(has_const_closure_type_impl::check<T>(nullptr)) {
+    : public decltype(has_const_closure_type_impl::check<
+        typename std::decay<T>::type
+    >(nullptr)) {
     };
     /*--------------------------------------------------------------------------
      * const_closure_type_traits
@@ -122,12 +167,17 @@ namespace algo { namespace ad {
         typedef typename T::const_closure_type type;
     };
     /**
-     * @brief 
+     * @brief If type has const closure, type is defined as T::const_closure_type.
+     *  Otherwise type is defined as T.
+     *  Currently, pointer is not allowed.
      *
      * @tparam T
      */
     template <typename T>
-    struct const_closure_type_traits : public const_closure_type_traits_impl<T> {
+    struct const_closure_type_traits 
+    : public const_closure_type_traits_impl<
+        typename std::decay<T>::type
+    > {
     };
 } } // namespace algo { namespace ad {
 
