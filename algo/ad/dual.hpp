@@ -15,7 +15,7 @@ namespace algo { namespace ad {
      *
      * @tparam Derivative
      */
-    template <typename Derivative = boost::numeric::ublas::vector<double> >
+    template <typename Derivative = boost::numeric::ublas::vector<double>>
     class dual : public dual_expression<dual<Derivative>> {
     private:
         typedef dual<Derivative> self_type;
@@ -47,7 +47,7 @@ namespace algo { namespace ad {
         /**
          * @brief 
          *
-         * @param v
+         * @param value
          */
         dual(const double value) 
         : _value(value), _derivative(0)
@@ -55,7 +55,9 @@ namespace algo { namespace ad {
         }
         /**
          * @brief 
-         *  TODO:need to check inf_type is same size.
+         *
+         * @TODO need to check inf_type is same size.
+         *
          * @param v
          * @param d
          */
