@@ -126,7 +126,7 @@ namespace algo { namespace ad_test {
 
             const double expectValue = std::exp(_value);
             const ublas::vector<double> expectDerivative 
-                = ublas::exp(_value) * _vectorDerivative;
+                = std::exp(_value) * _vectorDerivative;
 
             EXPECT_DOUBLE_EQ(expectValue, actualValue);
             EXPECT_VECTOR_DOUBLE_EQ(expectDerivative, actualDerivative);

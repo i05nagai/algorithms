@@ -56,7 +56,7 @@ namespace boost { namespace numeric { namespace ublas {
      *
      * @return 
      */
-    double exp(const double e)
+    double element_exp(const double e)
     {
         return std::exp(e);
     }
