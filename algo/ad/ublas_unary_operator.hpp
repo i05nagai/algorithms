@@ -16,13 +16,13 @@ namespace boost { namespace numeric { namespace ublas {
     /**
      * @brief 
      *
-     * @tparam T
+     * @tparam Scalar
      */
-    template <typename T>
-    struct scalar_exp : public scalar_unary_functor<T> {
-        typedef typename scalar_unary_functor<T>::value_type value_type;
-        typedef typename scalar_unary_functor<T>::argument_type argument_type;
-        typedef typename scalar_unary_functor<T>::result_type result_type;
+    template <typename Scalar>
+    struct scalar_exp : public scalar_unary_functor<Scalar> {
+        typedef typename scalar_unary_functor<Scalar>::value_type value_type;
+        typedef typename scalar_unary_functor<Scalar>::argument_type argument_type;
+        typedef typename scalar_unary_functor<Scalar>::result_type result_type;
 
         static result_type apply(argument_type t)
         {
@@ -32,20 +32,21 @@ namespace boost { namespace numeric { namespace ublas {
     /**
      * @brief 
      *
-     * @tparam E
+     * @tparam VectorExpression
      * @param e
      *
      * @return 
      */
-    template<typename E>
+    template<typename VectorExpression>
     typename boost::numeric::ublas::vector_unary_traits<
-        E, 
-        scalar_exp<typename E::value_type> >::result_type
-    exp(const vector_expression<E>& e)
+        VectorExpression, 
+        scalar_exp<typename VectorExpression::value_type> >::result_type
+    element_exp(const vector_expression<VectorExpression>& e)
     {
         typedef typename boost::numeric::ublas::vector_unary_traits<
-            E, 
-            scalar_exp<typename E::value_type> >::expression_type expression_type;
+            VectorExpression, 
+            scalar_exp<typename VectorExpression::value_type>
+        >::expression_type expression_type;
         return expression_type(e());
     }
     /**
