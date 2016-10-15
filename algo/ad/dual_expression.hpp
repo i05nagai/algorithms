@@ -7,11 +7,17 @@
  */
 #pragma once
 
-#include <boost/numeric/ublas/vector_expression.hpp>
-
 namespace algo { namespace ad {
     /**
-     * @brief 
+     * @brief classes which inherits dual_expression must have following concepts
+     *  * type
+     *      * derivative_type 
+     *      * 
+     *  * function
+     *      * getValue()
+     *      * getValue() const
+     *      * getDerivative() 
+     *      * getDerivative() const
      *
      * @tparam E
      */

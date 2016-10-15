@@ -68,12 +68,12 @@ add_library(math ${math_SOURCES})
 # test
 enable_testing()
 
-#add_executable(ad_test ${ad_test_SOURCES})
-#target_link_libraries(ad_test ad)
-#target_link_libraries(ad_test gmock)
-#target_link_libraries(ad_test gtest)
-#add_test(ad_test ad_test)
-#
+add_executable(ad_test ${ad_test_SOURCES})
+target_link_libraries(ad_test ad)
+target_link_libraries(ad_test gmock)
+target_link_libraries(ad_test gtest)
+add_test(ad_test ad_test)
+
 #add_executable(qn_test ${qn_test_SOURCES})
 #target_link_libraries(qn_test qn)
 #target_link_libraries(qn_test gmock)

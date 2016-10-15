@@ -1,5 +1,5 @@
 /**
- * @file dual_helper_function.hpp
+ * @file dual_get_value_function.hpp
  * @brief helper funtions.
  * @author i05nagai
  * @version 0.0.1
@@ -7,7 +7,7 @@
  */
 
 #pragma once
-#include "algo/ad/fwd.h"
+#include "algo/ad/fwd.hpp"
 
 namespace algo { namespace ad { namespace detail {
     /**
@@ -18,9 +18,10 @@ namespace algo { namespace ad { namespace detail {
      *
      * @return 
      */
-    double getValue(const double v)
+    inline
+    double getValue(const double value)
     {
-        return v;
+        return value;
     }
     /**
      * @brief an overloaded function. 
@@ -31,7 +32,7 @@ namespace algo { namespace ad { namespace detail {
      *
      * @return double.
      */
-    template <typename E> 
+    template <typename E> inline
     double getValue(const dual_expression<E>& e)
     {
         return e().getValue();

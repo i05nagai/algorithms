@@ -8,6 +8,7 @@
 #pragma once
 #include "algo/ad/dual.hpp"
 #include <boost/numeric/ublas/vector.hpp>
+#include <boost/numeric/ublas/matrix.hpp>
 
 namespace algo { namespace ad {
     /**
@@ -46,7 +47,7 @@ namespace algo { namespace ad {
      * @return 
      */
     dual<boost::numeric::ublas::vector<double> >
-    make_dual(
+    makeDual(
         const double value,
         const boost::numeric::ublas::vector<double>& infinitesimal);
     /**
@@ -70,6 +71,42 @@ namespace algo { namespace ad {
      *
      * @return 
      */
-    boost::numeric::ublas::vector<dual<boost::numeric::ublas::vector<double> > >
-    make_vector_dual(const boost::numeric::ublas::vector<double>& value);
+    boost::numeric::ublas::vector<dual<double>>
+    makeVectorDual(
+        const boost::numeric::ublas::vector<double>& value,
+        const double derivative);
+    /**
+     * @brief 
+     *
+     * @param value
+     *
+     * @return 
+     */
+    boost::numeric::ublas::vector<dual<boost::numeric::ublas::vector<double>>>
+    makeVectorDual(
+        const boost::numeric::ublas::vector<double>& value);
+    /**
+     * @brief 
+     *
+     * @param value
+     * @param scalarDerivative
+     *
+     * @return 
+     */
+    boost::numeric::ublas::vector<dual<double>>
+    makeVectorDual(
+        const boost::numeric::ublas::vector<double>& value,
+        const boost::numeric::ublas::vector<double>& scalarDerivative);
+    /**
+     * @brief 
+     *
+     * @param value
+     * @param vectorDerivative
+     *
+     * @return 
+     */
+    boost::numeric::ublas::vector<dual<boost::numeric::ublas::vector<double>>>
+    makeVectorDual(
+        const boost::numeric::ublas::vector<double>& value,
+        const boost::numeric::ublas::matrix<double>& vectorDerivative);
 } } // namespace algo { namespace ad {

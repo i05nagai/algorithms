@@ -1,11 +1,10 @@
 /**
  * @file ublas_unary_operator.hpp
  * @brief 
- * @author 
- * @version i05nagai
- * @date 2016-07-20
+ * @author i05nagai
+ * @version 0.0.2
+ * @date 2016-10-04
  */
-
 #pragma once
 #include <boost/numeric/ublas/functional.hpp>
 #include <boost/numeric/ublas/vector_expression.hpp>
@@ -17,13 +16,13 @@ namespace boost { namespace numeric { namespace ublas {
     /**
      * @brief 
      *
-     * @tparam T
+     * @tparam Scalar
      */
-    template <typename T>
-    struct scalar_exp : public scalar_unary_functor<T> {
-        typedef typename scalar_unary_functor<T>::value_type value_type;
-        typedef typename scalar_unary_functor<T>::argument_type argument_type;
-        typedef typename scalar_unary_functor<T>::result_type result_type;
+    template <typename Scalar>
+    struct scalar_exp : public scalar_unary_functor<Scalar> {
+        typedef typename scalar_unary_functor<Scalar>::value_type value_type;
+        typedef typename scalar_unary_functor<Scalar>::argument_type argument_type;
+        typedef typename scalar_unary_functor<Scalar>::result_type result_type;
 
         static result_type apply(argument_type t)
         {
@@ -31,32 +30,40 @@ namespace boost { namespace numeric { namespace ublas {
         }
     };
     /**
-     * @brief 
+     * @brief This function takes elment-wise exponential to ublas::vector_expression.
      *
-     * @tparam E
+     * @note This function currently does not support vector of which value_type is dual.
+     *
+     * @tparam VectorExpression
      * @param e
      *
-     * @return 
+     * @return ublas::vector_unary it denotes unary-operated vector.
      */
-    template<typename E>
+    template<typename VectorExpression>
+    inline
     typename boost::numeric::ublas::vector_unary_traits<
-        E, 
-        scalar_exp<typename E::value_type> >::result_type
-    exp(const vector_expression<E>& e)
+        VectorExpression, 
+        scalar_exp<typename VectorExpression::value_type>
+    >::result_type
+    element_exp(const vector_expression<VectorExpression>& e)
     {
         typedef typename boost::numeric::ublas::vector_unary_traits<
-            E, 
-            scalar_exp<typename E::value_type> >::expression_type expression_type;
+            VectorExpression, 
+            scalar_exp<typename VectorExpression::value_type>
+        >::expression_type expression_type;
         return expression_type(e());
     }
     /**
+     * @overload 
+     *
      * @brief 
      *
      * @param e
      *
      * @return 
      */
-    double exp(const double e)
+    inline
+    double element_exp(const double e)
     {
         return std::exp(e);
     }
@@ -66,47 +73,57 @@ namespace boost { namespace numeric { namespace ublas {
     /**
      * @brief 
      *
-     * @tparam T
+     * @tparam Scalar
      */
-    template <typename T>
-    struct scalar_inverse : public scalar_unary_functor<T> {
-        typedef typename scalar_unary_functor<T>::value_type value_type;
-        typedef typename scalar_unary_functor<T>::argument_type argument_type;
-        typedef typename scalar_unary_functor<T>::result_type result_type;
+    template <typename Scalar>
+    struct scalar_inverse : public scalar_unary_functor<Scalar> {
+        typedef typename scalar_unary_functor<Scalar>::value_type value_type;
+        typedef typename scalar_unary_functor<Scalar>::argument_type argument_type;
+        typedef typename scalar_unary_functor<Scalar>::result_type result_type;
 
         static result_type apply(argument_type t)
         {
+            assert(t != 0);
             return 1.0 / t;
         }
     };
     /**
-     * @brief 
+     * @brief This function takes elment-wise reciprocal to ublas::vector_expression.
      *
-     * @tparam E
+     * @note This function currently does not support vector of which value_type is dual.
+     *
+     * @tparam VectorExpression
      * @param e
      *
      * @return 
      */
-    template<typename E>
+    template<typename VectorExpression>
+    inline
     typename boost::numeric::ublas::vector_unary_traits<
-        E, 
-        scalar_inverse<typename E::value_type> >::result_type
-    element_inverse(const vector_expression<E>& e)
+        VectorExpression, 
+        scalar_inverse<typename VectorExpression::value_type> 
+    >::result_type
+    element_inverse(const vector_expression<VectorExpression>& e)
     {
         typedef typename boost::numeric::ublas::vector_unary_traits<
-            E, 
-            scalar_inverse<typename E::value_type> >::expression_type expression_type;
+            VectorExpression, 
+            scalar_inverse<typename VectorExpression::value_type> 
+        >::expression_type expression_type;
         return expression_type(e());
     }
     /**
+     * @overload
+     *
      * @brief 
      *
      * @param e
      *
      * @return 
      */
+    inline
     double element_inverse(const double e)
     {
+        assert(e != 0);
         return 1.0 / e;
     }
     /*--------------------------------------------------------------------------
@@ -115,13 +132,13 @@ namespace boost { namespace numeric { namespace ublas {
     /**
      * @brief 
      *
-     * @tparam T
+     * @tparam Scalar
      */
-    template <typename T>
-    struct scalar_sin : public scalar_unary_functor<T> {
-        typedef typename scalar_unary_functor<T>::value_type value_type;
-        typedef typename scalar_unary_functor<T>::argument_type argument_type;
-        typedef typename scalar_unary_functor<T>::result_type result_type;
+    template <typename Scalar>
+    struct scalar_sin : public scalar_unary_functor<Scalar> {
+        typedef typename scalar_unary_functor<Scalar>::value_type value_type;
+        typedef typename scalar_unary_functor<Scalar>::argument_type argument_type;
+        typedef typename scalar_unary_functor<Scalar>::result_type result_type;
 
         static result_type apply(argument_type t)
         {
@@ -129,32 +146,40 @@ namespace boost { namespace numeric { namespace ublas {
         }
     };
     /**
-     * @brief 
+     * @brief This function takes elment-wise sin to ublas::vector_expression.
      *
-     * @tparam E
+     * @note This function currently does not support vector of which value_type is dual.
+     *
+     * @tparam VectorExpression
      * @param e
      *
      * @return 
      */
-    template<typename E>
+    template<typename VectorExpression>
+    inline
     typename boost::numeric::ublas::vector_unary_traits<
-        E, 
-        scalar_sin<typename E::value_type> >::result_type
-    sin(const vector_expression<E>& e)
+        VectorExpression, 
+        scalar_sin<typename VectorExpression::value_type> 
+    >::result_type
+    element_sin(const vector_expression<VectorExpression>& e)
     {
         typedef typename boost::numeric::ublas::vector_unary_traits<
-            E, 
-            scalar_sin<typename E::value_type> >::expression_type expression_type;
+            VectorExpression, 
+            scalar_sin<typename VectorExpression::value_type> 
+        >::expression_type expression_type;
         return expression_type(e());
     }
     /**
+     * @overload
+     *
      * @brief 
      *
      * @param e
      *
      * @return 
      */
-    double sin(const double e)
+    inline
+    double element_sin(const double e)
     {
         return std::sin(e);
     }
@@ -164,13 +189,13 @@ namespace boost { namespace numeric { namespace ublas {
     /**
      * @brief 
      *
-     * @tparam T
+     * @tparam Scalar
      */
-    template <typename T>
-    struct scalar_cos : public scalar_unary_functor<T> {
-        typedef typename scalar_unary_functor<T>::value_type value_type;
-        typedef typename scalar_unary_functor<T>::argument_type argument_type;
-        typedef typename scalar_unary_functor<T>::result_type result_type;
+    template <typename Scalar>
+    struct scalar_cos : public scalar_unary_functor<Scalar> {
+        typedef typename scalar_unary_functor<Scalar>::value_type value_type;
+        typedef typename scalar_unary_functor<Scalar>::argument_type argument_type;
+        typedef typename scalar_unary_functor<Scalar>::result_type result_type;
 
         static result_type apply(argument_type t)
         {
@@ -178,32 +203,40 @@ namespace boost { namespace numeric { namespace ublas {
         }
     };
     /**
-     * @brief 
+     * @brief This function takes elment-wise cos to ublas::vector_expression.
      *
-     * @tparam E
+     * @note This function currently does not support vector of which value_type is dual.
+     *
+     * @tparam VectorExpression
      * @param e
      *
      * @return 
      */
-    template<typename E>
+    template<typename VectorExpression>
+    inline
     typename boost::numeric::ublas::vector_unary_traits<
-        E, 
-        scalar_cos<typename E::value_type> >::result_type
-    cos(const vector_expression<E>& e)
+        VectorExpression, 
+        scalar_cos<typename VectorExpression::value_type> 
+    >::result_type
+    element_cos(const vector_expression<VectorExpression>& e)
     {
         typedef typename boost::numeric::ublas::vector_unary_traits<
-            E, 
-            scalar_cos<typename E::value_type> >::expression_type expression_type;
+            VectorExpression, 
+            scalar_cos<typename VectorExpression::value_type> 
+        >::expression_type expression_type;
         return expression_type(e());
     }
     /**
+     * @overload
+     *
      * @brief 
      *
      * @param e
      *
      * @return 
      */
-    double cos(const double e)
+    inline
+    double element_cos(const double e)
     {
         return std::cos(e);
     }

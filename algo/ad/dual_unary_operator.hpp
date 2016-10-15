@@ -1,467 +1,194 @@
 /**
  * @file dual_unary_operator.hpp
- * @brief dual unary operators.
+ * @brief 
  * @author i05nagai
- * @version 0.0.1
- * @date 2016-07-20
+ * @version 0.0.2
+ * @date 2016-10-04
  */
-
 #pragma once
-#include "algo/ad/detail/dual_helper_function.hpp"
-#include "algo/ad/detail/dual_unary_operator_helper.hpp"
+#include "algo/ad/detail/dual_get_value_function.hpp"
+#include "algo/ad/dual_unary_operator_functor.hpp"
 #include "algo/ad/dual_expression.hpp"
-#include "algo/ad/fwd.h"
+#include "algo/ad/fwd.hpp"
 #include "algo/ad/traits.hpp"
 
 namespace algo { namespace ad {
     /*--------------------------------------------------------------------------
-     * dual_negate
+     * dual_unary
      *------------------------------------------------------------------------*/
-    /**
-     * @brief 
-     *
-     * @tparam E
-     */
-    template<typename E>
-    class dual_negate : public dual_expression<dual_negate<E> > {
+    template <
+        typename DE, 
+        typename ValueFunctor,
+        typename DerivativeFunctor
+    >
+    class dual_unary
+    : public dual_expression<dual_unary<DE, ValueFunctor, DerivativeFunctor>> {
     //private typedef
     private:
+        typedef typename const_closure_type_traits<DE>::type 
+            expression_closure_type;
+        typedef dual_unary<DE, ValueFunctor, DerivativeFunctor> self_type;
     //public typedef
     public:
-        typedef typename const_closure_type_traits<E>::type const_closure_type;
+        typedef typename DE::derivative_type derivative_type;
+        typedef self_type const_closure_type;
     //public function
     public:
-        /**
-         * @brief the constructor is required.
-         */
-        dual_negate()
-        : _e(0)
-        {
-        }
-        /**
-         * @brief 
-         *
-         * @param e
-         */
-        dual_negate(const E& e)
+        dual_unary(const DE& e)
         : _e(e)
         {
         }
-        /**
-         * @brief 
-         *
-         * @return
-         */
+
         double getValue()
         {
-            return -detail::getValue(_e);
+            return ValueFunctor::apply(_e);
         }
-        /**
-         * @brief 
-         *
-         * @return
-         */
+
         double getValue() const
         {
-            return -detail::getValue(_e);
+            return ValueFunctor::apply(_e);
         }
-        /**
-         * @brief 
-         *
-         * @return
-         */
-        decltype(detail::dual_negate_helper(E()))
+
+        derivative_type
         getDerivative()
         {
-            return detail::dual_negate_helper(_e);
+            return DerivativeFunctor::apply(_e);
         }
-        /**
-         * @brief 
-         *
-         * @return
-         */
-        decltype(detail::dual_negate_helper(E()))
+
+        derivative_type
         getDerivative() const
         {
-            return detail::dual_negate_helper(_e);
+            return DerivativeFunctor::apply(_e);
         }
     //private function
     private:
     //private members
     private:
-        const_closure_type _e;
+        expression_closure_type _e;
     };
+    /*--------------------------------------------------------------------------
+     * negate
+     *------------------------------------------------------------------------*/
     /**
      * @brief 
      *
-     * @tparam E
+     * @tparam DE
      * @param e
      *
      * @return 
      */
-    template<typename E>
-    dual_negate<E> operator -(const dual_expression<E>& e)
+    template<typename DE>
+    dual_unary<
+        DE,
+        dual_negate_value<DE>, 
+        dual_negate_derivative<DE>
+    > 
+    operator -(const dual_expression<DE>& e)
     {
-        return dual_negate<E>(e());
+        return dual_unary<
+            DE,
+            dual_negate_value<DE>, 
+            dual_negate_derivative<DE>
+        >(e());
     }
     /*--------------------------------------------------------------------------
-     * dual_exp
+     * exp
      *------------------------------------------------------------------------*/
     /**
      * @brief 
      *
-     * @tparam E
-     */
-    template<typename E>
-    class dual_exp : public dual_expression<dual_exp<E> > {
-    //private typedef
-    private:
-    //public typedef
-    public:
-        typedef typename const_closure_type_traits<E>::type const_closure_type;
-    //public function
-    public:
-        /**
-         * @brief requires.
-         */
-        dual_exp()
-        : _e(0)
-        {
-        }
-        /**
-         * @brief 
-         *
-         * @param e
-         */
-        dual_exp(const E& e)
-        : _e(e)
-        {
-        }
-        /**
-         * @brief 
-         *
-         * @return 
-         */
-        double getValue()
-        {
-            return std::exp(detail::getValue(_e));
-        }
-        /**
-         * @brief 
-         *
-         * @return 
-         */
-        double getValue() const
-        {
-            return std::exp(detail::getValue(_e));
-        }
-        /**
-         * @brief 
-         *
-         * @return
-         */
-        decltype(detail::dual_exp_helper(E()))
-        getDerivative()
-        {
-            return detail::dual_exp_helper(_e);
-        }
-        /**
-         * @brief 
-         *
-         * @return
-         */
-        decltype(detail::dual_exp_helper(E()))
-        getDerivative() const
-        {
-            return detail::dual_exp_helper(_e);
-        }
-    //private function
-    private:
-    //private members
-    private:
-        const_closure_type _e;
-    };
-    /**
-     * @brief 
-     *
-     * @tparam E
+     * @tparam DE
      * @param e
      *
      * @return 
      */
-    template<typename E>
-    dual_exp<E> exp(const dual_expression<E>& e)
+    template<typename DE>
+    dual_unary<
+        DE,
+        dual_exp_value<DE>, 
+        dual_exp_derivative<DE>
+    > 
+    exp(const dual_expression<DE>& e)
     {
-        return dual_exp<E>(e());
+        return dual_unary<
+            DE,
+            dual_exp_value<DE>, 
+            dual_exp_derivative<DE>
+        >(e());
     }
     /*--------------------------------------------------------------------------
-     * dual_log
+     * log
      *------------------------------------------------------------------------*/
     /**
      * @brief 
      *
-     * @tparam E
-     */
-    template<typename E>
-    class dual_log : public dual_expression<dual_log<E> > {
-    //private typedef
-    private:
-    //public typedef
-    public:
-        typedef typename const_closure_type_traits<E>::type const_closure_type;
-    //public function
-    public:
-        /**
-         * @brief the constructor is required.
-         */
-        dual_log()
-        : _e(0)
-        {
-        }
-        /**
-         * @brief 
-         *
-         * @param e
-         */
-        dual_log(const E& e)
-        : _e(e)
-        {
-        }
-        /**
-         * @brief 
-         *
-         * @return 
-         */
-        double getValue()
-        {
-            return std::log(detail::getValue(_e));
-        }
-        /**
-         * @brief 
-         *
-         * @return 
-         */
-        double getValue() const
-        {
-            return std::log(detail::getValue(_e));
-        }
-        /**
-         * @brief 
-         *
-         * @return
-         */
-        decltype(detail::dual_log_helper(E()))
-        getDerivative()
-        {
-            return detail::dual_log_helper(_e);
-        }
-        /**
-         * @brief 
-         *
-         * @return
-         */
-        decltype(detail::dual_log_helper(E()))
-        getDerivative() const
-        {
-            return detail::dual_log_helper(_e);
-        }
-    //private function
-    private:
-    //private members
-    private:
-        const_closure_type _e;
-    };
-    /**
-     * @brief 
-     *
-     * @tparam E
+     * @tparam DE
      * @param e
      *
      * @return 
      */
-    template<typename E>
-    dual_log<E> log(const dual_expression<E>& e)
+    template<typename DE>
+    dual_unary<
+        DE,
+        dual_log_value<DE>, 
+        dual_log_derivative<DE>
+    > 
+    log(const dual_expression<DE>& e)
     {
-        return dual_log<E>(e());
+        return dual_unary<
+            DE,
+            dual_log_value<DE>, 
+            dual_log_derivative<DE>
+        >(e());
     }
     /*--------------------------------------------------------------------------
-     * dual_sin
+     * sin
      *------------------------------------------------------------------------*/
     /**
      * @brief 
      *
-     * @tparam E
-     */
-    template<typename E>
-    class dual_sin : public dual_expression<dual_sin<E> > {
-    //private typedef
-    private:
-    //public typedef
-    public:
-        typedef typename const_closure_type_traits<E>::type const_closure_type;
-    //public function
-    public:
-        /**
-         * @brief the constructor is required.
-         */
-        dual_sin()
-        : _e(0)
-        {
-        }
-        /**
-         * @brief 
-         *
-         * @param e
-         */
-        dual_sin(const E& e)
-        : _e(e)
-        {
-        }
-        /**
-         * @brief 
-         *
-         * @return 
-         */
-        double getValue()
-        {
-            return std::sin(detail::getValue(_e));
-        }
-        /**
-         * @brief 
-         *
-         * @return 
-         */
-        double getValue() const
-        {
-            return std::sin(detail::getValue(_e));
-        }
-        /**
-         * @brief 
-         *
-         * @return
-         */
-        decltype(detail::dual_sin_helper(E()))
-        getDerivative()
-        {
-            return detail::dual_sin_helper(_e);
-        }
-        /**
-         * @brief 
-         *
-         * @return
-         */
-        decltype(detail::dual_sin_helper(E()))
-        getDerivative() const
-        {
-            return detail::dual_sin_helper(_e);
-        }
-    //private function
-    private:
-    //private members
-    private:
-        const_closure_type _e;
-    };
-    /**
-     * @brief 
-     *
-     * @tparam E
+     * @tparam DE
      * @param e
      *
      * @return 
      */
-    template<typename E>
-    dual_sin<E> sin(const dual_expression<E>& e)
+    template<typename DE>
+    dual_unary<
+        DE,
+        dual_sin_value<DE>, 
+        dual_sin_derivative<DE>
+    > 
+    sin(const dual_expression<DE>& e)
     {
-        return dual_sin<E>(e());
+        return dual_unary<
+            DE,
+            dual_sin_value<DE>, 
+            dual_sin_derivative<DE>
+        >(e());
     }
     /*--------------------------------------------------------------------------
-     * dual_cos
+     * cos
      *------------------------------------------------------------------------*/
     /**
      * @brief 
      *
-     * @tparam E
-     */
-    template<typename E>
-    class dual_cos : public dual_expression<dual_cos<E> > {
-    //private typedef
-    private:
-    //public typedef
-    public:
-        typedef typename const_closure_type_traits<E>::type const_closure_type;
-    //public function
-    public:
-        /**
-         * @brief the constructor is required.
-         */
-        dual_cos()
-        : _e(0)
-        {
-        }
-        /**
-         * @brief 
-         *
-         * @param e
-         */
-        dual_cos(const E& e)
-        : _e(e)
-        {
-        }
-        /**
-         * @brief 
-         *
-         * @return 
-         */
-        double getValue()
-        {
-            return std::cos(detail::getValue(_e));
-        }
-        /**
-         * @brief 
-         *
-         * @return 
-         */
-        double getValue() const
-        {
-            return std::cos(detail::getValue(_e));
-        }
-        /**
-         * @brief 
-         *
-         * @return
-         */
-        decltype(detail::dual_cos_helper(E()))
-        getDerivative()
-        {
-            return detail::dual_cos_helper(_e);
-        }
-        /**
-         * @brief 
-         *
-         * @return
-         */
-        decltype(detail::dual_cos_helper(E()))
-        getDerivative() const
-        {
-            return detail::dual_cos_helper(_e);
-        }
-    //private function
-    private:
-    //private members
-    private:
-        const_closure_type _e;
-    };
-    /**
-     * @brief 
-     *
-     * @tparam E
+     * @tparam DE
      * @param e
      *
      * @return 
      */
-    template<typename E>
-    dual_cos<E> cos(const dual_expression<E>& e)
+    template<typename DE>
+    dual_unary<
+        DE,
+        dual_cos_value<DE>, 
+        dual_cos_derivative<DE>
+    > 
+    cos(const dual_expression<DE>& e)
     {
-        return dual_cos<E>(e());
+        return dual_unary<
+            DE,
+            dual_cos_value<DE>, 
+            dual_cos_derivative<DE>
+        >(e());
     }
 } } // namespace algo { namespace ad {

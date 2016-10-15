@@ -24,7 +24,7 @@ namespace algo { namespace qn { namespace detail {
         typedef ublas::vector<double> infinitesimal_type;
         typedef ad::dual<infinitesimal_type> dual_type;
 
-        ublas::vector<dual_type> dualX = ad::make_vector_dual(x);
+        ublas::vector<dual_type> dualX = ad::makeVectorDual(x);
 
         return f(dualX).getDerivative();;
     } 

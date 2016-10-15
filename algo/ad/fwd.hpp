@@ -1,9 +1,9 @@
 /**
- * @file fwd.h
+ * @file fwd.hpp
  * @brief forward declarations.
  * @author i05nagai
- * @version 
- * @date 2016-07-20
+ * @version 0.0.2
+ * @date 2016-10-04
  */
 
 #pragma once
@@ -27,8 +27,11 @@ namespace algo { namespace ad {
     //is_dual
     template <typename T>
     struct is_dual;
+    //has_const_closure_type
+    template <typename T>
+    struct has_const_closure_type;
     //const_closure_type
-    template <typename T, bool Condition = is_dual<T>::value >
+    template <typename T, bool Condition = has_const_closure_type<T>::value>
     struct const_closure_type_traits_impl;
     template <typename T>
     struct const_closure_type_traits;
