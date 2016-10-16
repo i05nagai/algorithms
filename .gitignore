@@ -32,3 +32,8 @@ sandbox
 *.gch
 #ctag file
 tags
+#gnu global
+GPATH
+GRTAGS
+GTAGS
+
