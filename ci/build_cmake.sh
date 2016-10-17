@@ -33,7 +33,7 @@ then
 fi
 
 #make test
-make test
+ctest --verbose
 ret=$?
 if [ $ret -ne 0 ]
 then

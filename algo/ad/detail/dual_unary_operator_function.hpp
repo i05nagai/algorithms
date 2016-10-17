@@ -8,6 +8,7 @@
 
 #pragma once
 #include "algo/ad/ublas_unary_operator.hpp"
+#include "algo/ad/ublas_binary_operator.hpp"
 
 namespace algo { namespace ad { namespace detail {
     /*--------------------------------------------------------------------------
@@ -55,8 +56,8 @@ namespace algo { namespace ad { namespace detail {
      */
     template<typename DE>
     inline
-    typename DE::derivative_type
-    expDualDerivative(const dual_expression<DE>& e)
+    auto expDualDerivative(const dual_expression<DE>& e)
+    -> decltype(std::exp(e().getValue()) * e().getDerivative())
     {
         return std::exp(e().getValue()) * e().getDerivative();
     }
@@ -116,8 +117,8 @@ namespace algo { namespace ad { namespace detail {
      * @return 
      */
     template<typename DE>
-    typename DE::derivative_type
-    sinDualDerivative(const dual_expression<DE>& e)
+    auto sinDualDerivative(const dual_expression<DE>& e)
+    -> decltype(e().getDerivative() * std::cos(e().getValue()))
     {
         namespace ublas = boost::numeric::ublas;
         return e().getDerivative() * std::cos(e().getValue());
@@ -149,12 +150,19 @@ namespace algo { namespace ad { namespace detail {
      * @return type is ublas::vector_binary_scalar2
      */
     template<typename DE>
-    typename DE::derivative_type
-    cosDualDerivative(const dual_expression<DE>& e)
+    auto cosDualDerivative(const dual_expression<DE>& e)
+    -> decltype(-std::sin(e().getValue()) * e().getDerivative())
     {
         namespace ublas = boost::numeric::ublas;
         return -std::sin(e().getValue()) * e().getDerivative();
     }
+    //template<typename DE>
+    //typename DE::derivative_type
+    //cosDualDerivative(const dual_expression<DE>& e)
+    //{
+    //    namespace ublas = boost::numeric::ublas;
+    //    return -std::sin(e().getValue()) * e().getDerivative();
+    //}
     /**
      * @brief 
      *

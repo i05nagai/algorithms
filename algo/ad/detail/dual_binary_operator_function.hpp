@@ -7,6 +7,7 @@
  */
 
 #pragma once
+#include "algo/ad/ublas_binary_operator.hpp"
 
 namespace algo { namespace ad { namespace detail {
     /*--------------------------------------------------------------------------
@@ -173,6 +174,8 @@ namespace algo { namespace ad { namespace detail {
      *------------------------------------------------------------------------*/
     /**
      * @brief 
+     *
+     * @note e1().getDerivative() and e1().getDerivative() can be vector_expression or double.
      *
      * @tparam E1
      * @tparam E2
