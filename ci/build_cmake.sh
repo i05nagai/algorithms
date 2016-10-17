@@ -41,7 +41,10 @@ then
 fi
 
 ctest -T memcheck --verbose | tee memcheck.log
-cat Testing/Temporary/MemoryChecker.*.log
+if [ -f Testing/Temporary/MemoryChecker.*.log ]
+then
+	cat Testing/Temporary/MemoryChecker.*.log
+fi
 
 ret=${PIPESTATUS[0]}
 if [ $ret -ne 0 ]
