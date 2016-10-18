@@ -37,6 +37,9 @@ namespace algo { namespace nm {
                 = ublas::prod(ublas::trans(jacobianMatrix), jacobianMatrix);
             const bool isSuccess 
                 = util::invert(tempMatrix, inverseMatrix);
+            if (!isSuccess) {
+                //TODO
+            }
             const ublas::vector<double> tempVector1 
                 = ublas::prod(ublas::trans(jacobianMatrix), residual);
             const ublas::vector<double> tempVector2

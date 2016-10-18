@@ -5,9 +5,11 @@ project(algo CXX)
 #compiler option with accordance to compiler
 SET (CMAKE_CXX_FLAGS "-g ${CMAKE_CXX_FLAGS}")
 IF ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
-	SET (CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
+	#boost has lot of warning of unused-parameter
+	SET (CMAKE_CXX_FLAGS "-std=c++11 -O3 -Wall -Wextra -Werror -Wno-unused-parameter ${CMAKE_CXX_FLAGS}")
 ELSEIF ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
-	SET (CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
+	#boost has lot of warning of unused-parameter
+	SET (CMAKE_CXX_FLAGS "-std=c++11 -O3 -Wall -Wextra -Werror -Wno-unused-parameter ${CMAKE_CXX_FLAGS}")
 ELSEIF ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
 	IF (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 19)
 		MESSAGE ( FATAL_ERROR "MSVC doesn't support C++11.")
@@ -91,4 +93,9 @@ target_link_libraries(util_test util)
 target_link_libraries(util_test gmock)
 target_link_libraries(util_test gtest)
 add_test(util_test util_test)
+
+#valgrind
+set(MEMORYCHECK_COMMAND_OPTIONS "--leak-check=full --error-exitcode=1")
+find_program(CTEST_MEMORYCHECK_COMMAND NAMES valgrind)
+include(Dart)
 

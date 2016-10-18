@@ -68,8 +68,12 @@ namespace algo { namespace ad_test {
         ublas::matrix<double> result(valueSize, derivativeSize);
 
         for (std::size_t ri = 0; ri < valueSize; ++ri) {
-            ublas::row(result, ri) 
-                = vectorDualVectorDerivative(ri).getDerivative();
+			const ublas::vector<double>& derivative
+				= vectorDualVectorDerivative(ri).getDerivative();
+   			std::copy(
+				derivative.begin(),
+				derivative.end(),
+				ublas::row(result, ri).begin());
         }
 
         return result;
