@@ -25,6 +25,7 @@ before_install:
   - cmake --version
   - ls -la
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install gcc48; fi
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install valgrind; fi
 install:
   # /usr/bin/gcc is 4.6 always, but gcc-X.Y is available.
   - if [ "$CXX" = "g++" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi
