@@ -1,0 +1,18 @@
+
+## Customize checkout
+checkout:
+  post:
+    - git submodule init
+    - git submodule update
+
+## Customize dependencies
+dependencies:
+  pre:
+		-
+
+test:
+    override:
+        - ./ci/run_tests.sh
+        - ./ci/run memcheck_tests.sh
+        - ./ci/run_performance_tests.sh
+
